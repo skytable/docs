@@ -1,0 +1,9 @@
+site_name: Terrabase Docs
+theme:
+  name: material
+  palette:
+    primary: black
+    accent: black
+  favicon: assets/img/favicon.ico
+  logo: assets/img/favicon.ico
+  custom_dir: overrides
