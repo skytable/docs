@@ -1,3 +1,6 @@
+---
+title: Welcome
+---
 # Documentation for the Terrabase database
 > **NOTE:** This is currently a work in progress
 

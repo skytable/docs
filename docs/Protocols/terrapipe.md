@@ -33,9 +33,10 @@ Both these packets have two frames:
 `0` | Okay ||
 `1` | Not Found||
 `2` | Overwrite Error||
-`3` | Invalid Metaframe|The metaframe contains illegal characters|
-`4` | Incomplete| The query packet is incomplete
-`5` | Other error| Some other error response. This error text would be sent in the dataframe|
+`3` | Invalid Metaframe|The metaframe has an illegal format|
+`4` | Incomplete| The query packet is incomplete|
+`5` | Server Error| An error occurred on the server side
+`6` | Other error| Some other error response. This error text would be sent in the dataframe|
 
 
 ## The Query packet
