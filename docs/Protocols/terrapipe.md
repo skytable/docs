@@ -103,7 +103,7 @@ The dataframe, well, contains data! It has the following general structure:
 set\nsayan\n17
 ```
 
-Every piece of data is separated by `\n` . Do note: this wouldn't cause any issues if a piece of data contains a newline byte as a part of it, since the metalayout defines the skip sequence.
+Every piece of data is separated by `\n` . Do note: this wouldn't cause any issues if a piece of data contains a newline byte as a part of it, since the metalayout defines the skip sequence. __Please read the [note on types](#a-note-on-types)__
 
 ## Simple Response Packet
 
