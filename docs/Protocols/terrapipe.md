@@ -12,9 +12,11 @@ Terrapipe works in a query/response action similar to HTTP's request/response ac
 
 Both these packets have two frames:
 
-* The first line (before the first CRLF) in any of these packets is called the metaframe - this contains query/response metadata such as the action type and content length
-* The second line and the subsequent lines are collectively called the dataframe
-* Each chunk of bytes following the metaframe is terminated with `\r\n` i.e with CRLF
+* Lines 1 and 2 (Metaframe):
+    - The first line (before the first LF) in any of these packets is called the _metaline_ - this contains query/response metadata such as the action type and content length.
+    - The second line (before the second LF) is also a part of the metaframe, and it is called the _metalayout_
+* Line 3 and the subsequent lines are collectively called the dataframe
+* Each chunk of bytes following the metaframe is terminated with `\n` i.e with LF
 
 ## Supported actions
 
@@ -38,93 +40,167 @@ Both these packets have two frames:
 `5` | Server Error| An error occurred on the server side
 `6` | Other error| Some other error response. This error text would be sent in the dataframe|
 
+## Types of query/response packets
 
-## The Query packet
+Queries are of two kinds:
 
-The query packet has the following structure:
+* Simple Query Packets - These queries will usually do just one thing. that is one action at a time
+* Pipeline Query Packets - These queries are a combination of multiple individual queries
 
-``` 
-*<ACTION>!<LINES>!<SIZES>\r\n----- data -----
-```
+## Simple Query Packet
 
-### Line 1 (before first CRLF): Metaframe
+### Simple Query Metaframe (SQM)
 
-This is what the values in `<>` mean:
-
-* `<ACTION>` : This can assume any of the values list [above](#supported-actions)
-* `<LINES>` : The number of lines that this query contains excluding the metaframe
-* `<SIZES>` : The number of characters in each line - this is done for performance reasons so that we can preallocate buffers for reading data. For a single-line query, it can look like: `4#` , while for a multiline query, it can look like: `3#5#` . It has the format: `<CHARS-IN-THIS-LINE>#<CHARS-IN-NEXT-LINE>#` and so on
-
-#### An example metaframe
-
-For a query like `set sayan 17` , the resulting query packet would look like:
-
-``` shell
-*SET!2!5#2#
-```
-
-### Line 2 and subsequent lines: Dataframe
-
-The dataframe has no absolute structure, with the only requirement that each unit of data should be separated by `\r\n` , i.e CRLF
-
-#### An example dataframe
-
-`sayan\r\n17` 
-
-## The Response packet
-
-The response packet has the following general structure
+This is what a typical SQM looks like:
 
 ``` 
-<RESPCODE>!<LINES>!<SIZES>\r\n---- data ----
+<METALINE>
+<METALAYOUT>
 ```
 
-### Line 1 (before first CRLF) : Metaframe
+### Line 1: Metaframe _metaline_
 
-This is what the values in `<>` mean:
+The metaline has the following general structure:
 
-* `<RESPCODE>` : This can have the values listed in [this table](#response-codes)
-* `<LINES>` : The number of lines that this response contains excluding the metaframe
-* `<SIZES>` : The number of characters in each line - this is done for performance reasons so that we can preallocate buffers for reading data. For a single-line response, it can look like: `4#` , while for a multiline response, it can look like: `3#5#` . It has the format: `<CHARS-IN-THIS-LINE>#<CHARS-IN-NEXT-LINE>#` and so on
+``` 
+*!<CLENGTH>!<ML_LENGTH>
+```
 
-#### An example metaframe
+Where:
 
-For a response to `set sayan 17` , the response is:
+* `CLENGTH` - This is the total content length excluding the _metalayout_ line
+* `ML_LENGTH` - This is the length of the _metalayout_ line
 
-`0!0!0\r\n` 
+#### Example metaline
 
-When we query for `get` ting a non-existent key, `get randomdude` , the response is:
+``` 
+*!22!12
+```
 
-`1!0!0\r\n` 
+### Line 2: Metaframe _metalayout_
+
+The metalayout is kind of like the _skip sequence_ which determines how many bytes are to be read from each partition preceding a `\n` . The metalayout has the following general structure:
+
+``` 
+<l1_len>#<l2_len>#<l3_len>#<ln_len>#
+```
+
+The `<l1_len>` , `<l2_len>` and so on are the number of data bytes in each line in the dataframe, exclusive of the LF ('\n') byte.
+
+#### Example metalayout
+
+For a dataframe which looks like: `set\nsayan\n17` , the corresponding metalayout should be:
+
+``` 
+3#5#2#
+```
+
+### Line 3 (and subsequent lines): Dataframe
+
+The dataframe, well, contains data! It has the following general structure:
+
+``` 
+set\nsayan\n17
+```
+
+Every piece of data is separated by `\n` . Do note: this wouldn't cause any issues if a piece of data contains a newline byte as a part of it, since the metalayout defines the skip sequence.
+
+## Simple Response Packet
+
+Simple responses have the following general structure:
+
+``` 
+*!<RESPCODE>!<CLENGTH>!<ML_LENGTH>
+<METALAYOUT>
+<DATAFRAME>
+```
+
+Where:
+
+* `RESPOCDE` - This can have any of the values [listed here](#response-codes)
+* `CLENGTH` - This is the total content length excluding the _metalayout_ line
+* `ML_LENGTH` - This is the length of the _metalayout_ line
+* `METALAYOUT` - This has the same structure as the [query packet's metalayout](#line-2-metaframe-metalayout)
+* `DATAFRAME` - This has the same structure as the [query packet's dataframe](#line-3-and-subsequent-lines-dataframe)
+
+## Pipeline Query Packet
+
+Pipeline queries are not very different from simple queries, except for the metaline in the metaframe.
+Pipeline query packets have the following general structure:
+
+``` 
+$!<CLENGTH>!<ML_LENGTH>
+<METALAYOUT>
+<DATAFRAME>
+```
+
+If you may have noticed, the only difference here, is that, instead of the asterisk (*), you have a Dollar Sign ($). All the other fields have the same meaning as in the [simple query packet](#simple-query-packet)
+
+## Pipeline Response Packet
+
+Again, pipeline responses are not much different from simple responses, except for having a Dollar Sign ($), in place of the asterisk (*) in the metaline, in the metaframe.
+It has the following general structure:
+
+``` 
+$!<RESPCODE>!<CLENGTH>!<ML_LENGTH>
+<METALAYOUT>
+<DATAFRAME>
+```
+
+Where the values in `<>` have their usual meanings.
+
+## A note on types
+
+The server doesn't care much about types, since all types are here and there! __However__, array responses look different. For an array which may be internally stored as: `["Sayan", "Ferris", 17, 1234.22f]` , the server will respond in this way:
+
+``` 
+3&Sayan\n
+Ferris\n
+17\n
+1234.22\0\n
+```
+
+That is the starting of the array will indicate the number of elements it carries, and the last element will terminate with `&` .
+This idea is not new - it is stolen from C's null-terminated strings.
 
 ## A complete example
 
-Let's say I run:
+### Simple Query/Response
+
+Here, we will assume that all operations are legal, that is while creating new keys, we will assume that the keys didn't exist, that is, there will be no `Overwrite Error` .
+
+This is the query I run on `tsh` :
 
 ``` shell
-$ ./tsh
-Welcome to Terrabase!
-Connected to 127.0.0.1:2003
-
 tsh> set sayan 17
 ```
 
-`tsh` will then write the following bytes to the stream:
+`tsh` will send bytes like the following (excluding TCP's SYN/SYN ACK/ACK):
 
 ``` 
-*SET!2!5#2#\r\nsayan\r\n17
+*!12!6\n3#5#2#\nSET\nsayan\n17
 ```
 
-The server will parse the query and let us assume that this key doesn't exist (so no `OverwriteError` is thrown), then the server will respond like this:
+The server does the action and writes the following back to the TCP stream:
 
 ``` 
-0!0!0
+*!0!0!0
 ```
 
-Now let us say we run `get sayan` on tsh, then the server would respond with:
+This is basically a success message, `*` since it is a simple response, `0` for `RESPCODE` , since the action was successful, `0` s for `CLENGTH` , and `ML_LENGTH` since no data is returned.
+
+### Pipelined Query/Response
+
+Since we don't have any way to run a pipeline query from `tsh` (at the moment), we will assume that the pipeline query wants to do the following:
+
+* `SET sayan 17` 
+* `GET foo` 
+* `HEYA` 
+
+Then, the client will send a query packet like:
 
 ``` 
-0!1!2#\r\n17
+$!25!12\n3#5#2#3#3#4#\nSET\nsayan\n17\nGET\nfoo\nHEYA
 ```
 
-Voila! We just saw Terrapipe in action!
+Voila! We just saw terrapipe in action. Phew, we're done!
