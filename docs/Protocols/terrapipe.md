@@ -151,17 +151,26 @@ Where the values in `<>` have their usual meanings.
 
 ## A note on types
 
-The server doesn't care much about types, since all types are here and there! __However__, array responses look different. For an array which may be internally stored as: `["Sayan", "Ferris", 17, 1234.22f]` , the server will respond in this way:
+The server doesn't care much about types when queries are sent, but when responses are sent the server acts a little differently. This is because each query in a pipelined query will give different outcomes - some of them may return
+response codes, some of them may return arrays and some of them may return _untyped_ things - since most responses are typically sent as strings, and it is the client's/user's responsibility to parse it into the required types.
+The server will respond in the following formats, for pipelined queries:
+
+* Most values - `+<value>` is returned for most successful returns
+* Response codes - `!<respcode>` is returned if the query returns a response code
+* Arrays - [the usual way](#array-responses)
+
+### Array responses
+
+Array responses are actually pretty simple! They look like:
 
 ``` 
-3&Sayan\n
-Ferris\n
-17\n
-1234.22\0\n
+&<n>element1\n
+element2\n
+...
+elementn\n
 ```
 
-That is the starting of the array will indicate the number of elements it carries, and the last element will terminate with `&` .
-This idea is not new - it is stolen from C's null-terminated strings.
+where `<n>` is the number of elements in the array.
 
 ## A complete example
 
@@ -193,14 +202,19 @@ This is basically a success message, `*` since it is a simple response, `0` for 
 
 Since we don't have any way to run a pipeline query from `tsh` (at the moment), we will assume that the pipeline query wants to do the following:
 
-* `SET sayan 17` 
-* `GET foo` 
-* `HEYA` 
-
+* `SET sayan 17`
+* `GET foo`
+* `HEYA`
 Then, the client will send a query packet like:
 
 ``` 
 $!25!12\n3#5#2#3#3#4#\nSET\nsayan\n17\nGET\nfoo\nHEYA
+```
+
+Then, the server will respond like:
+
+``` 
+$!15!6\n2#6#5\n!0\n+Hello\n+HEY!
 ```
 
 Voila! We just saw terrapipe in action. Phew, we're done!
