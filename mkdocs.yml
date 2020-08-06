@@ -1,9 +1,13 @@
 site_name: Terrabase Docs
 theme:
   name: material
+  language: en
   palette:
     primary: black
-    accent: black
+    accent: pink
   favicon: assets/img/favicon.ico
   logo: assets/img/favicon.ico
   custom_dir: overrides
+  icon:
+    repo: fontawesome/brands/github
+repo_url: https://github.com/terrabasedb/docs

@@ -1,6 +1,6 @@
 # Terrapipe
 
-> Copyright (c) 2020 Sayan Nandan <<ohsayan@outlook.com>><br>Date: July 17, 2020
+> Copyright (c) 2020 Sayan Nandan <<ohsayan@outlook.com>><br>Date: July 17, 2020<br>Updated: Aug 6, 2020
 
 ## Introduction
 
@@ -82,7 +82,7 @@ Where:
 The metalayout is kind of like the _skip sequence_ which determines how many bytes are to be read from each partition preceding a `\n` . The metalayout has the following general structure:
 
 ``` 
-<l1_len>#<l2_len>#<l3_len>#<ln_len>#
+#<l1_len>#<l2_len>#<l3_len>#<ln_len>
 ```
 
 The `<l1_len>` , `<l2_len>` and so on are the number of data bytes in each line in the dataframe, exclusive of the LF ('\n') byte.
@@ -92,7 +92,7 @@ The `<l1_len>` , `<l2_len>` and so on are the number of data bytes in each line 
 For a dataframe which looks like: `set\nsayan\n17` , the corresponding metalayout should be:
 
 ``` 
-3#5#2#
+#3#5#2
 ```
 
 ### Line 3 (and subsequent lines): Dataframe
@@ -151,7 +151,7 @@ Where the values in `<>` have their usual meanings.
 
 ## A note on types
 
-The server doesn't care much about types when queries are sent, but when responses are sent the server acts a little differently. This is because each query in a pipelined query will give different outcomes - some of them may return
+The server doesn't care much about types when queries are sent, but when  pipelined queries are run, the server acts a little differently. This is because each query in a pipelined query will give different outcomes - some of them may return
 response codes, some of them may return arrays and some of them may return _untyped_ things - since most responses are typically sent as strings, and it is the client's/user's responsibility to parse it into the required types.
 The server will respond in the following formats, for pipelined queries:
 
@@ -187,7 +187,7 @@ tsh> set sayan 17
 `tsh` will send bytes like the following (excluding TCP's SYN/SYN ACK/ACK):
 
 ``` 
-*!12!6\n3#5#2#\nSET\nsayan\n17
+*!13!7\n#3#5#2\nSET\nsayan\n17\n
 ```
 
 The server does the action and writes the following back to the TCP stream:
@@ -208,13 +208,13 @@ Since we don't have any way to run a pipeline query from `tsh` (at the moment), 
 Then, the client will send a query packet like:
 
 ``` 
-$!25!12\n3#5#2#3#3#4#\nSET\nsayan\n17\nGET\nfoo\nHEYA
+$!25!12\n#3#5#2#3#3#4\nSET\nsayan\n17\nGET\nfoo\nHEYA
 ```
 
 Then, the server will respond like:
 
 ``` 
-$!15!6\n2#6#5\n!0\n+Hello\n+HEY!
+$!15!6\n#2#6#5\n!0\n+Hello\n+HEY!
 ```
 
 Voila! We just saw terrapipe in action. Phew, we're done!
