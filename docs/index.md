@@ -1,5 +1,5 @@
 ---
-title: Welcome
+title: "Introduction"
 ---
 # Documentation for the Terrabase database
 > **NOTE:** This is currently a work in progress
@@ -10,4 +10,4 @@ Welcome to Terrabase Documentation! You will find information about how you can 
 If you find any typos, mistakes or any other scope of improvement - please don't hesitate to bring it up [here](https://github.com/terrabasedb/docs). Thank you ❤️!
 
 ## License
-The documentation is licensed under the [CC-BY-SA-4.0 License](/license)
+The documentation is licensed under the [CC-BY-SA-4.0 License](https://github.com/terrabasedb/docs/tree/master/LICENSE)

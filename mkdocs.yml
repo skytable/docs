@@ -1,4 +1,4 @@
-site_name: Terrabase Docs
+site_name: TerrabaseDB Docs
 theme:
   name: material
   language: en
@@ -10,4 +10,6 @@ theme:
   custom_dir: overrides
   icon:
     repo: fontawesome/brands/github
+  features:
+    - instant
 repo_url: https://github.com/terrabasedb/docs
