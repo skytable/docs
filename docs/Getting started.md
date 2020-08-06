@@ -1,0 +1,28 @@
+# Getting Started
+
+Getting started with TerrabaseDB is easy 😊 (and fun!).
+
+## Steps
+
+### Step 1: Download a bundle
+
+Head over to the [releases page](https://github.com/terrabasedb/terrabase/releases) and download the latest version for your platform. Here's a little guide:
+
+* If you're on Linux: Download `tdb-bundle-<version>-x86_64-linux-gnu.zip`
+* If you're using macOS: Download `tdb-bundle-<version>-x86_64-macos.zip`
+* If you're on Windows: Download `tdb-bundle-<version>-x86_64-windows.zip`
+
+### Step 2: Make the files runnable
+
+Unzip the `zip` file that you just downloaded. If you're on a *nix system, run `chmod +x tdb tsh` to make the files executable. If you're on Windows, right-click the files and then check the `UNBLOCK` checkbox and click on the `APPLY` button.
+
+### Step 3: Start the database server
+
+In the directory where you extracted the files, run `./tdb` on *nix systems or simply `tdb` on Windows systems. That's all there is to starting the database server!
+
+### Step 4: Run the shell `tsh`
+
+`tsh` is the shell that is shipped with the bundle. Run it, just like you did with the database server. Now enter commands in the shell, and have fun! First run `HEYA` to check if everything is fine - the server should reply with _HEY!_.
+See all the available commands [here](/List-Of-Commands)
+
+You're done with setting up `tdb` 🎉!
