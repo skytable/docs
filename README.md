@@ -1,6 +1,6 @@
 # Source for TerrabaseDB docs
 
-This repository contains the source code for the documentation hosted [here]((https://docs.terrabasedb.com)).
+This repository contains the source code for the documentation hosted [here](https://docs.terrabasedb.com).
 
 ## Contributing
 
