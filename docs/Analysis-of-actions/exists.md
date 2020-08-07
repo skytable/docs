@@ -1,6 +1,6 @@
 # EXISTS
 
-**Available since**: 0.1.0  
+**Available since**: 0.3.3  
 **Time complexity**: O(1)  
 **Syntax**: `EXISTS <keyname>`  
 
