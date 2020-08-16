@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Terrapipe is an application layer protocol, built on top of TCP, which is used by [TerrabaseDB](https://terrabasedb.com) (which we sometimes refer to as the Terrabase Database or TDB), for client/server communication. All clients willing to communicate with TDB servers must implement this protocol. This document serves as a guide to implement the protocol.
+Terrapipe is an application layer protocol, built on top of TCP, which is used by [TerrabaseDB](https://terrabasedb.com) (which we sometimes refer to as the Terrabase Database or TDB) for client/server communication. All clients willing to communicate with TDB servers must implement this protocol. This document serves as a guide to implement the protocol.
 
 ## Concepts
 
@@ -112,13 +112,13 @@ A response dataframe will have the following general structure:
 
 Here, as you might have expected, `<LEN>` is the number of items in the datagroup, and the "item1, item2, item3, ..." are the items in the datagroup, But then, what is `<symbol>` ? 
 
-It takes a little guess to make it out - a symbol is any of the following characters which explain what the corresponding item means:
+It takes a little guess to make it out - a symbol is any of the following characters, which indicates the type of the item:
 
 |Symbol|Name|Meaning|
 |------|-----|-------|
 |+|String|The corresponding item is the outcome of a successful action. Say we ran `GET x` and `x` actually existed with a value `ex` , the item in the datagroup would look like `+ex` |
 |!|Response code|The corresponding item is a response code. For example, if we ran `UPDATE foo bar` and the key `foo` did exist and the value was updated successfully, the server would return `!0` |
-|^|Except|This is a special response, returned by some actions. Let us say that we ran `EXISTS x y z` and the first and second key existed but the third key did not exist, then the server would return `^3` , that is everything except the third argument succeded. For even more complicated outcomes, let's say that `y` and `z` both didn't exist, then the server would return `^2,3`
+|^|Except|This is a special response, returned by some actions. Let us say that we ran `EXISTS x y z` and the first and second key existed but the third key did not exist, then the server would return `^3` , that is everything except the third argument returned "Okay". For even more complicated outcomes, let's say that `y` and `z` both didn't exist, then the server would return `^2,3`
 
 ### Pipelined Queries
 
