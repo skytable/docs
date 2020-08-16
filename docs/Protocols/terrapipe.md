@@ -1,220 +1,170 @@
-# Terrapipe
+# Terrapipe 1.0
 
-> Copyright (c) 2020 Sayan Nandan <<ohsayan@outlook.com>><br>Date: July 17, 2020<br>Updated: Aug 6, 2020
+> Copyright (c) 2020 Sayan Nandan <<ohsayan@outlook.com>><br>**Date:** Aug 9, 2020<br>**Updated:** Aug 16, 2020<br>**In effect since:** v0.4.0
 
 ## Introduction
 
-Terrapipe is an application layer protocol like HTTP, built on top of TCP. It is used by the [Terrabase Database](https://github.com/terrabasedb/terrabase) for client-server communication. All clients willing to communicate with the Terrabase Database must implement this protocol. This document serves as a guide to implement the protocol.
+Terrapipe is an application layer protocol, built on top of TCP, which is used by [TerrabaseDB](https://terrabasedb.com) (which we sometimes refer to as the Terrabase Database or TDB), for client/server communication. All clients willing to communicate with TDB servers must implement this protocol. This document serves as a guide to implement the protocol.
 
 ## Concepts
 
-Terrapipe works in a query/response action similar to HTTP's request/response action. Clients send queries and the bytes sent over the TCP stream is collectively called the query packet. The server responds with a response packet.
+Terrapipe works much like HTTP: in a query/response action, that is, the clients send queries (much like HTTP requests) and the server sends responses (much like HTTP responses).  
+The bytes sent by the client in a query is known as the query packet, while the bytes sent by the server in a response is known as the response packet.  
 
-Both these packets have two frames:
+The query and response packets have the following things in common:
 
-* Lines 1 and 2 (Metaframe):
-    - The first line (before the first LF) in any of these packets is called the _metaline_ - this contains query/response metadata such as the action type and content length.
-    - The second line (before the second LF) is also a part of the metaframe, and it is called the _metalayout_
-* Line 3 and the subsequent lines are collectively called the dataframe
-* Each chunk of bytes following the metaframe is terminated with `\n` i.e with LF
+* **Lines 1 and 2**: These two lines (separated by a LF or `\n` byte) are together called the __metaframe__
+    - **Line 1: _Metaline_**  
 
-## Supported actions
+    The metaline contains information about the type of query, the content length and the metalayout length
 
-* `GET` : A get query
-* `SET` : A set query
-* `UPDATE` : An update query
-* `DEL` : A delete query
-* `HEYA` : A status check query
+    - **Line 2: _Metalayout_**  
 
-(The number of commands will continue to increase in the future)
+    The metalayout contains, what we call, the _skip sequence_. This contains the bytes which are part of the data per line. (More on that later)
 
-## Response codes
+* **Line 3 and subsequent lines**: This is called the __dataframe__. The dataframe is _very structured_ and is made up of collections called datagroups. Each datagroup should be able to complete one __action__, which is nothing but a complete action - such as a `GET` or `SET` .
 
-| Code | Description | Notes |
-| ---- | ------- | ----- |
-`0` | Okay ||
-`1` | Not Found||
-`2` | Overwrite Error||
-`3` | Invalid Metaframe|The metaframe has an illegal format|
-`4` | Incomplete| The query packet is incomplete|
-`5` | Server Error| An error occurred on the server side
-`6` | Other error| Some other error response. This error text would be sent in the dataframe|
+## Supported Actions
 
-## Types of query/response packets
+TerrabaseDB supports several actions which are listed [here](../List-Of-Actions.md).
 
-Queries are of two kinds:
+## Response Codes
 
-* Simple Query Packets - These queries will usually do just one thing. that is one action at a time
-* Pipeline Query Packets - These queries are a combination of multiple individual queries
+|Response Code | Description | Notes |
+|-----|-----|-----|
+|0|Okay|The action succeded without any errors|
+|1|Not Found|The target item was not found (for example, while trying to `UPDATE` a non-existent key, we get this error)|
+|2|Overwrite Error||
+|3|Packet Error| The query sent was sent in an illegal format. For example, the dataframe may not be in the correct format or might not have all the required bytes (that is the content size may not match what the size of the dataframe)
+|4|Action Error|The action that the query intended to perform didn't expect the data that was sent|
+|5|Server Error|An internal error occurred on the server-side|
+|6|Other Error|Some other error has occurred. The server will usually send a description of the error
 
-## Simple Query Packet
+## Different kinds of queries and responses
 
-### Simple Query Metaframe (SQM)
+Queries and responses are classified into two kinds:
 
-This is what a typical SQM looks like:
+* **Simple Query/Response**: These queries/responses perform/respond to, only one action
+* **Pipelined Query/Response**: These queries/response perform/respond to multiple actions
 
-``` 
-<METALINE>
-<METALAYOUT>
-```
+### Simple Queries
 
-### Line 1: Metaframe _metaline_
+Simple queries, just as we discussed, will just run one action. They have the following basic structure:
 
-The metaline has the following general structure:
-
-``` 
-*!<CLENGTH>!<ML_LENGTH>
-```
-
-Where:
-
-* `CLENGTH` - This is the total content length excluding the _metalayout_ line
-* `ML_LENGTH` - This is the length of the _metalayout_ line
-
-#### Example metaline
-
-``` 
-*!22!12
-```
-
-### Line 2: Metaframe _metalayout_
-
-The metalayout is kind of like the _skip sequence_ which determines how many bytes are to be read from each partition preceding a `\n` . The metalayout has the following general structure:
-
-``` 
-#<l1_len>#<l2_len>#<l3_len>#<ln_len>
-```
-
-The `<l1_len>` , `<l2_len>` and so on are the number of data bytes in each line in the dataframe, exclusive of the LF ('\n') byte.
-
-#### Example metalayout
-
-For a dataframe which looks like: `set\nsayan\n17` , the corresponding metalayout should be:
-
-``` 
-#3#5#2
-```
-
-### Line 3 (and subsequent lines): Dataframe
-
-The dataframe, well, contains data! It has the following general structure:
-
-``` 
-set\nsayan\n17
-```
-
-Every piece of data is separated by `\n` . Do note: this wouldn't cause any issues if a piece of data contains a newline byte as a part of it, since the metalayout defines the skip sequence. __Please read the [note on types](#a-note-on-types)__
-
-## Simple Response Packet
-
-Simple responses have the following general structure:
-
-``` 
-*!<RESPCODE>!<CLENGTH>!<ML_LENGTH>
-<METALAYOUT>
+``` text
+*!<CONTENT_LENGTH>!<METALAYOUT_LENGTH>\n
+<METALAYOUT>\n
 <DATAFRAME>
 ```
 
-Where:
+#### _Line 1:_ The metaline
 
-* `RESPOCDE` - This can have any of the values [listed here](#response-codes)
-* `CLENGTH` - This is the total content length excluding the _metalayout_ line
-* `ML_LENGTH` - This is the length of the _metalayout_ line
-* `METALAYOUT` - This has the same structure as the [query packet's metalayout](#line-2-metaframe-metalayout)
-* `DATAFRAME` - This has the same structure as the [query packet's dataframe](#line-3-and-subsequent-lines-dataframe)
+The metaline, contains the `<CONTENT_LENGTH>` , which is simply the size of the dataframe, and the `<METALAYOUT_LENGTH>` , which is simply the size of the metalayout.
 
-## Pipeline Query Packet
+For a packet which has, say 23 bytes in the dataframe and say 12 bytes in the metalayout would have a metaline which looks like:
 
-Pipeline queries are not very different from simple queries, except for the metaline in the metaframe.
-Pipeline query packets have the following general structure:
+``` text
+*!23!12
+```
 
-``` 
-$!<CLENGTH>!<ML_LENGTH>
-<METALAYOUT>
+#### _Line 2:_ The metalayout
+
+The metalayout contains the skip sequence, or in other words, it contains the number of bytes which is a part of the data, before every LF character. So let's say that our dataframe had data like `foo\nbar1\nbar2` , the corresponding metalayout would look like:
+
+``` text
+#3#4#4
+```
+
+#### _Line 3 and subsequent lines_: The dataframe
+
+The dataframe is where things get a _little_ complicated. Every action you want to perform will usually require some arguments along with it. 
+
+<quote>
+All the data required to perform one action, inclusive of the action itself, is together called a <b>datagroup</b>.
+</quote>
+
+So let's say that we are running a GET operation, where we want to get three keys called: "foo1", "foo2" and "foo3". The corresponding datagroup would look like:
+
+``` text
+&4\n
+GET\n
+foo1\n
+foo2\n
+foo3\n
+```
+
+Wasn't too bad, right? Now let's see what simple response packets look like.
+
+### Simple Responses
+
+Simple responses are almost the same as simple queries, with the [same metaline structure](#line-1-the-metaline) and the [same metalayout structure](#line-2-the-metalayout), except for the dataframe.
+
+Response dataframes are _weakly typed_ as opposed to the query dataframe which is completely _untyped_.
+A response dataframe will have the following general structure:
+
+``` text
+&<LEN>\n
+<symbol>item1\n
+<symbol>item2\n
+<symbol>item3\n
+# and more ..
+```
+
+Here, as you might have expected, `<LEN>` is the number of items in the datagroup, and the "item1, item2, item3, ..." are the items in the datagroup, But then, what is `<symbol>` ? 
+
+It takes a little guess to make it out - a symbol is any of the following characters which explain what the corresponding item means:
+
+|Symbol|Name|Meaning|
+|------|-----|-------|
+|+|String|The corresponding item is the outcome of a successful action. Say we ran `GET x` and `x` actually existed with a value `ex` , the item in the datagroup would look like `+ex` |
+|!|Response code|The corresponding item is a response code. For example, if we ran `UPDATE foo bar` and the key `foo` did exist and the value was updated successfully, the server would return `!0` |
+|^|Except|This is a special response, returned by some actions. Let us say that we ran `EXISTS x y z` and the first and second key existed but the third key did not exist, then the server would return `^3` , that is everything except the third argument succeded. For even more complicated outcomes, let's say that `y` and `z` both didn't exist, then the server would return `^2,3`
+
+### Pipelined Queries
+
+A pipelined queries runs many actions. Say a `GET` , a `SET` and an `EXISTS` , for example. They have the following the general structure:
+
+``` text
+$!<CONTENT_LENGTH>!<METALAYOUT_LENGTH>!<NUMBER_OF_ACTIONS>\n
+<METALAYOUT>\n
 <DATAFRAME>
 ```
 
-If you may have noticed, the only difference here, is that, instead of the asterisk (*), you have a Dollar Sign ($). All the other fields have the same meaning as in the [simple query packet](#simple-query-packet)
+Here, `<CONTENT_LENGTH>` is the length of the dataframe and the `<METALAYOUT_LENGTH>` is the length of the metalayout, just like simple queries. The only additional field, that you can see is `<NUMBER_OF_ACTIONS>` . This is simply the number of actions that the pipelined query performs, that is, the number of datagroups - that's all! And, if you have a sharp eye, you'd have seen that instead of an asterisk(*), you see a `$` . Yeah, that's the only difference! Now let's take a look at the dataframe.  
+ Spoiler: It's way too simple!
 
-## Pipeline Response Packet
+### The pipelined-query dataframe
 
-Again, pipeline responses are not much different from simple responses, except for having a Dollar Sign ($), in place of the asterisk (*) in the metaline, in the metaframe.
-It has the following general structure:
-
-``` 
-$!<RESPCODE>!<CLENGTH>!<ML_LENGTH>
-<METALAYOUT>
-<DATAFRAME>
-```
-
-Where the values in `<>` have their usual meanings.
-
-## A note on types
-
-The server doesn't care much about types when queries are sent, but when  pipelined queries are run, the server acts a little differently. This is because each query in a pipelined query will give different outcomes - some of them may return
-response codes, some of them may return arrays and some of them may return _untyped_ things - since most responses are typically sent as strings, and it is the client's/user's responsibility to parse it into the required types.
-The server will respond in the following formats, for pipelined queries:
-
-* Most values - `+<value>` is returned for most successful returns
-* Response codes - `!<respcode>` is returned if the query returns a response code
-* Arrays - [the usual way](#array-responses)
-
-### Array responses
-
-Array responses are actually pretty simple! They look like:
+For pipelined queries - here's what the dataframe looks like:
 
 ``` 
-&<n>element1\n
-element2\n
+&<datagroup_1_num>\n
+dg1_item1\n
+dg1_item2\n
 ...
-elementn\n
+&<datagroup_2_num>\n
+dg2_item1\n
+dg2_item2\n
+dg3_item3\n
+...
 ```
 
-where `<n>` is the number of elements in the array.
+That's all! You just multiple datagroups - nothing more!
 
-## A complete example
+### Pipelined Responses
 
-### Simple Query/Response
+Pipelined responses are no different in structure from pipelined queries except one thing, which you already know about - the _weakly typed_ business. Each item would have a `<symbol>` ! That's it - nothing more! 
 
-Here, we will assume that all operations are legal, that is while creating new keys, we will assume that the keys didn't exist, that is, there will be no `Overwrite Error` .
+Just for an example, this is what a pipelined response may look like (with hash(#)es, to explain them):
 
-This is the query I run on `tsh` :
-
-``` shell
-tsh> set sayan 17
+``` text
+&3\n # This is the first datagroup
++foo\n # The action returned value "foo"
++bar\n # The action returned value "bar"
+!1\n # The action returned a "Not Found" code
+&2\n # This is the second datagroup
+!0 # The action returned an "Okay" code
+!1 # The action returned a "Not Found" code
 ```
 
-`tsh` will send bytes like the following (excluding TCP's SYN/SYN ACK/ACK):
-
-``` 
-*!13!7\n#3#5#2\nSET\nsayan\n17\n
-```
-
-The server does the action and writes the following back to the TCP stream:
-
-``` 
-*!0!0!0
-```
-
-This is basically a success message, `*` since it is a simple response, `0` for `RESPCODE` , since the action was successful, `0` s for `CLENGTH` , and `ML_LENGTH` since no data is returned.
-
-### Pipelined Query/Response
-
-Since we don't have any way to run a pipeline query from `tsh` (at the moment), we will assume that the pipeline query wants to do the following:
-
-* `SET sayan 17`
-* `GET foo`
-* `HEYA`
-Then, the client will send a query packet like:
-
-``` 
-$!25!12\n#3#5#2#3#3#4\nSET\nsayan\n17\nGET\nfoo\nHEYA
-```
-
-Then, the server will respond like:
-
-``` 
-$!15!6\n#2#6#5\n!0\n+Hello\n+HEY!
-```
-
-Voila! We just saw terrapipe in action. Phew, we're done!
+That's __all__ you need to know to implement a client - really!
