@@ -33,7 +33,7 @@ TerrabaseDB supports several actions which are listed [here](../List-Of-Actions.
 |Response Code | Description | Notes |
 |-----|-----|-----|
 |0|Okay|The action succeded without any errors|
-|1|Not Found|The target item was not found (for example, while trying to `UPDATE` a non-existent key, we get this error)|
+|1|Not Found|The target item was not found (for example, while trying to `UPDATE` a non-existent key, we get this error)<Br>**Note:** Response code "1" can also be inferred as a `Nil` value.|
 |2|Overwrite Error||
 |3|Packet Error| The query sent was sent in an illegal format. For example, the dataframe may not be in the correct format or might not have all the required bytes (that is the content size may not match what the size of the dataframe)
 |4|Action Error|The action that the query intended to perform didn't expect the data that was sent|
@@ -118,7 +118,28 @@ It takes a little guess to make it out - a symbol is any of the following charac
 |------|-----|-------|
 |+|String|The corresponding item is the outcome of a successful action. Say we ran `GET x` and `x` actually existed with a value `ex` , the item in the datagroup would look like `+ex` |
 |!|Response code|The corresponding item is a response code. For example, if we ran `UPDATE foo bar` and the key `foo` did exist and the value was updated successfully, the server would return `!0` |
-|^|Except|This is a special response, returned by some actions. Let us say that we ran `EXISTS x y z` and the first and second key existed but the third key did not exist, then the server would return `^3` , that is everything except the third argument returned "Okay". For even more complicated outcomes, let's say that `y` and `z` both didn't exist, then the server would return `^2,3`
+|^|Except|This is a special response, returned by some actions. Let us say that we ran `EXISTS x y z` and the first and second key existed but the third key did not exist, then the server would return `^3` , that is everything except the third argument returned "Okay". For even more complicated outcomes, let's say that `y` and `z` both didn't exist, then the server would return `^2,3` .
+
+#### A little note on the "Except" type
+
+The except type returns arguments for which the value returned was `Nil` . So let's say we ran `GET x y z` , and only x existed with a value "cool", then the serve would reply with:
+
+``` text
+&2
++cool
+^2,3
+```
+
+You can also be sure that the responses are **always returned in order**. Let's say that we ran `GET w x y z` , where w and z existed with some "value" but x and y didn't exist. Then the server would return:
+
+``` text
+&3
++value
+^2,3
++value
+```
+
+This might look unnecessary for a very small number of values, but for larger queries this becomes extremely useful.
 
 ### Pipelined Queries
 
