@@ -1,6 +1,12 @@
 # Getting Started
 
-Getting started with TerrabaseDB is easy 😊 (and fun!).
+<html>
+<img src="/img/runner_start.svg" style="height: 300px; width: 100%;">
+</html>
+<br>
+<br>
+
+Getting started with TerrabaseDB is easy 😊 (and fun!).</span>
 
 ## Steps
 
