@@ -38,7 +38,9 @@ The metaframe is made up of precisely two lines (separated by a LF or `\n` byte)
 Here:
 
 * `<n>` is the number of datagroups in the query. Since simple queries perform one action only, the value of `<n>` is always 1. Batch queries have values of n in the range `(1, ∞)`
-* `<m>` is the number of bytes in the following line excluding the `\n` byte. So let's say we had `*1\n` in the second line of the metaframe, then `<m>` would have a value of 2
+* `<m>` is the number of bytes in the following line excluding the `\n` byte. So let's say we had `*1\n` in the second line of the metaframe, then `<m>` would have a value of 2. 
+
+Also make sure that you make matching the `*` character non-exhaustive, as we might be adding more packet types in the future which may need symbols other than `*`.
 
 ## The Dataframe
 
