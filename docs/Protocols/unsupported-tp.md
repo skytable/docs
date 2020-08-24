@@ -1,6 +1,6 @@
 # Terrapipe 0.1 (Deprecated)
 
-> Copyright (c) 2020 Sayan Nandan <<ohsayan@outlook.com>><br>**Date:** July 17, 2020<br>**Updated:** Aug 6, 2020<br>**In effect since:** v0.2.0<br>**Deprecated since:** v0.4.0
+> Copyright (c) 2020 Sayan <<ohsayan@outlook.com>><br>**Date:** July 17, 2020<br>**Updated:** Aug 6, 2020<br>**In effect since:** v0.2.0<br>**Deprecated since:** v0.4.0
 
 ## Introduction
 
