@@ -13,3 +13,5 @@ theme:
   features:
     - instant
 repo_url: https://github.com/terrabasedb/docs
+plugins:
+  - git-revision-date

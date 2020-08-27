@@ -1,6 +1,6 @@
 # Terrapipe 1.0
 
-> Copyright (c) 2020 Sayan <<ohsayan@outlook.com>><br>**Date:** Aug 23, 2020<br>**Updated:** Aug 23, 2020<br>**In effect since:** v0.4.0
+> Copyright (c) 2020 Sayan <<ohsayan@outlook.com>><br>**Date:** Aug 23, 2020<br>**In effect since:** v0.4.0
 
 ## Introduction
 
@@ -40,7 +40,7 @@ Here:
 * `<n>` is the number of datagroups in the query. Since simple queries perform one action only, the value of `<n>` is always 1. Batch queries have values of n in the range `(1, ∞)`
 * `<m>` is the number of bytes in the following line excluding the `\n` byte. So let's say we had `*1\n` in the second line of the metaframe, then `<m>` would have a value of 2. 
 
-Also make sure that you make matching the `*` character non-exhaustive, as we might be adding more packet types in the future which may need symbols other than `*`.
+Also make sure that you make matching the `*` character non-exhaustive, as we might be adding more packet types in the future which may need symbols other than `*` .
 
 ## The Dataframe
 
@@ -106,68 +106,7 @@ Here, we can easily make out that `<length>` is the number of bytes in the follo
 
 ## Data Types
 
-<table class="table table-striped">
-  <thead class="thead-dark">
-
-    <tr>
-      <th scope="col">Type symbol (tsymbol) </th>
-      <th scope="col">Type</th>
-      <th scope="col">Additional notes</th>
-    </tr>
-
-  </thead>
-  <tbody>
-
-    <tr>
-      <th scope="row">+</th>
-      <td>String</td>
-      <td>The next line is a string</td>
-    </tr>
-    <tr>
-      <th scope="row">!</th>
-      <td>Response Code</td>
-      <td>The next line is a <a href="#response-codes">response code</a></td>
-    </tr>
-    <tr>
-      <th scope="row">$</th>
-      <td>JSON</td>
-      <td>The next line is a `JSON` value</td>
-    </tr>
-    <tr>
-      <th scope="row">-</th>
-      <td>smallint</td>
-      <td>An integer in the range: [0, 255]</td>
-    </tr>
-    <tr>
-      <th scope="row">_</th>
-      <td>smallint signed</td>
-      <td>An integer in the range: [-128, 127]</td>
-    </tr>
-    <tr>
-      <th scope="row">:</th>
-      <td>int</td>
-      <td>An integer in the range: [0, 4,294,967,295]</td>
-    </tr>
-    <tr>
-      <th scope="row">;</th>
-      <td>int signed</td>
-      <td>An integer in the range: [-2,147,483,647, 2,147,483,647]</td>
-    </tr>
-    <tr>
-      <th scope="row">%</th>
-      <td>float</td>
-      <td>A 32-bit floating point value</td>
-    </tr>
-    <tr>
-      <th scope="row">?</th>
-      <td>binary</td>
-      <td>The next line contains binary data (often called a blob)</td>
-    </tr>
-
-  </tbody>
-</table>
-
-Do keep the matching for this symbol _non-exhaustive_ since we might add more types in future revisions of the protocol.
+You can find a full list of data types and their `<tsymbol>`s **[here](/Supported-Data-Types)**.
 
 ## Response codes
 
@@ -181,4 +120,4 @@ Do keep the matching for this symbol _non-exhaustive_ since we might add more ty
 `5` | Server Error| An error occurred on the server side
 `6` | Other error| Some other error response. This error text would be sent in the dataframe|
 
-And that's about it! For a list of actions, [see this](../List-Of-Actions.md).
+And that's about it! For a list of actions, [see this](/List-Of-Actions).
