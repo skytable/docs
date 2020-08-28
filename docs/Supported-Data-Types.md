@@ -23,7 +23,7 @@ type symbols ( `tsymbol` s) and additional information.
     <tr>
       <th scope="row">!</th>
       <td>Response Code</td>
-      <td>The next line is a <a href="#response-codes">response code</a></td>
+      <td>The next line is a <a href="/Response-Codes">response code</a></td>
     </tr>
     <tr>
       <th scope="row">$</th>

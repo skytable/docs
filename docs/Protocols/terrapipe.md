@@ -101,23 +101,22 @@ Data in responses have the following general structure:
 ... and so on
 ```
 
-Here, we can easily make out that `<length>` is the number of bytes in the following line (just like a query) and `<item>` is well, an argument/element in the datagroup. But then, what is `<tsymbol>` ?  
-**Answer**: It specifies the type of the `item` in the following line. [Read on](#data-types) to know what values `<tsymbol>` can assume.
+Here, we can easily make out that `<length>` is the number of bytes in the following line (just like a query) and `<item>` is well, an argument/element in the datagroup. But then, what is `<tsymbol>` ? Simply put, it is the type of data in the following line.
+
+But, before you go ahead, here's the simple flow that you must keep in mind:
+
+1. Read the `tsymbol` and match it against the [data type](#data-types)
+2. Parse the data in the next line into the data type
+3. Repeat for the remaining lines
+
+So, to conclude, `<tsymbol>` specifies the type of the `item` in the following line. [Read on](#data-types) to know what values `<tsymbol>` can assume. 
 
 ## Data Types
 
-You can find a full list of data types and their `<tsymbol>`s **[here](/Supported-Data-Types)**.
+You can find a full list of data types and their `<tsymbol>` s **[here](/Supported-Data-Types)**.
 
 ## Response codes
 
-| Code | Description | Notes |
-| ---- | ------- | ----- |
-`0` | Okay ||
-`1` | Nil||
-`2` | Overwrite Error||
-`3` | Action Error|The action didn't expect the arguments sent|
-`4` | Packet Error|The packet contains invalid data|
-`5` | Server Error| An error occurred on the server side
-`6` | Other error| Some other error response. This error text would be sent in the dataframe|
+You can find a full list of response codes and their descriptions **[here](/Response-Codes)**
 
 And that's about it! For a list of actions, [see this](/List-Of-Actions).
