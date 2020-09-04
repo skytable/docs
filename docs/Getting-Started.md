@@ -29,6 +29,6 @@ In the directory where you extracted the files, run `./tdb` on *nix systems or s
 ### Step 4: Run the shell `tsh`
 
 `tsh` is the shell that is shipped with the bundle. Run it, just like you did with the database server. Now enter commands in the shell, and have fun! First run `HEYA` to check if everything is fine - the server should reply with _HEY!_.
-See all the available commands [here](/List-Of-Commands)
+See all the available commands [here](/List-Of-Actions)
 
 You're done with setting up `tdb` 🎉!

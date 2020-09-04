@@ -1,0 +1,1 @@
+cd docbuilder && cargo run

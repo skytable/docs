@@ -1,9 +1,11 @@
-# Actions
-TerrabaseDB currently supports the following commands:
+# List Of Actions
+TerrabaseDB currently supports the following actions: 
 
-- [DEL](Analysis-of-actions/del.md)
-- [EXISTS](Analysis-of-actions/exists.md)
-- [GET](Analysis-of-actions/get.md)
-- [HEYA](Analysis-of-actions/heya.md)
-- [SET](Analysis-of-actions/set.md)
-- [UPDATE](Analysis-of-actions/update.md)
+* [GET](Actions/GET.md)
+* [MGET](Actions/MGET.md)
+* [SET](Actions/SET.md)
+* [MSET](Actions/MSET.md)
+* [UPDATE](Actions/UPDATE.md)
+* [MUPDATE](Actions/MUPDATE.md)
+* [DEL](Actions/DEL.md)
+* [EXISTS](Actions/EXISTS.md)
