@@ -10,7 +10,7 @@ Welcome to TerrabaseDB's docs! You will find information about how you can get s
 
 ## Users
 
-We have an easy-to-follow guide for [Getting Started](./Getting-Started.md). Once you've got everything up and running, you can take a look at the available actions [here](./List-Of-Actions.md).
+We have an easy-to-follow guide for [Getting Started](./Getting-Started.md). Once you've got everything up and running, you can take a look at the available actions [here](./List-Of-Actions.md) and [configuration files](./tdb-configuration.md).
 
 ## Developers	
 

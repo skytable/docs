@@ -1,0 +1,30 @@
+# Configuration Files
+
+Since v0.4.1, TerrabaseDB supports custom configuration files to let users customize the functioning of TDB. Arguably, TDB has one of the simplest configuration files around.
+
+## An example configuration
+
+A configuration file is a TOML file, which looks like:
+
+``` toml
+[server]
+host = "127.0.0.1"
+port = 2003
+noart = false
+```
+
+This is the default configuration used by TDB when you don't specify a configuration file. Let's understand what each of the keys mean:
+
+* `host` : This is the IP address to which you want the database server to bind to. It can be any valid IPv4 *or* IPv6 address, as a quoted string
+* `port` : This is the port to which you want TDB to bind to
+* `noart` (OPTIONAL): This is **an optional argument** and is recommended for secure environments where displaying terminal artwork might cause problems
+
+## Using a configuration file
+
+To use a configuration file:
+
+1. Create it! We recommend you to name it as `tdb.toml` for easy identification
+2. Start the database server with: `tdb -c /path/to/your/file.toml`
+3. Done 🎉
+
+That's all that's there for using configuration files!
