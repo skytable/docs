@@ -17,6 +17,8 @@ If you want to improve an existing page, the best way to do it: is to click the 
 5. Once your changes are approved - it will be merged 🎉
 6. Done! Thank you ❤️!
 
+**Note:** The documentation for the "Actions" are automatically generated from [this file](https://github.com/terrabasedb/terrabase/blob/next/actions.jsonc), so if you have any concern regarding the documentation of any action, update the aforementioned file. Thank you 😃
+
 ## License
 
 The entire documentation is licensed under the [CC-BY-SA-4.0 License](./LICENSE).
