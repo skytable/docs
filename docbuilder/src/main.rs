@@ -50,7 +50,7 @@ pub fn create_action_file(obj: &Value, actioncol: &mut Vec<String>) {
         action.get("complexity").unwrap()
     ));
     actionpage.push_str(&format!(
-        "<ins>**Arguments**</ins>: {}  \n",
+        "<ins>**Arguments**</ins>: `{}`  \n",
         action.get("args").unwrap()
     ));
     actionpage.push_str(&format!(
