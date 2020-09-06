@@ -3,7 +3,7 @@ use std::io::prelude::*;
 use std::process;
 fn main() {
     let _dlfile = process::Command::new("wget")
-        .arg("https://raw.githubusercontent.com/terrabasedb/terrabase/next/actions.jsonc")
+        .arg("https://raw.githubusercontent.com/terrabasedb/terrabasedb/next/actions.jsonc")
         .output()
         .unwrap();
     let output = process::Command::new("cat")
