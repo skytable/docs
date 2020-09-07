@@ -15,3 +15,6 @@ theme:
 repo_url: https://github.com/terrabasedb/docs
 plugins:
   - git-revision-date
+markdown_extensions:
+  - toc:
+      permalink: true
