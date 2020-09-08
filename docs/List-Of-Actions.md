@@ -1,4 +1,4 @@
-# List Of Actions
+# Actions
 TerrabaseDB currently supports the following actions: 
 
 * [GET](Actions/GET.md)
