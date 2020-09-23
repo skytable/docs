@@ -1,4 +1,4 @@
-# Actions
+# List Of Actions
 TerrabaseDB currently supports the following actions: 
 
 * [GET](Actions/GET.md)
@@ -9,3 +9,6 @@ TerrabaseDB currently supports the following actions:
 * [MUPDATE](Actions/MUPDATE.md)
 * [DEL](Actions/DEL.md)
 * [EXISTS](Actions/EXISTS.md)
+* [SSET](Actions/SSET.md)
+* [SDEL](Actions/SDEL.md)
+* [SUPDATE](Actions/SUPDATE.md)
