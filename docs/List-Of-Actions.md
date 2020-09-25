@@ -12,3 +12,6 @@ TerrabaseDB currently supports the following actions:
 * [SSET](Actions/SSET.md)
 * [SDEL](Actions/SDEL.md)
 * [SUPDATE](Actions/SUPDATE.md)
+* [DBSIZE](Actions/DBSIZE.md)
+* [FLUSHDB](Actions/FLUSHDB.md)
+* [USET](Actions/USET.md)
