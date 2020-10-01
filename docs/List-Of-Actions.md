@@ -15,3 +15,4 @@ TerrabaseDB currently supports the following actions:
 * [DBSIZE](Actions/DBSIZE.md)
 * [FLUSHDB](Actions/FLUSHDB.md)
 * [USET](Actions/USET.md)
+* [KEYLEN](Actions/KEYLEN.md)
