@@ -1,6 +1,35 @@
 use serde_hjson::{self, Value};
+use std::cmp::Ordering;
 use std::io::prelude::*;
 use std::process;
+
+#[derive(Debug)]
+/// A structure to represent a (ACTION_NAME, ACTION_DOC_MD_FILE)
+///
+/// The second file (`.1`) contains the entire documentation file for a given
+/// action
+struct Document(String, String);
+
+impl PartialEq for Document {
+    fn eq(&self, other: &Self) -> bool {
+        self.0 == other.0
+    }
+}
+
+impl Eq for Document {}
+
+impl PartialOrd for Document {
+    fn partial_cmp(&self, other: &Document) -> std::option::Option<std::cmp::Ordering> {
+        self.0.partial_cmp(&other.0)
+    }
+}
+
+impl Ord for Document {
+    fn cmp(&self, other: &Self) -> Ordering {
+        self.0.cmp(&other.0)
+    }
+}
+
 fn main() {
     let _dlfile = process::Command::new("wget")
         .arg("https://raw.githubusercontent.com/terrabasedb/terrabasedb/next/actions.jsonc")
@@ -18,48 +47,46 @@ fn main() {
     let json: Value =
         serde_hjson::from_str(&String::from_utf8_lossy(&output).to_owned().to_string()).unwrap();
     let json = json.as_array().unwrap();
-    let mut actioncol = Vec::new();
+    let mut actions = Vec::new();
     for val in json {
-        create_action_file(val, &mut actioncol);
+        let obj = val.as_object().unwrap();
+        let name = obj.get("name").unwrap().to_string();
+        let mut actionpage = String::new();
+        actionpage.push_str(&format!("# {}\n", name));
+        actionpage.push_str(&format!(
+            "<ins>**Since**</ins>: {}  \n",
+            obj.get("since").unwrap()
+        ));
+        actionpage.push_str(&format!(
+            "<ins>**Time complexity**</ins>: {}  \n",
+            obj.get("complexity").unwrap()
+        ));
+        actionpage.push_str(&format!(
+            "<ins>**Arguments**</ins>: `{}`  \n",
+            obj.get("args").unwrap()
+        ));
+        actionpage.push_str(&format!(
+            "<ins>**Returns**</ins>: {}  \n",
+            obj.get("return").unwrap()
+        ));
+        actionpage.push_str("\n");
+        actionpage.push_str(&obj.get("desc").unwrap().to_string());
+        actionpage.push('\n');
+        actions.push(Document(name, actionpage));
     }
-    create_list(actioncol);
+    actions.sort();
+    create_docs(actions);
 }
 
-pub fn create_list(list: Vec<String>) {
-    let mut filetop = "# List Of Actions\n".to_owned();
+fn create_docs(list: Vec<Document>) {
+    let mut filetop = "# List Of Actions\n\n".to_owned();
     filetop.push_str("TerrabaseDB currently supports the following actions: \n\n");
     for action in list {
-        filetop.push_str(&format!("* [{}](Actions/{}.md)\n", action, action));
+        let name = action.0;
+        filetop.push_str(&format!("* [{}](Actions/{}.md)\n", &name, &name));
+        let mut file = std::fs::File::create(format!("../docs/Actions/{}.md", name)).unwrap();
+        file.write_all(&action.1.into_bytes()).unwrap();
     }
     let mut file = std::fs::File::create("../docs/List-Of-Actions.md").unwrap();
     file.write_all(filetop.as_bytes()).unwrap();
-}
-
-pub fn create_action_file(obj: &Value, actioncol: &mut Vec<String>) {
-    let action = obj.as_object().unwrap();
-    let mut actionpage = String::new();
-    let name = action.get("name").unwrap().clone().to_string();
-    actioncol.push(name.clone());
-    actionpage.push_str(&format!("# {}\n", name));
-    actionpage.push_str(&format!(
-        "<ins>**Since**</ins>: {}  \n",
-        action.get("since").unwrap()
-    ));
-    actionpage.push_str(&format!(
-        "<ins>**Time complexity**</ins>: {}  \n",
-        action.get("complexity").unwrap()
-    ));
-    actionpage.push_str(&format!(
-        "<ins>**Arguments**</ins>: `{}`  \n",
-        action.get("args").unwrap()
-    ));
-    actionpage.push_str(&format!(
-        "<ins>**Returns**</ins>: {}  \n",
-        action.get("return").unwrap()
-    ));
-    actionpage.push_str("\n");
-    actionpage.push_str(&action.get("desc").unwrap().to_string());
-    actionpage.push('\n');
-    let mut file = std::fs::File::create(format!("../docs/Actions/{}.md", name)).unwrap();
-    file.write_all(actionpage.as_bytes()).unwrap();
 }
