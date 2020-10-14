@@ -4,8 +4,6 @@ title: "Introduction"
 
 # Documentation for [TerrabaseDB](https://terrabasedb.com)
 
-> **NOTE:** This is currently a work in progress
-
 Welcome to TerrabaseDB's docs! You will find information about how you can get started with TDB, installation options, configuration and clients.
 
 ## Users
