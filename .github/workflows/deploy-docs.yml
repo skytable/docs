@@ -11,8 +11,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@1.15
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+      - name: Install prerequisites
+        run: |
+          pip install mkdocs mkdocs-material mkdocs-git-revision-date-plugin
+      - name: Build docs
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_TOK }}
-          CUSTOM_DOMAIN: docs.terrabasedb.com
+          BOT_USER: ${{ secrets.BOT_INIT_USER }}
+          BOT_MAIL: ${{ secrets.BOT_INIT_MAIL }}
+          BOT_API: ${{ secrets.BOT_API_CALL }}
+          GIT_SHA: ${{ env.GITHUB_SHA }}
+        run: |
+          chmod +x deploy.sh
+          sh deploy.sh
