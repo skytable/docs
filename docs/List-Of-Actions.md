@@ -9,6 +9,7 @@ TerrabaseDB currently supports the following actions:
 * [GET](Actions/GET.md)
 * [KEYLEN](Actions/KEYLEN.md)
 * [MGET](Actions/MGET.md)
+* [MKSNAP](Actions/MKSNAP.md)
 * [MSET](Actions/MSET.md)
 * [MUPDATE](Actions/MUPDATE.md)
 * [SDEL](Actions/SDEL.md)
