@@ -27,6 +27,7 @@ This is the default configuration used by TDB when you don't specify a configura
 * `bgsave` (post `v0.4.2` ):
     - `enabled` : This is an optional key, which is to be set to true to enable BGSAVE or false to disable it. If this key is not specified, TDB will enable BGSAVE by default
     - `every` : Run BGSAVE `every` seconds. So, for example, if you set this to 120, BGSAVE will run every two minutes. This is also an optional key, and if you don't provide it, the default BGSAVE duration of 120 seconds is used
+* `snapshot` (since `v0.4.5`, OPTIONAL): This key can be used to configure snapshots and is not enabled by default. See [this](/snapshots) for more information.
 
 ## Using a configuration file
 
