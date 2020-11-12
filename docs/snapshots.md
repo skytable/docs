@@ -5,7 +5,7 @@ TerrabaseDB's snapshotting system is dead simple and works in a similar way to [
 
 ## Enabling snapshots
 
-Snapshots aren't enabled by default - you have to enable them by using the configuration file. To your existing configuration file, just add the following block:
+Snapshots aren't enabled by default - you have to enable them by using the configuration file or [command line arguments](/config-command-line). To your existing configuration file, just add the following block:
 
 ``` toml
 [snapshot]

@@ -1,6 +1,6 @@
 # Configuration Files
 
-Since v0.4.1, TerrabaseDB supports custom configuration files to let users customize the functioning of TDB. Arguably, TDB has one of the simplest configuration files around.
+Since v0.4.1, TerrabaseDB supports custom configuration files to let users customize the functioning of TDB. Arguably, TDB has one of the simplest configuration files around. With v0.5.0, TerrabaseDB allows configuration via [command line arguments](/config-command-line).
 
 ## An example configuration
 
