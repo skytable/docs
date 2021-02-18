@@ -1,0 +1,220 @@
+# Terrapipe 0.1 (Deprecated)
+
+> Copyright (c) 2020 Sayan <<ohsayan@outlook.com>><br>**Date:** July 17, 2020<br>**Updated:** Aug 6, 2020<br>**In effect since:** v0.2.0<br>**Deprecated since:** v0.4.0
+
+## Introduction
+
+Terrapipe is an application layer protocol like HTTP, built on top of TCP. It is used by the [Skybase](https://github.com/terrabasedb/terrabase) for client-server communication. All clients willing to communicate with the Skybase must implement this protocol. This document serves as a guide to implement the protocol.
+
+## Concepts
+
+Terrapipe works in a query/response action similar to HTTP's request/response action. Clients send queries and the bytes sent over the TCP stream is collectively called the query packet. The server responds with a response packet.
+
+Both these packets have two frames:
+
+* Lines 1 and 2 (Metaframe):
+    - The first line (before the first LF) in any of these packets is called the _metaline_ - this contains query/response metadata such as the action type and content length.
+    - The second line (before the second LF) is also a part of the metaframe, and it is called the _metalayout_
+* Line 3 and the subsequent lines are collectively called the dataframe
+* Each chunk of bytes following the metaframe is terminated with `\n` i.e with LF
+
+## Supported actions
+
+* `GET` : A get query
+* `SET` : A set query
+* `UPDATE` : An update query
+* `DEL` : A delete query
+* `HEYA` : A status check query
+
+(The number of commands will continue to increase in the future)
+
+## Response codes
+
+| Code | Description | Notes |
+| ---- | ------- | ----- |
+`0` | Okay ||
+`1` | Not Found||
+`2` | Overwrite Error||
+`3` | Invalid Metaframe|The metaframe has an illegal format|
+`4` | Incomplete| The query packet is incomplete|
+`5` | Server Error| An error occurred on the server side
+`6` | Other error| Some other error response. This error text would be sent in the dataframe|
+
+## Types of query/response packets
+
+Queries are of two kinds:
+
+* Simple Query Packets - These queries will usually do just one thing. that is one action at a time
+* Pipeline Query Packets - These queries are a combination of multiple individual queries
+
+## Simple Query Packet
+
+### Simple Query Metaframe (SQM)
+
+This is what a typical SQM looks like:
+
+``` 
+<METALINE>
+<METALAYOUT>
+```
+
+### Line 1: Metaframe _metaline_
+
+The metaline has the following general structure:
+
+``` 
+*!<CLENGTH>!<ML_LENGTH>
+```
+
+Where:
+
+* `CLENGTH` - This is the total content length excluding the _metalayout_ line
+* `ML_LENGTH` - This is the length of the _metalayout_ line
+
+#### Example metaline
+
+``` 
+*!22!12
+```
+
+### Line 2: Metaframe _metalayout_
+
+The metalayout is kind of like the _skip sequence_ which determines how many bytes are to be read from each partition preceding a `\n` . The metalayout has the following general structure:
+
+``` 
+#<l1_len>#<l2_len>#<l3_len>#<ln_len>
+```
+
+The `<l1_len>` , `<l2_len>` and so on are the number of data bytes in each line in the dataframe, exclusive of the LF ('\n') byte.
+
+#### Example metalayout
+
+For a dataframe which looks like: `set\nsayan\n17` , the corresponding metalayout should be:
+
+``` 
+#3#5#2
+```
+
+### Line 3 (and subsequent lines): Dataframe
+
+The dataframe, well, contains data! It has the following general structure:
+
+``` 
+set\nsayan\n17
+```
+
+Every piece of data is separated by `\n` . Do note: this wouldn't cause any issues if a piece of data contains a newline byte as a part of it, since the metalayout defines the skip sequence. __Please read the [note on types](#a-note-on-types)__
+
+## Simple Response Packet
+
+Simple responses have the following general structure:
+
+``` 
+*!<RESPCODE>!<CLENGTH>!<ML_LENGTH>
+<METALAYOUT>
+<DATAFRAME>
+```
+
+Where:
+
+* `RESPOCDE` - This can have any of the values [listed here](#response-codes)
+* `CLENGTH` - This is the total content length excluding the _metalayout_ line
+* `ML_LENGTH` - This is the length of the _metalayout_ line
+* `METALAYOUT` - This has the same structure as the [query packet's metalayout](#line-2-metaframe-metalayout)
+* `DATAFRAME` - This has the same structure as the [query packet's dataframe](#line-3-and-subsequent-lines-dataframe)
+
+## Pipeline Query Packet
+
+Pipeline queries are not very different from simple queries, except for the metaline in the metaframe.
+Pipeline query packets have the following general structure:
+
+``` 
+$!<CLENGTH>!<ML_LENGTH>
+<METALAYOUT>
+<DATAFRAME>
+```
+
+If you may have noticed, the only difference here, is that, instead of the asterisk (*), you have a Dollar Sign ($). All the other fields have the same meaning as in the [simple query packet](#simple-query-packet)
+
+## Pipeline Response Packet
+
+Again, pipeline responses are not much different from simple responses, except for having a Dollar Sign ($), in place of the asterisk (*) in the metaline, in the metaframe.
+It has the following general structure:
+
+``` 
+$!<RESPCODE>!<CLENGTH>!<ML_LENGTH>
+<METALAYOUT>
+<DATAFRAME>
+```
+
+Where the values in `<>` have their usual meanings.
+
+## A note on types
+
+The server doesn't care much about types when queries are sent, but when  pipelined queries are run, the server acts a little differently. This is because each query in a pipelined query will give different outcomes - some of them may return
+response codes, some of them may return arrays and some of them may return _untyped_ things - since most responses are typically sent as strings, and it is the client's/user's responsibility to parse it into the required types.
+The server will respond in the following formats, for pipelined queries:
+
+* Most values - `+<value>` is returned for most successful returns
+* Response codes - `!<respcode>` is returned if the query returns a response code
+* Arrays - [the usual way](#array-responses)
+
+### Array responses
+
+Array responses are actually pretty simple! They look like:
+
+``` 
+&<n>element1\n
+element2\n
+...
+elementn\n
+```
+
+where `<n>` is the number of elements in the array.
+
+## A complete example
+
+### Simple Query/Response
+
+Here, we will assume that all operations are legal, that is while creating new keys, we will assume that the keys didn't exist, that is, there will be no `Overwrite Error` .
+
+This is the query I run on `skysh` :
+
+``` shell
+skysh> set sayan 17
+```
+
+`skysh` will send bytes like the following (excluding TCP's SYN/SYN ACK/ACK):
+
+``` 
+*!13!7\n#3#5#2\nSET\nsayan\n17\n
+```
+
+The server does the action and writes the following back to the TCP stream:
+
+``` 
+*!0!0!0
+```
+
+This is basically a success message, `*` since it is a simple response, `0` for `RESPCODE` , since the action was successful, `0` s for `CLENGTH` , and `ML_LENGTH` since no data is returned.
+
+### Pipelined Query/Response
+
+Since we don't have any way to run a pipeline query from `skysh` (at the moment), we will assume that the pipeline query wants to do the following:
+
+* `SET sayan 17`
+* `GET foo`
+* `HEYA`
+Then, the client will send a query packet like:
+
+``` 
+$!25!12\n#3#5#2#3#3#4\nSET\nsayan\n17\nGET\nfoo\nHEYA
+```
+
+Then, the server will respond like:
+
+``` 
+$!15!6\n#2#6#5\n!0\n+Hello\n+HEY!
+```
+
+Voila! We just saw terrapipe in action. Phew, we're done!
