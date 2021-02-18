@@ -1,0 +1,1288 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.4">
+    
+    
+      
+        <title>Terrapipe 0.1 (Deprecated) - Skybase Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.358818c7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f0267088.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="pink">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#terrapipe-01-deprecated" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Skybase Docs" class="md-header-nav__button md-logo" aria-label="Skybase Docs">
+      
+  <img src="../../assets/img/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Skybase Docs
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Terrapipe 0.1 (Deprecated)
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/skybasedb/docs/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Skybase Docs" class="md-nav__button md-logo" aria-label="Skybase Docs">
+      
+  <img src="../../assets/img/favicon.ico" alt="logo">
+
+    </a>
+    Skybase Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/skybasedb/docs/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../01-Getting-Started/" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Actions/" class="md-nav__link">
+      Actions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../03-command-line-config/" class="md-nav__link">
+      Command line configuration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../04-Configuration/" class="md-nav__link">
+      Configuration Files
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Persistence/" class="md-nav__link">
+      Persistence
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../06-snapshots/" class="md-nav__link">
+      Snapshots
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../07-benchmarking/" class="md-nav__link">
+      Benchmarking
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../Response-Codes/" class="md-nav__link">
+      Response Codes
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../Supported-Data-Types/" class="md-nav__link">
+      Data Types
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../errors/" class="md-nav__link">
+      Error strings
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../from-terrabasedb/" class="md-nav__link">
+      Migrating from TerrabaseDB
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+    
+    <label class="md-nav__link" for="nav-13">
+      Actions
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Actions" data-md-level="1">
+      <label class="md-nav__title" for="nav-13">
+        <span class="md-nav__icon md-icon"></span>
+        Actions
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/DBSIZE/" class="md-nav__link">
+      DBSIZE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/DEL/" class="md-nav__link">
+      DEL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/EXISTS/" class="md-nav__link">
+      EXISTS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/FLUSHDB/" class="md-nav__link">
+      FLUSHDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/GET/" class="md-nav__link">
+      GET
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/KEYLEN/" class="md-nav__link">
+      KEYLEN
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/MGET/" class="md-nav__link">
+      MGET
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/MKSNAP/" class="md-nav__link">
+      MKSNAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/MSET/" class="md-nav__link">
+      MSET
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/MUPDATE/" class="md-nav__link">
+      MUPDATE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/SDEL/" class="md-nav__link">
+      SDEL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/SET/" class="md-nav__link">
+      SET
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/SSET/" class="md-nav__link">
+      SSET
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/SUPDATE/" class="md-nav__link">
+      SUPDATE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/UPDATE/" class="md-nav__link">
+      UPDATE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Actions/USET/" class="md-nav__link">
+      USET
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14" checked>
+    
+    <label class="md-nav__link" for="nav-14">
+      Protocols
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Protocols" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        <span class="md-nav__icon md-icon"></span>
+        Protocols
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../terrapipe/" class="md-nav__link">
+      Terrapipe 1.0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Terrapipe 0.1 (Deprecated)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Terrapipe 0.1 (Deprecated)
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    Concepts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-actions" class="md-nav__link">
+    Supported actions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response-codes" class="md-nav__link">
+    Response codes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-queryresponse-packets" class="md-nav__link">
+    Types of query/response packets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-query-packet" class="md-nav__link">
+    Simple Query Packet
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple Query Packet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-query-metaframe-sqm" class="md-nav__link">
+    Simple Query Metaframe (SQM)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-1-metaframe-metaline" class="md-nav__link">
+    Line 1: Metaframe metaline
+  </a>
+  
+    <nav class="md-nav" aria-label="Line 1: Metaframe metaline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-metaline" class="md-nav__link">
+    Example metaline
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-2-metaframe-metalayout" class="md-nav__link">
+    Line 2: Metaframe metalayout
+  </a>
+  
+    <nav class="md-nav" aria-label="Line 2: Metaframe metalayout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-metalayout" class="md-nav__link">
+    Example metalayout
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-3-and-subsequent-lines-dataframe" class="md-nav__link">
+    Line 3 (and subsequent lines): Dataframe
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-response-packet" class="md-nav__link">
+    Simple Response Packet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-query-packet" class="md-nav__link">
+    Pipeline Query Packet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-response-packet" class="md-nav__link">
+    Pipeline Response Packet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-note-on-types" class="md-nav__link">
+    A note on types
+  </a>
+  
+    <nav class="md-nav" aria-label="A note on types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array-responses" class="md-nav__link">
+    Array responses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-complete-example" class="md-nav__link">
+    A complete example
+  </a>
+  
+    <nav class="md-nav" aria-label="A complete example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-queryresponse" class="md-nav__link">
+    Simple Query/Response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipelined-queryresponse" class="md-nav__link">
+    Pipelined Query/Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    Concepts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-actions" class="md-nav__link">
+    Supported actions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response-codes" class="md-nav__link">
+    Response codes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-queryresponse-packets" class="md-nav__link">
+    Types of query/response packets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-query-packet" class="md-nav__link">
+    Simple Query Packet
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple Query Packet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-query-metaframe-sqm" class="md-nav__link">
+    Simple Query Metaframe (SQM)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-1-metaframe-metaline" class="md-nav__link">
+    Line 1: Metaframe metaline
+  </a>
+  
+    <nav class="md-nav" aria-label="Line 1: Metaframe metaline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-metaline" class="md-nav__link">
+    Example metaline
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-2-metaframe-metalayout" class="md-nav__link">
+    Line 2: Metaframe metalayout
+  </a>
+  
+    <nav class="md-nav" aria-label="Line 2: Metaframe metalayout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-metalayout" class="md-nav__link">
+    Example metalayout
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-3-and-subsequent-lines-dataframe" class="md-nav__link">
+    Line 3 (and subsequent lines): Dataframe
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-response-packet" class="md-nav__link">
+    Simple Response Packet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-query-packet" class="md-nav__link">
+    Pipeline Query Packet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-response-packet" class="md-nav__link">
+    Pipeline Response Packet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-note-on-types" class="md-nav__link">
+    A note on types
+  </a>
+  
+    <nav class="md-nav" aria-label="A note on types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array-responses" class="md-nav__link">
+    Array responses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-complete-example" class="md-nav__link">
+    A complete example
+  </a>
+  
+    <nav class="md-nav" aria-label="A complete example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-queryresponse" class="md-nav__link">
+    Simple Query/Response
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipelined-queryresponse" class="md-nav__link">
+    Pipelined Query/Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/skybasedb/docs/edit/master/docs/Protocols/unsupported-tp.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="terrapipe-01-deprecated">Terrapipe 0.1 (Deprecated)<a class="headerlink" href="#terrapipe-01-deprecated" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Copyright (c) 2020 Sayan &lt;<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#104;&#115;&#97;&#121;&#97;&#110;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;">&#111;&#104;&#115;&#97;&#121;&#97;&#110;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;</a>&gt;<br><strong>Date:</strong> July 17, 2020<br><strong>Updated:</strong> Aug 6, 2020<br><strong>In effect since:</strong> v0.2.0<br><strong>Deprecated since:</strong> v0.4.0</p>
+</blockquote>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Terrapipe is an application layer protocol like HTTP, built on top of TCP. It is used by the <a href="https://github.com/terrabasedb/terrabase">Skybase</a> for client-server communication. All clients willing to communicate with the Skybase must implement this protocol. This document serves as a guide to implement the protocol.</p>
+<h2 id="concepts">Concepts<a class="headerlink" href="#concepts" title="Permanent link">&para;</a></h2>
+<p>Terrapipe works in a query/response action similar to HTTP's request/response action. Clients send queries and the bytes sent over the TCP stream is collectively called the query packet. The server responds with a response packet.</p>
+<p>Both these packets have two frames:</p>
+<ul>
+<li>Lines 1 and 2 (Metaframe):<ul>
+<li>The first line (before the first LF) in any of these packets is called the <em>metaline</em> - this contains query/response metadata such as the action type and content length.</li>
+<li>The second line (before the second LF) is also a part of the metaframe, and it is called the <em>metalayout</em></li>
+</ul>
+</li>
+<li>Line 3 and the subsequent lines are collectively called the dataframe</li>
+<li>Each chunk of bytes following the metaframe is terminated with <code>\n</code> i.e with LF</li>
+</ul>
+<h2 id="supported-actions">Supported actions<a class="headerlink" href="#supported-actions" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>GET</code> : A get query</li>
+<li><code>SET</code> : A set query</li>
+<li><code>UPDATE</code> : An update query</li>
+<li><code>DEL</code> : A delete query</li>
+<li><code>HEYA</code> : A status check query</li>
+</ul>
+<p>(The number of commands will continue to increase in the future)</p>
+<h2 id="response-codes">Response codes<a class="headerlink" href="#response-codes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Okay</td>
+<td></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Not Found</td>
+<td></td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Overwrite Error</td>
+<td></td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>Invalid Metaframe</td>
+<td>The metaframe has an illegal format</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>Incomplete</td>
+<td>The query packet is incomplete</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Server Error</td>
+<td>An error occurred on the server side</td>
+</tr>
+<tr>
+<td><code>6</code></td>
+<td>Other error</td>
+<td>Some other error response. This error text would be sent in the dataframe</td>
+</tr>
+</tbody>
+</table>
+<h2 id="types-of-queryresponse-packets">Types of query/response packets<a class="headerlink" href="#types-of-queryresponse-packets" title="Permanent link">&para;</a></h2>
+<p>Queries are of two kinds:</p>
+<ul>
+<li>Simple Query Packets - These queries will usually do just one thing. that is one action at a time</li>
+<li>Pipeline Query Packets - These queries are a combination of multiple individual queries</li>
+</ul>
+<h2 id="simple-query-packet">Simple Query Packet<a class="headerlink" href="#simple-query-packet" title="Permanent link">&para;</a></h2>
+<h3 id="simple-query-metaframe-sqm">Simple Query Metaframe (SQM)<a class="headerlink" href="#simple-query-metaframe-sqm" title="Permanent link">&para;</a></h3>
+<p>This is what a typical SQM looks like:</p>
+<pre><code>&lt;METALINE&gt;
+&lt;METALAYOUT&gt;
+</code></pre>
+
+<h3 id="line-1-metaframe-metaline">Line 1: Metaframe <em>metaline</em><a class="headerlink" href="#line-1-metaframe-metaline" title="Permanent link">&para;</a></h3>
+<p>The metaline has the following general structure:</p>
+<pre><code>*!&lt;CLENGTH&gt;!&lt;ML_LENGTH&gt;
+</code></pre>
+
+<p>Where:</p>
+<ul>
+<li><code>CLENGTH</code> - This is the total content length excluding the <em>metalayout</em> line</li>
+<li><code>ML_LENGTH</code> - This is the length of the <em>metalayout</em> line</li>
+</ul>
+<h4 id="example-metaline">Example metaline<a class="headerlink" href="#example-metaline" title="Permanent link">&para;</a></h4>
+<pre><code>*!22!12
+</code></pre>
+
+<h3 id="line-2-metaframe-metalayout">Line 2: Metaframe <em>metalayout</em><a class="headerlink" href="#line-2-metaframe-metalayout" title="Permanent link">&para;</a></h3>
+<p>The metalayout is kind of like the <em>skip sequence</em> which determines how many bytes are to be read from each partition preceding a <code>\n</code> . The metalayout has the following general structure:</p>
+<pre><code>#&lt;l1_len&gt;#&lt;l2_len&gt;#&lt;l3_len&gt;#&lt;ln_len&gt;
+</code></pre>
+
+<p>The <code>&lt;l1_len&gt;</code> , <code>&lt;l2_len&gt;</code> and so on are the number of data bytes in each line in the dataframe, exclusive of the LF ('\n') byte.</p>
+<h4 id="example-metalayout">Example metalayout<a class="headerlink" href="#example-metalayout" title="Permanent link">&para;</a></h4>
+<p>For a dataframe which looks like: <code>set\nsayan\n17</code> , the corresponding metalayout should be:</p>
+<pre><code>#3#5#2
+</code></pre>
+
+<h3 id="line-3-and-subsequent-lines-dataframe">Line 3 (and subsequent lines): Dataframe<a class="headerlink" href="#line-3-and-subsequent-lines-dataframe" title="Permanent link">&para;</a></h3>
+<p>The dataframe, well, contains data! It has the following general structure:</p>
+<pre><code>set\nsayan\n17
+</code></pre>
+
+<p>Every piece of data is separated by <code>\n</code> . Do note: this wouldn't cause any issues if a piece of data contains a newline byte as a part of it, since the metalayout defines the skip sequence. <strong>Please read the <a href="#a-note-on-types">note on types</a></strong></p>
+<h2 id="simple-response-packet">Simple Response Packet<a class="headerlink" href="#simple-response-packet" title="Permanent link">&para;</a></h2>
+<p>Simple responses have the following general structure:</p>
+<pre><code>*!&lt;RESPCODE&gt;!&lt;CLENGTH&gt;!&lt;ML_LENGTH&gt;
+&lt;METALAYOUT&gt;
+&lt;DATAFRAME&gt;
+</code></pre>
+
+<p>Where:</p>
+<ul>
+<li><code>RESPOCDE</code> - This can have any of the values <a href="#response-codes">listed here</a></li>
+<li><code>CLENGTH</code> - This is the total content length excluding the <em>metalayout</em> line</li>
+<li><code>ML_LENGTH</code> - This is the length of the <em>metalayout</em> line</li>
+<li><code>METALAYOUT</code> - This has the same structure as the <a href="#line-2-metaframe-metalayout">query packet's metalayout</a></li>
+<li><code>DATAFRAME</code> - This has the same structure as the <a href="#line-3-and-subsequent-lines-dataframe">query packet's dataframe</a></li>
+</ul>
+<h2 id="pipeline-query-packet">Pipeline Query Packet<a class="headerlink" href="#pipeline-query-packet" title="Permanent link">&para;</a></h2>
+<p>Pipeline queries are not very different from simple queries, except for the metaline in the metaframe.
+Pipeline query packets have the following general structure:</p>
+<pre><code>$!&lt;CLENGTH&gt;!&lt;ML_LENGTH&gt;
+&lt;METALAYOUT&gt;
+&lt;DATAFRAME&gt;
+</code></pre>
+
+<p>If you may have noticed, the only difference here, is that, instead of the asterisk (*), you have a Dollar Sign ($). All the other fields have the same meaning as in the <a href="#simple-query-packet">simple query packet</a></p>
+<h2 id="pipeline-response-packet">Pipeline Response Packet<a class="headerlink" href="#pipeline-response-packet" title="Permanent link">&para;</a></h2>
+<p>Again, pipeline responses are not much different from simple responses, except for having a Dollar Sign ($), in place of the asterisk (*) in the metaline, in the metaframe.
+It has the following general structure:</p>
+<pre><code>$!&lt;RESPCODE&gt;!&lt;CLENGTH&gt;!&lt;ML_LENGTH&gt;
+&lt;METALAYOUT&gt;
+&lt;DATAFRAME&gt;
+</code></pre>
+
+<p>Where the values in <code>&lt;&gt;</code> have their usual meanings.</p>
+<h2 id="a-note-on-types">A note on types<a class="headerlink" href="#a-note-on-types" title="Permanent link">&para;</a></h2>
+<p>The server doesn't care much about types when queries are sent, but when  pipelined queries are run, the server acts a little differently. This is because each query in a pipelined query will give different outcomes - some of them may return
+response codes, some of them may return arrays and some of them may return <em>untyped</em> things - since most responses are typically sent as strings, and it is the client's/user's responsibility to parse it into the required types.
+The server will respond in the following formats, for pipelined queries:</p>
+<ul>
+<li>Most values - <code>+&lt;value&gt;</code> is returned for most successful returns</li>
+<li>Response codes - <code>!&lt;respcode&gt;</code> is returned if the query returns a response code</li>
+<li>Arrays - <a href="#array-responses">the usual way</a></li>
+</ul>
+<h3 id="array-responses">Array responses<a class="headerlink" href="#array-responses" title="Permanent link">&para;</a></h3>
+<p>Array responses are actually pretty simple! They look like:</p>
+<pre><code>&amp;&lt;n&gt;element1\n
+element2\n
+...
+elementn\n
+</code></pre>
+
+<p>where <code>&lt;n&gt;</code> is the number of elements in the array.</p>
+<h2 id="a-complete-example">A complete example<a class="headerlink" href="#a-complete-example" title="Permanent link">&para;</a></h2>
+<h3 id="simple-queryresponse">Simple Query/Response<a class="headerlink" href="#simple-queryresponse" title="Permanent link">&para;</a></h3>
+<p>Here, we will assume that all operations are legal, that is while creating new keys, we will assume that the keys didn't exist, that is, there will be no <code>Overwrite Error</code> .</p>
+<p>This is the query I run on <code>skysh</code> :</p>
+<pre><code class="shell">skysh&gt; set sayan 17
+</code></pre>
+
+<p><code>skysh</code> will send bytes like the following (excluding TCP's SYN/SYN ACK/ACK):</p>
+<pre><code>*!13!7\n#3#5#2\nSET\nsayan\n17\n
+</code></pre>
+
+<p>The server does the action and writes the following back to the TCP stream:</p>
+<pre><code>*!0!0!0
+</code></pre>
+
+<p>This is basically a success message, <code>*</code> since it is a simple response, <code>0</code> for <code>RESPCODE</code> , since the action was successful, <code>0</code> s for <code>CLENGTH</code> , and <code>ML_LENGTH</code> since no data is returned.</p>
+<h3 id="pipelined-queryresponse">Pipelined Query/Response<a class="headerlink" href="#pipelined-queryresponse" title="Permanent link">&para;</a></h3>
+<p>Since we don't have any way to run a pipeline query from <code>skysh</code> (at the moment), we will assume that the pipeline query wants to do the following:</p>
+<ul>
+<li><code>SET sayan 17</code></li>
+<li><code>GET foo</code></li>
+<li><code>HEYA</code>
+Then, the client will send a query packet like:</li>
+</ul>
+<pre><code>$!25!12\n#3#5#2#3#3#4\nSET\nsayan\n17\nGET\nfoo\nHEYA
+</code></pre>
+
+<p>Then, the server will respond like:</p>
+<pre><code>$!15!6\n#2#6#5\n!0\n+Hello\n+HEY!
+</code></pre>
+
+<p>Voila! We just saw terrapipe in action. Phew, we're done!</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: 2021-02-18
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+<!-- Footer -->
+
+    <div class="md-footer-nav" style="background-color: #EBEBEF">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../terrapipe/" title="Terrapipe 1.0" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Terrapipe 1.0
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <style>
+    @import "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css";
+</style>
+<footer class="page-footer font-small text-center text-muted" style="background-color: #0A0A0A;">
+    <div class="text-center py-2 small"><small>This website is <a
+                href="https://github.com/skybasedb/docs">open-source</a>! Copyright © 2020 <a
+                href="https://github.com/terrabasedb/terrabase/tree/next/AUTHORS.md">The Skybase Authors</a> and <a
+                href="https://github.com/skybasedb/docs/graphs/contributors">contributors</a>.</small>
+    </div>
+</footer>
+
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b3a72adc.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['instant'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
