@@ -1,0 +1,134 @@
+{
+  "version-0.5.0/docs": [
+    {
+      "type": "doc",
+      "id": "version-0.5.0/index"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.0/getting-started"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Actions",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/dbsize"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/del"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/exists"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/flushdb"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/get"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/heya"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/keylen"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/mget"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/mksnap"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/mset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/mupdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/sdel"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/set"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/sset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/supdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/update"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Actions/uset"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.0/persistence"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.0/config-files"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.0/config-cmd"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.0/snapshots"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.0/benchmarking"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.0/building-from-source"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Protocol",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Protocol/terrapipe"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Protocol/data-types"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.0/Protocol/response-codes"
+        }
+      ]
+    }
+  ]
+}

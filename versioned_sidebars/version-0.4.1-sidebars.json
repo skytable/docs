@@ -1,0 +1,94 @@
+{
+  "version-0.4.1/docs": [
+    {
+      "type": "doc",
+      "id": "version-0.4.1/index"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.4.1/getting-started"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Actions",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Actions/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Actions/del"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Actions/exists"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Actions/get"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Actions/heya"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Actions/mget"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Actions/mset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Actions/mupdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Actions/set"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Actions/update"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "version-0.4.1/persistence"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.4.1/config-files"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.4.1/benchmarking"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.4.1/building-from-source"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Protocol",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Protocol/terrapipe"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Protocol/data-types"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.4.1/Protocol/response-codes"
+        }
+      ]
+    }
+  ]
+}
