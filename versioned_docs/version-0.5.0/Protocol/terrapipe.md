@@ -126,4 +126,4 @@ You can find a full list of data types and their `<tsymbol>` s **[here](data-typ
 
 You can find a full list of response codes and their descriptions **[here](response-codes)**
 
-And that's about it! For a list of actions, [see this](actions/overview).
+And that's about it! For a list of actions, [see this](/actions/overview).

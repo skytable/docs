@@ -38,7 +38,8 @@ module.exports = {
         "items" : [
             "Protocol/terrapipe",
             "Protocol/data-types",
-            "Protocol/response-codes"
+            "Protocol/response-codes",
+            "Protocol/errors"
         ]
     }
 ]
