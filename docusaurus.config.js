@@ -60,7 +60,7 @@ module.exports = {
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/onskybase',
+              href: 'https://twitter.com/skytabledb',
             },
           ],
         },
