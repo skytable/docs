@@ -1,0 +1,28 @@
+name: Deploy docs
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Deploy docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+      - name: Install prerequisites
+        run: |
+          pip install mkdocs mkdocs-material mkdocs-git-revision-date-plugin
+      - name: Build docs
+        env:
+          BOT_USER: ${{ secrets.BOT_INIT_USER }}
+          BOT_MAIL: ${{ secrets.BOT_INIT_MAIL }}
+          BOT_API: ${{ secrets.BOT_API_CALL }}
+          GIT_SHA: ${{ env.GITHUB_SHA }}
+        run: |
+          chmod +x deploy.sh
+          sh deploy.sh

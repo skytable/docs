@@ -1,0 +1,21 @@
+site_name: Skytable Docs
+theme:
+  name: material
+  language: en
+  palette:
+    primary: black
+    accent: pink
+  favicon: assets/img/favicon.ico
+  logo: assets/img/favicon.ico
+  custom_dir: overrides
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - instant
+repo_url: https://github.com/skytable/docs
+plugins:
+  - git-revision-date
+  - search
+markdown_extensions:
+  - toc:
+      permalink: true
