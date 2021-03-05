@@ -1,0 +1,63 @@
+{
+  "version-0.3.2/docs": [
+    {
+      "type": "doc",
+      "id": "version-0.3.2/index"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.3.2/getting-started"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Actions",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.3.2/Actions/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.3.2/Actions/del"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.3.2/Actions/exists"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.3.2/Actions/get"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.3.2/Actions/heya"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.3.2/Actions/set"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.3.2/Actions/update"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "version-0.3.2/persistence"
+    },
+    {
+      "type" : "doc",
+      "id" : "version-0.3.2/benchmarking"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.3.2/building-from-source"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.3.2/terrapipe"
+    }
+  ]
+}
