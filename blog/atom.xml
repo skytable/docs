@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://skybasedb.github.io/blog</id>
-    <title>Skybase Documentation Blog</title>
+    <id>https://docs.skytable.io/blog</id>
+    <title>Skytable Documentation Blog</title>
     <updated>2015-10-25T23:29:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://skybasedb.github.io/blog"/>
-    <subtitle>Skybase Documentation Blog</subtitle>
-    <icon>https://skybasedb.github.io/img/favicon.ico</icon>
+    <link rel="alternate" href="https://docs.skytable.io/blog"/>
+    <subtitle>Skytable Documentation Blog</subtitle>
+    <icon>https://docs.skytable.io/img/favicon.ico</icon>
 </feed>
