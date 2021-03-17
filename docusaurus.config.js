@@ -39,7 +39,7 @@ module.exports = {
             },
             {
               label: 'Security Advisories',
-              to: 'https://skybasedb.github.io/security',
+              to: 'https://skytable.github.io/security',
             },
             {
               label: 'Releases',

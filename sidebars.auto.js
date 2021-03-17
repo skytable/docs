@@ -2,11 +2,19 @@
 module.exports = {
   docs: [
     "index",
+    "getting-started",
+    "actions-overview",
+    "persistence",
+    "config-files",
+    "config-cmd",
+    "snapshots",
+    "ssl",
+    "benchmarking",
+    "building-from-source",
     {
         "type": "category",
         "label": "Actions",
         "items": [
-            "Actions/overview",
             "Actions/dbsize",
             "Actions/del",
             "Actions/exists",
@@ -26,12 +34,6 @@ module.exports = {
             "Actions/uset"
         ]
     },
-    "persistence",
-    "config-files",
-    "config-cmd",
-    "snapshots",
-    "benchmarking",
-    "building-from-source",
     {
         "type" : "category",
         "label" : "Protocol",
