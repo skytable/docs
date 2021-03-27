@@ -8,6 +8,4 @@ title: GET
 **Arguments**: `GET <key>`  
 **Returns**: Value if it exists or (Code: 1) if it does not  
 :::
-#### Description
-
 Get the value of a key
