@@ -2,7 +2,7 @@ name: Deploy docs
 on:
   push:
     branches:
-      - master
+      - next
 
 jobs:
   build:
@@ -11,13 +11,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
-      - uses: actions/setup-python@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
         with:
-          python-version: "3.x"
-      - name: Install prerequisites
-        run: |
-          pip install mkdocs mkdocs-material mkdocs-git-revision-date-plugin
+          node-version: 14.x
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install
       - name: Build docs
+        run: |
+          chmod +x doc.sh
+          ./doc.sh
+          yarn build
+      - name: Deploy docs
         env:
           BOT_USER: ${{ secrets.BOT_INIT_USER }}
           BOT_MAIL: ${{ secrets.BOT_INIT_MAIL }}
