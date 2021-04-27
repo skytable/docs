@@ -4,9 +4,8 @@ title: EXISTS
 ---
 :::note About
 **Since**: 0.4.0  
-**Time complexity**: O(1)  
-**Arguments**: `EXISTS <keyname>`  
-**Returns**: Returns 1 if exists or 0 if it does not
+**Time complexity**: O(n)  
+**Arguments**: `EXISTS <key1> <key2> ...`  
+**Returns**: Number of keys that exist as an unsigned int  
 :::
-### Description
-Checks if a key exists
+Check if 'n' keys exist
