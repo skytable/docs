@@ -44,7 +44,8 @@ The metaframe is made up of precisely two lines (separated by a LF or `\n` byte)
 
 Here:
 
-* `<n>` is the number of datagroups in the query. Since simple queries perform one action only, the value of `<n>` is always 1. Batch queries have values of n in the range `(1, ∞)`
+* `<n>` is the number of datagroups in the query. Since simple queries perform one action only, the value of `<n>` is always 1. Batch queries have values of n in the range `(1, ∞)` depending on the number of actions
+they perform
 * `<m>` is the number of bytes in the following line excluding the `\n` byte. So let's say we had `*1\n` in the second line of the metaframe, then `<m>` would have a value of 2. 
 
 Also make sure that you make matching the `*` character non-exhaustive, as we might be adding more packet types in the future which may need symbols other than `*` .
@@ -126,4 +127,49 @@ You can find a full list of data types and their `<tsymbol>` s **[here](data-typ
 
 You can find a full list of response codes and their descriptions **[here](response-codes)**
 
-And that's about it! For a list of actions, [see this](actions-overview).
+## A complete query/response example
+
+Let's say we're going to run `GET foo` to get a key called 'foo'. Since we're just running one action, this
+tells us that this is a simple query.
+
+### The Metaframe
+
+Since simple queries just do one thing, they'll just have one data group. So the metaframe is fairly simple:
+```
+#2\n // The next line has the `*1` chars, so 2 chars excluding the LF character
+*1\n // This query has one action, so one datagroup
+```
+
+### The Dataframe
+Now, what about the dataframe? Well, there is a single datagroup for the `GET` action with two arguments.
+Hence, the _boilerplate_ for the dataframe will look like:
+```
+#2\n // The next line has the `&2` chars, so 2 chars excluding the LF character
+&2\n // The datagroup has two arguments, so this value is 2
+```
+
+Now, what about the data? `GET` and `foo` are the two arguments, so the data in the dataframe will look like:
+```
+#3\n // 'GET' has 3 chars excluding the LF
+GET\n // The data item `GET` itself
+#3\n // `foo` also has 3 chars excluding the LF
+foo\n // The data item `foo` itself
+```
+
+### The complete query packet
+
+So, `GET foo` will produce the following query packet:
+```
+#2\n
+*1\n
+#2\n
+&2\n
+#3\n
+GET\n
+#3\n
+foo\n
+```
+
+Pretty simple, right?
+
+> To be updated with the response packet (...)
