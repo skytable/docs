@@ -11,21 +11,20 @@ Snapshots aren't enabled by default - you have to enable them by using the confi
 
 ``` toml
 [snapshot]
-enabled = true
 every = 3600
 atmost = 4
 ```
 
 Here's what these values mean:
 
-* `enabled` - Whether snapshotting is enabled or not; either `true` or `false`
 * `every` - Number of seconds to wait before creating another snapshot
 * `atmost` - The maximum number of snapshots to keep
 
 ## Storage of snapshots
 
-All the created snapshots are stored in a `snapshots` folder in the current directory.
-The snapshot files are named in the format: `YYYYMMDD-HHMMSS.snapshot` .
+All the created snapshots are stored in a `data/snapshots` folder in the current directory.
+The snapshot files are named in the format: `YYYYMMDD-HHMMSS.snapshot`. Learn more about the data directory
+structure [here](persistence/#data-directory-structure).
 
 ## How snapshots work
 
