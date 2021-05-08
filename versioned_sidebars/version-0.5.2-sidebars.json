@@ -1,0 +1,146 @@
+{
+  "version-0.5.2/docs": [
+    {
+      "type": "doc",
+      "id": "version-0.5.2/index"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.2/getting-started"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.2/actions-overview"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.2/persistence"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.2/config-files"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.2/config-cmd"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.2/clients"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.2/snapshots"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.2/ssl"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.2/benchmarking"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.5.2/building-from-source"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Actions",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/dbsize"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/del"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/exists"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/flushdb"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/get"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/heya"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/keylen"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/mget"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/mksnap"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/mset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/mupdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/sdel"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/set"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/sset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/supdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/update"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Actions/uset"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Protocol",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Protocol/terrapipe"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Protocol/data-types"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Protocol/response-codes"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.5.2/Protocol/errors"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+---
+id: clients
+title: Client drivers
+---
+
+We officially maintain the following drivers:
+- [Rust driver](https://github.com/skytable/client-rust) - Always up to date and is used by the core project itself
+
+:::info More lanugages
+The team is always looking to support more languages and we wish we could ship more drivers. But due to limited
+resources we haven't been able to. If you're willing to write a driver (it's super easy to), jump into the
+[Skytable discord server](https://discord.gg/QptWFdx) and a maintainer/moderator will help you out!
+:::

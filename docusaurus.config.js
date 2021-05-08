@@ -38,10 +38,6 @@ module.exports = {
               to: '/',
             },
             {
-              label: 'Drivers',
-              to: '/clients',
-            },
-            {
               label: 'Security Advisories',
               to: 'https://skytable.github.io/security',
             },
