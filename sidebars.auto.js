@@ -7,6 +7,7 @@ module.exports = {
     "persistence",
     "config-files",
     "config-cmd",
+    "clients",
     "snapshots",
     "ssl",
     "benchmarking",
