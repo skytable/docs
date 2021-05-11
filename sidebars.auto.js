@@ -16,33 +16,34 @@ module.exports = {
         "type": "category",
         "label": "Actions",
         "items": [
-            "Actions/dbsize",
-            "Actions/del",
-            "Actions/exists",
-            "Actions/flushdb",
-            "Actions/get",
-            "Actions/heya",
-            "Actions/keylen",
-            "Actions/mget",
-            "Actions/mksnap",
-            "Actions/mset",
-            "Actions/mupdate",
-            "Actions/sdel",
-            "Actions/set",
-            "Actions/sset",
-            "Actions/supdate",
-            "Actions/update",
-            "Actions/uset"
+            "actions/dbsize",
+            "actions/del",
+            "actions/exists",
+            "actions/flushdb",
+            "actions/get",
+            "actions/heya",
+            "actions/keylen",
+            "actions/mget",
+            "actions/mksnap",
+            "actions/mset",
+            "actions/mupdate",
+            "actions/sdel",
+            "actions/set",
+            "actions/sset",
+            "actions/supdate",
+            "actions/update",
+            "actions/uset"
         ]
     },
     {
         "type" : "category",
         "label" : "Protocol",
         "items" : [
-            "Protocol/terrapipe",
-            "Protocol/data-types",
-            "Protocol/response-codes",
-            "Protocol/errors"
+            "protocol/skyhash",
+            "protocol/terrapipe",
+            "protocol/data-types",
+            "protocol/response-codes",
+            "protocol/errors"
         ]
     }
 ]

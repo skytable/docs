@@ -3,11 +3,14 @@ id: terrapipe
 title: Terrapipe 1.0
 ---
 :::note About this document
-Copyright (c) 2020 Sayan <<ohsayan@outlook.com>>  
+Copyright (c) 2020 Sayan Nandan &lt;nandansayan@outlook.com&gt;  
 **Date:** Aug 23, 2020  
 **In effect since:** v0.4.0  
-**Date:** 6<sup>th</sup> Aug, 2020  
-Copyright &copy; 2020 Sayan Nandan
+**Revision Date:** 6<sup>th</sup> Aug, 2020  
+**EOL since:** v0.6.0
+:::
+:::danger EOL Notice
+This protocol has reached EOL since Skytable 0.6. Please use the [Skyhash Protocol](skyhash) instead.
 :::
 ## Introduction
 
