@@ -82,8 +82,8 @@ fn create_docs(list: Vec<Document>) {
     filetop.push_str("Actions are like shell commands: they take arguments and do something! Skytable currently supports the following actions: \n\n");
     for action in list {
         let name = action.0;
-        filetop.push_str(&format!("* [{}](Actions/{}.md)\n", &name, &name));
-        let mut file = std::fs::File::create(format!("../docs/Actions/{}.md", name)).unwrap();
+        filetop.push_str(&format!("* [{}](actions/{}.md)\n", &name, &name));
+        let mut file = std::fs::File::create(format!("../docs/actions/{}.md", name)).unwrap();
         file.write_all(&action.1.into_bytes()).unwrap();
     }
     let mut file = std::fs::File::create("../docs/actions.md").unwrap();
