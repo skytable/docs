@@ -3,7 +3,6 @@ id: exists
 title: EXISTS
 ---
 :::note About
-**Since**: 0.4.0  
 **Time complexity**: O(n)  
 **Arguments**: `EXISTS <key1> <key2> ...`  
 **Returns**: Number of keys that exist as an unsigned int  

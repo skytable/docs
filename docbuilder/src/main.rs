@@ -44,15 +44,13 @@ fn main() {
         .arg("actions.jsonc")
         .output()
         .unwrap();
-    let json: Value =
-        serde_hjson::from_str(&output).unwrap();
+    let json: Value = serde_hjson::from_str(&output).unwrap();
     let json = json.as_array().unwrap();
     let mut actions = Vec::new();
     for val in json {
         let obj = val.as_object().unwrap();
         let name = obj.get("name").unwrap().to_string();
         let id = name.to_lowercase();
-        let since = obj.get("since").unwrap();
         let complexity = obj.get("complexity").unwrap();
         let args = obj.get("args").unwrap();
         let returns = obj.get("return").unwrap();
@@ -60,17 +58,33 @@ fn main() {
         let desc = desc.replace("<br>", "  \n");
         // Now we have all the details; time to construct the page
         let mut actionpage = String::new();
+        // add the page meta ---
         actionpage.push_str("---\n");
+        // add the document id
         actionpage.push_str(&format!("id: {}\n", id));
+        // add the title
         actionpage.push_str(&format!("title: {}\n", name));
+        // add the page meta end ---
         actionpage.push_str("---\n");
+        // add the note admonition
         actionpage.push_str(":::note About\n");
-        actionpage.push_str(&format!("**Since**: {}  \n", since));
+        // add the time complexity
         actionpage.push_str(&format!("**Time complexity**: {}  \n", complexity));
+        // add the arguments
         actionpage.push_str(&format!("**Arguments**: `{}`  \n", args));
+        // add the returns
         actionpage.push_str(&format!("**Returns**: {}  \n", returns));
+        // add the end of the admonition
         actionpage.push_str(":::\n");
-        actionpage.push_str(&desc);
+        // add the description
+        actionpage.push_str(
+            &desc
+                .trim()
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("'''", ""),
+        );
+        // now push the action into the collection of actions
         actions.push(Document(name, actionpage));
     }
     actions.sort();
@@ -82,8 +96,8 @@ fn create_docs(list: Vec<Document>) {
     filetop.push_str("Actions are like shell commands: they take arguments and do something! Skytable currently supports the following actions: \n\n");
     for action in list {
         let name = action.0;
-        filetop.push_str(&format!("* [{}](actions/{}.md)\n", &name, &name));
-        let mut file = std::fs::File::create(format!("../docs/actions/{}.md", name)).unwrap();
+        filetop.push_str(&&format!("* [{}](actions/{}.md)\n", &name, &name));
+        let mut file = std::fs::File::create(&format!("../docs/actions/{}.md", name)).unwrap();
         file.write_all(&action.1.into_bytes()).unwrap();
     }
     let mut file = std::fs::File::create("../docs/actions.md").unwrap();

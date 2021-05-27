@@ -3,7 +3,6 @@ id: supdate
 title: SUPDATE
 ---
 :::note About
-**Since**: 0.4.3  
 **Time complexity**: O(n)  
 **Arguments**: `SUPDATE <key1> <value1> <key2> <value2> ...`  
 **Returns**: (Code: 0) if all keys were updated, otherwise (Code: 1)  
