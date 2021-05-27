@@ -23,6 +23,7 @@ module.exports = {
             "actions/get",
             "actions/heya",
             "actions/keylen",
+            "actions/lskeys",
             "actions/mget",
             "actions/mksnap",
             "actions/mset",
