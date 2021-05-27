@@ -79,6 +79,10 @@
         },
         {
           "type": "doc",
+          "id": "version-0.6.0/actions/lskeys"
+        },
+        {
+          "type": "doc",
           "id": "version-0.6.0/actions/mget"
         },
         {
