@@ -1,0 +1,146 @@
+{
+  "version-0.6.0/docs": [
+    {
+      "type": "doc",
+      "id": "version-0.6.0/index"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.0/getting-started"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.0/actions-overview"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.0/persistence"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.0/config-files"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.0/config-cmd"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.0/clients"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.0/snapshots"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.0/ssl"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.0/benchmarking"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.0/building-from-source"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Actions",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/dbsize"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/del"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/exists"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/flushdb"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/get"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/heya"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/keylen"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/mget"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/mksnap"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/mset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/mupdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/sdel"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/set"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/sset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/supdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/update"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/actions/uset"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Protocol",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.6.0/protocol/skyhash"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/protocol/data-types"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/protocol/response-codes"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.0/protocol/errors"
+        }
+      ]
+    }
+  ]
+}
