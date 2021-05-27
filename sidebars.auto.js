@@ -40,7 +40,6 @@ module.exports = {
         "label" : "Protocol",
         "items" : [
             "protocol/skyhash",
-            "protocol/terrapipe",
             "protocol/data-types",
             "protocol/response-codes",
             "protocol/errors"
