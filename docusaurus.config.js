@@ -21,6 +21,11 @@ module.exports = {
           label: 'GitHub',
           position: 'right',
         },
+        // {
+        //   href: '/versions',
+        //   label: 'Versions',
+        //   position: 'right'
+        // },
         {
           type: 'docsVersionDropdown',
           position: 'left',
@@ -92,10 +97,23 @@ module.exports = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        // docs: {
+        //   "routeBasePath" : '/',
+        //   "lastVersion": "current",
+        //   "versions": {
+        //     "current": {
+        //       "label": "0.6.0",
+        //     }
+        //   }
+        // }
+        // pages: {
+        //   'path' : 'src/pages',
+        //   'routeBasePath' : '/',
+        // }
       },
     ],
   ],
   plugins: [
     // 'docusaurus-plugin-auto-sidebars'
-  ]
+  ],
 };
