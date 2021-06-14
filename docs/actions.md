@@ -15,6 +15,7 @@ Actions are like shell commands: they take arguments and do something! Skytable 
 * [MKSNAP](actions/MKSNAP.md)
 * [MSET](actions/MSET.md)
 * [MUPDATE](actions/MUPDATE.md)
+* [POP](actions/POP.md)
 * [SDEL](actions/SDEL.md)
 * [SET](actions/SET.md)
 * [SSET](actions/SSET.md)
