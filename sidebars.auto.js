@@ -11,6 +11,7 @@ module.exports = {
     "snapshots",
     "ssl",
     "benchmarking",
+    "deployment-notes",
     "building-from-source",
     {
         "type": "category",
@@ -28,6 +29,7 @@ module.exports = {
             "actions/mksnap",
             "actions/mset",
             "actions/mupdate",
+            "actions/pop",
             "actions/sdel",
             "actions/set",
             "actions/sset",
