@@ -8,7 +8,7 @@ Skytable lets you secure connections with TLS/SSL. This feature is built into Sk
 
 This is outside the scope of this document, but you can read [this guide on Stackoverflow](https://stackoverflow.com/a/10176685) to get a brief idea of creating one.
 
-### Step 2: Add this to your configuration and launch
+### Step 2: Add it to your configuration and launch
 
 #### With config files
 Add the following block:
@@ -30,4 +30,13 @@ skyd -z cert.pem -k key.pem
 ```
 :::tip Tip
 You can pass the `--sslonly` flag to force the server to only accept secure connections, disabling the non-SSL interface. When this flag is not passed, and other SSL options are given &mdash; the server listens to both SSL and non-SSL requests
+:::
+
+:::info Note
+To use TLS with the Skytable shell (`skysh`) just run:
+```
+skysh -C /path/to/cert.pem --port [SSLPORT]
+```
+and you'll be on a secure connection. Don't forget the SSL port! The skytable daemon binds the secure
+listener on a different port when in multi-socket mode.
 :::
