@@ -57,7 +57,7 @@ module.exports = {
           items: [
             {
               label: 'Gitter',
-              href: 'https://gitter.im/skybasedb/community',
+              href: 'https://gitter.im/skytable/community',
             },
             {
               label: 'Discord',
