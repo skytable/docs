@@ -1,25 +1,26 @@
 module.exports = {
-  title: 'Skytable Documentation',
-  tagline: "This is the place where you'll learn to use, install, configure and master Skytable",
-  url: 'https://docs.skytable.io',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'skytable', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
+  title: "Skytable Documentation",
+  tagline:
+    "This is the place where you'll learn to use, install, configure and master Skytable",
+  url: "https://docs.skytable.io",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+  organizationName: "skytable",
+  projectName: "docs",
   themeConfig: {
     navbar: {
-      title: 'Skytable Documentation',
+      title: "Skytable Documentation",
       logo: {
-        alt: 'Skytable Logo',
-        src: 'img/logo.png',
+        alt: "Skytable Logo",
+        src: "img/logo.png",
       },
       items: [
         {
-          href: 'https://github.com/skytable/docs',
-          label: 'GitHub',
-          position: 'right',
+          href: "https://github.com/skytable/docs",
+          label: "GitHub",
+          position: "right",
         },
         // {
         //   href: '/versions',
@@ -27,59 +28,59 @@ module.exports = {
         //   position: 'right'
         // },
         {
-          type: 'docsVersionDropdown',
-          position: 'left',
-        }
+          type: "docsVersionDropdown",
+          position: "left",
+        },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Links',
+          title: "Links",
           items: [
             {
-              label: 'Docs',
-              to: '/',
+              label: "Docs",
+              to: "/",
             },
             {
-              label: 'Security Advisories',
-              to: 'https://skytable.github.io/security',
+              label: "Security Advisories",
+              to: "https://skytable.github.io/security",
             },
             {
-              label: 'Releases',
-              to: 'https://github.com/skytable/skytable/releases'
-            }
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Gitter',
-              href: 'https://gitter.im/skytable/community',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/QptWFdx',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/skytabledb',
+              label: "Releases",
+              to: "https://github.com/skytable/skytable/releases",
             },
           ],
         },
         {
-          title: 'Sources',
+          title: "Community",
           items: [
             {
-              label: 'Core database',
-              href: 'https://github.com/skytable/skytable',
+              label: "Gitter",
+              href: "https://gitter.im/skytable/community",
             },
             {
-              label: 'Documentation',
-              href: 'https://github.com/skytable/docs',
-            }
+              label: "Discord",
+              href: "https://discord.gg/QptWFdx",
+            },
+            {
+              label: "Twitter",
+              href: "https://twitter.com/skytabledb",
+            },
+          ],
+        },
+        {
+          title: "Sources",
+          items: [
+            {
+              label: "Core database",
+              href: "https://github.com/skytable/skytable",
+            },
+            {
+              label: "Documentation",
+              href: "https://github.com/skytable/docs",
+            },
           ],
         },
       ],
@@ -88,28 +89,15 @@ module.exports = {
   },
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         docs: {
           routeBasePath: "/",
-          sidebarPath: require.resolve('./sidebars.auto.js'),
+          sidebarPath: require.resolve("./sidebars.auto.js"),
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
-        // docs: {
-        //   "routeBasePath" : '/',
-        //   "lastVersion": "current",
-        //   "versions": {
-        //     "current": {
-        //       "label": "0.6.0",
-        //     }
-        //   }
-        // }
-        // pages: {
-        //   'path' : 'src/pages',
-        //   'routeBasePath' : '/',
-        // }
       },
     ],
   ],
