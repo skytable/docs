@@ -10,6 +10,9 @@ module.exports = {
   organizationName: "skytable",
   projectName: "docs",
   themeConfig: {
+    prism: {
+      additionalLanguages: ["toml"],
+    },
     navbar: {
       title: "Skytable Documentation",
       logo: {
