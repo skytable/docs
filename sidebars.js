@@ -5,6 +5,7 @@ module.exports = {
     "actions-overview",
     "containers",
     "ddl",
+    "examples",
     "all-actions",
     {
       type: "category",

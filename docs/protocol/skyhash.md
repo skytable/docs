@@ -187,3 +187,67 @@ Where `<c>` is the number of characters in the code and `<code>` is the code its
 ```
 
 You find a full list of response codes [in this table](response-codes).
+
+### Flat arrays (\_)
+
+Flat arrays are arrays that only contain strings. Let's say we represent an array like this in
+pseudocode:
+
+```js
+["hello", "world", "once", "again"];
+```
+
+It has 4 elements. Great, so this is how Skyhash will serialize it:
+
+```sh
+&4\n      # four elements
++5\n      # 'hello' has 5 chars
+hello\n   # 'hello' itself
++5\n      # 'world' has 5 chars
+world\n   # 'world' itself
++4\n      # 'once' has 4 chars
+once\n    # 'once' itself
++5\n      # 'again' has 5 chars
+again\n   # 'again' itself
+```
+
+## A full example
+
+Let's take a look at what happens when we send `SET x ex`. First, the client needs to serialize
+it into a Skyhash compatible type. Since this is a simple query, we just have one single
+element in the query array. Most of Skytable's common actions use arrays, and SET uses a [flat array](#flat-arrays-_). So in `SET x ex`:
+
+- This is a simple query
+- We need to send a flat array
+- It has three elements: `['SET', 'x', 'ex']`
+
+```sh
+*1\n  # '*1' because this is a simple query
+&3\n  # 3 elements
++3\n  # 'GET' has 3 chars
+GET\n # 'GET' itself
++1\n  # 'x' has 1 char
+x\n   # 'x' itself
++2\n  # 'ex' has 2 chars
+ex\n  # 'ex' itself
+```
+
+Way to go! We just did it!
+
+Now the server would return a query array with one element: a response code. This is what
+it returns:
+
+```sh
+*1\n
+!1\n
+0\n
+```
+
+Here:
+
+- `*1` because this response corresponds to a simple query
+- `!1` because the returned data type is a response code with tsymbol `!` and a length of `1`
+  char
+- `0` because this is the response code that corresponds to _Okay_
+
+And there &mdash; you've learned Skyhash!
