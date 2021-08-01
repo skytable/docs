@@ -4,7 +4,7 @@ title: Skyhash Protocol 1.0
 ---
 :::note About this document
 Copyright (c) 2021 Sayan Nandan &lt;nandansayan@outlook.com&gt;  
-**In effect since:** v0.6.2  
+**In effect since:** v0.6.0  
 **Date:** 11<sup>th</sup> May, 2021
 :::
 
