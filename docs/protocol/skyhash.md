@@ -224,8 +224,8 @@ element in the query array. Most of Skytable's common actions use arrays, and SE
 ```sh
 *1\n  # '*1' because this is a simple query
 &3\n  # 3 elements
-+3\n  # 'GET' has 3 chars
-GET\n # 'GET' itself
++3\n  # 'SET' has 3 chars
+SET\n # 'SET' itself
 +1\n  # 'x' has 1 char
 x\n   # 'x' itself
 +2\n  # 'ex' has 2 chars
