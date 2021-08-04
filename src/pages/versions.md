@@ -24,7 +24,7 @@ hotfixes:
 
 - v0.6.3: View [docs](/0.6.3)
 - v0.6.2: View [docs](/0.6.2)
-- v0.6.1: View [docs](/0.6.1)
+- v0.6.1: View [docs](/0.6.2) [same docs as 0.6.0]
 - v0.6.0: View [docs](/0.6.0)
 - v0.5.2: View [docs](/0.5.2)
 - v0.5.1: View [docs](/0.5.1)
