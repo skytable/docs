@@ -1,0 +1,158 @@
+{
+  "version-0.6.4/docs": [
+    {
+      "type": "doc",
+      "id": "version-0.6.4/index"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/getting-started"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/actions-overview"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/persistence"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/config-files"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/config-cmd"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/clients"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/snapshots"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/ssl"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/benchmarking"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/deployment-notes"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.6.4/building-from-source"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Actions",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/dbsize"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/del"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/exists"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/flushdb"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/get"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/heya"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/keylen"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/lskeys"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/mget"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/mksnap"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/mset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/mupdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/pop"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/sdel"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/set"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/sset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/supdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/update"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/actions/uset"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Protocol",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.6.4/protocol/skyhash"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/protocol/data-types"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/protocol/response-codes"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.6.4/protocol/errors"
+        }
+      ]
+    }
+  ]
+}
