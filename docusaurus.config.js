@@ -25,11 +25,11 @@ module.exports = {
           label: "GitHub",
           position: "right",
         },
-        // {
-        //   href: '/versions',
-        //   label: 'Versions',
-        //   position: 'right'
-        // },
+        {
+          href: "/versions",
+          label: "Supported Versions",
+          position: "right",
+        },
         {
           type: "docsVersionDropdown",
           position: "left",
