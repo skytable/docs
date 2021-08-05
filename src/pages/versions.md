@@ -8,14 +8,7 @@ hide_table_of_contents: false
 
 The following versions are currently supported and will receive security hotfixes and other updates
 
-- v0.6.4: Download from [this link](https://dl.skytable.io/security/v0.6.4/)
-
-:::info Important note
-With the discovery of a security vulnerability in versions prior to v0.6.3, all prior
-versions have reached end-of-life. The source of v0.6.4 will be disclosed per
-[our security policy](https://github.com/skytable/skytable/security/policy). We strongly
-recommend you to not use any older versions
-:::
+- v0.6.4: Download from [this link](https://github.com/skytable/skytable/releases/tag/v0.6.4)
 
 ## Unsupported versions (EOL)
 
