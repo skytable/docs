@@ -29,15 +29,15 @@ sayan\n # the element 'sayan' itself
 
 | Type symbol (tsymbol) | Type            | Additional notes                                         |
 | --------------------- | --------------- | -------------------------------------------------------- |
-| +                     | String          | a string                                                 |
-| !                     | Response Code   | a response code                                          |
-| $                     | JSON            | a `JSON` value                                           |
-| .                     | smallint        | An integer in the range: [0, 255]                        |
-| -                     | smallint signed | An integer in the range: [-128, 127]                     |
-| :                     | int             | An integer in the range: [0, 4,294,967,295]              |
-| ;                     | int signed      | An integer in the range: [-2,147,483,647, 2,147,483,647] |
-| %                     | float           | A 32-bit floating point value                            |
-| ?                     | binary string   | the next line contains binary data (often called a blob) |
+| `+`                   | String          | a string                                                 |
+| `!`                   | Response Code   | a response code                                          |
+| `$` (reserved)        | JSON            | a `JSON` value                                           |
+| `.` (reserved)        | smallint        | An integer in the range: [0, 255]                        |
+| `-` (reserved)        | smallint signed | An integer in the range: [-128, 127]                     |
+| `:`                   | int             | An integer in the range: [0, 4,294,967,295]              |
+| `;` (reserved)        | int signed      | An integer in the range: [-2,147,483,647, 2,147,483,647] |
+| `%` (reserved)        | float           | A 32-bit floating point value                            |
+| `?`                   | binary string   | the next line contains binary data (often called a blob) |
 
 Do keep the matching for this symbol _non-exhaustive_ since we might add more types in future revisions of the protocol.
 
@@ -89,10 +89,13 @@ A flat array is currently a response specific data type (only sent by the server
 ### Typed array
 
 A typed array is like a flat array, but with the exception that it can only hold
-two types: either a [simple type](#simple-types) or a `NUL`. You can think of it to
-be like: there is either an element of one type -- or there is no element. Since
-this array just has one type -- unlike flat arrays, they don't have any tsymbol
-for every element.
+two types: either a [simple type](#simple-types) or a `NUL`. Since this array just has a specific type in its declaration, unlike flat arrays, `tsymbol`s are not required.
+
+You can think of it to be like:
+
+- there is either no element (integer value of `0`; also called `NULL`)
+- there is an error (integer value of `21`; also called `NAK`)
+- or there is an element of the declared type
 
 Say a programming language represents an array like:
 
@@ -123,8 +126,8 @@ Line-by-line explanation:
 - `happened\n`, the element itself
 
 :::note
-A typed array is currently a response specific data type (only sent by the server and never by the client). The `NULL`s correspond to the cases when the server can't find the requested
-item.
+A typed array is currently a response specific data type (only sent by the server and never by the client). The `NULL`s correspond to the cases when the server can't find the requested item.
+The `NAK` is context dependent.
 :::
 
 ### Any array
@@ -137,7 +140,7 @@ may sound -- `AnyArray`s are extremely performant. Also, **no element in an `Any
 
 If you have a programming language that represents a **singly-typed** array like:
 
-```cpp
+```rust
 ["sayan", "is", "hiking"]
 ```
 

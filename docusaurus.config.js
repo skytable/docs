@@ -11,7 +11,7 @@ module.exports = {
   projectName: "docs",
   themeConfig: {
     prism: {
-      additionalLanguages: ["toml"],
+      additionalLanguages: ["toml", "rust"],
     },
     navbar: {
       title: "Skytable Documentation",

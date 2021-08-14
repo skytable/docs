@@ -192,29 +192,6 @@ Where `<c>` is the number of characters in the code and `<code>` is the code its
 
 You find a full list of response codes [in this table](response-codes).
 
-### Flat arrays (\_)
-
-Flat arrays are arrays that only contain strings. Let's say we represent an array like this in
-pseudocode:
-
-```js
-["hello", "world", "once", "again"];
-```
-
-It has 4 elements. Great, so this is how Skyhash will serialize it:
-
-```sh
-&4\n      # four elements
-+5\n      # 'hello' has 5 chars
-hello\n   # 'hello' itself
-+5\n      # 'world' has 5 chars
-world\n   # 'world' itself
-+4\n      # 'once' has 4 chars
-once\n    # 'once' itself
-+5\n      # 'again' has 5 chars
-again\n   # 'again' itself
-```
-
 ## A full example
 
 Let's take a look at what happens when we send `SET x ex`. First, the client needs to serialize
