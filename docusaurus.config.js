@@ -89,6 +89,13 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} <a href="https://github.com/skytable/skytable/blob/next/AUTHORS.md">The Skytable Authors</a>. All rights reserved.`,
     },
+    algolia: {
+      apiKey: "07040e0073a0b6b216f6619396984190",
+      indexName: "skytable",
+      contextualSearch: true,
+      appId: "BH4D9OD16A",
+      searchParameters: {},
+    },
   },
   presets: [
     [
