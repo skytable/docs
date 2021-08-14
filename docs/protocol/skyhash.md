@@ -162,7 +162,11 @@ This can be nested even more!
 
 ### Important notes
 
-These data types and `<tsymbols>` are non-exhaustive. Whenever you are attempting to deserialize a packet, always throw some kind of `UnimplementedError` to indicate that your client cannot yet deserialize this specific type. See all current data types and their tsymbols [in this table](data-types).
+These data types and `<tsymbols>` are non-exhaustive. Whenever you are attempting to deserialize a packet, always throw some kind of `UnimplementedError` to indicate that your client cannot yet deserialize this specific type.
+
+:::info Useful read
+**We strongly recommend** you to read the full list of types and how they are serialized [in this document](data-types).
+:::
 
 ## Response Specific Data Types
 

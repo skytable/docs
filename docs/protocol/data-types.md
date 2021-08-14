@@ -6,19 +6,113 @@ title: Data Types
 This table lists all data types supported by Skytable and their corresponding
 type symbols ( `tsymbol` s) and additional information.
 
-|Type symbol (tsymbol)|Type|Additional notes|
-|--|--|--|
-|+|String|the next line is a string|
-|!|Response Code|the next line is a response code|
-|&|Array|Arrays that can be recursive|
-|_|Flat array|An array that only has strings|
-|$|JSON|the next line is a `JSON` value|
-|.|smallint|An integer in the range: [0, 255]|
-|-|smallint signed|An integer in the range: [-128, 127]|
-|:|int|An integer in the range: [0, 4,294,967,295]|
-|;|int signed|An integer in the range: [-2,147,483,647, 2,147,483,647]|
-|%|float|A 32-bit floating point value|
-|?|binary|the next line contains binary data (often called a blob)|
+## Simple types
 
+Simple types only contain one type. This makes them very simple to serialize/deserialize. All simple types have the
+following layout:
+
+```
+<tsymbol><number of bytes>\n
+<element>
+```
+
+### Example
+
+For an unicode string 'sayan', the layout of the unicode string type (`+`) will look like:
+
+```sh
++5\n    # 'sayan' is an unicode string, so '+' and has 5 bytes so '5'
+sayan\n # the element 'sayan' itself
+```
+
+### Table
+
+| Type symbol (tsymbol) | Type            | Additional notes                                         |
+| --------------------- | --------------- | -------------------------------------------------------- |
+| +                     | String          | a string                                                 |
+| !                     | Response Code   | a response code                                          |
+| $                     | JSON            | a `JSON` value                                           |
+| .                     | smallint        | An integer in the range: [0, 255]                        |
+| -                     | smallint signed | An integer in the range: [-128, 127]                     |
+| :                     | int             | An integer in the range: [0, 4,294,967,295]              |
+| ;                     | int signed      | An integer in the range: [-2,147,483,647, 2,147,483,647] |
+| %                     | float           | A 32-bit floating point value                            |
+| ?                     | binary string   | the next line contains binary data (often called a blob) |
 
 Do keep the matching for this symbol _non-exhaustive_ since we might add more types in future revisions of the protocol.
+
+## Compound types
+
+Compound types are derived types -- they are based on simple types, but often with
+some additional properties (and serialization/deserialization differences).
+
+### Table
+
+| Type symbol (tsymbol) | Type        | Additional notes            | Protocol |
+| --------------------- | ----------- | --------------------------- | -------- |
+| &                     | Array       | A recursive array           | 1.0      |
+| \_                    | Flat array  | A non-recursive array       | 1.0      |
+| @                     | Typed array | An array of a specific type | 1.1      |
+
+### Array
+
+See the full discussion on arrays [here](skyhash#arrays-).
+
+### Flat array
+
+A flat array is like an array, but with the exception that it is non-recursive. This
+means that a flat array can contain all types except other compound types (hence the
+name 'flat').
+
+So if you represent an array in a programming language like:
+
+```js
+["hello", 12345, "world"];
+```
+
+then it will be serialized by Skyhash into:
+
+```
+_3\n    # 3 elements
++5\n    # 'hello' is an unicode string, so '+' and has 5 bytes
+hello\n # the element 'hello' itself
+:5\n    # 12345 has 5 bytes and is an unsigned int
+12345\n # the element 12345 itself
++5\n    # 'world' is an unicode string, so '+' and has 5 bytes
+```
+
+### Typed array
+
+A typed array is like a flat array, but with the exception that it can only hold
+two types: either a [simple type](#simple-types) or a `NUL`. You can think to it
+be like: there is either an element of one type -- or there is no element. Since
+this array just has one type -- unlike flat arrays, they don't have any tsymbol
+for every element.
+
+Say a programming language represents an array like:
+
+```cpp
+["omg", NULL, "happened"]
+```
+
+then it will be serialized by Skyhash into:
+
+```
+@+3\n
+3\n
+omg
+\0\n
+8\n
+happened
+```
+
+Line-by-line explanation:
+
+- `@+3\n` because it is a typed array, so `@`, the elements are unicode strings, so `+`
+  and there are three elements, so `3`
+- `3\n` because 'omg' has 3 bytes
+- `omg`, the element itself
+- `\0\n`, `NULL` because there was no element
+  > Here `\0` corresponds to the [null terminator](https://en.wikipedia.org/wiki/Null_character) (integer value of `0`)
+- `8\n` because 'happened' has 8 bytes
+- `happened`, the element itself
