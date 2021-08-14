@@ -89,12 +89,11 @@ A flat array is currently a response specific data type (only sent by the server
 ### Typed array
 
 A typed array is like a flat array, but with the exception that it can only hold
-two types: either a [simple type](#simple-types) or a `NUL`. Since this array just has a specific type in its declaration, unlike flat arrays, `tsymbol`s are not required.
+two types: either a [simple type](#simple-types) or a `NULL`. Since this array just has a specific type in its declaration, unlike flat arrays, `tsymbol`s are not required.
 
 You can think of it to be like:
 
 - there is either no element (integer value of `0`; also called `NULL`)
-- there is an error (integer value of `21`; also called `NAK`)
 - or there is an element of the declared type
 
 Say a programming language represents an array like:
@@ -127,7 +126,6 @@ Line-by-line explanation:
 
 :::note
 A typed array is currently a response specific data type (only sent by the server and never by the client). The `NULL`s correspond to the cases when the server can't find the requested item.
-The `NAK` is context dependent.
 :::
 
 ### Any array
