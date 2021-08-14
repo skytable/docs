@@ -89,7 +89,7 @@ A flat array is currently a response specific data type (only sent by the server
 ### Typed array
 
 A typed array is like a flat array, but with the exception that it can only hold
-two types: either a [simple type](#simple-types) or a `NUL`. You can think to it
+two types: either a [simple type](#simple-types) or a `NUL`. You can think of it to
 be like: there is either an element of one type -- or there is no element. Since
 this array just has one type -- unlike flat arrays, they don't have any tsymbol
 for every element.
@@ -123,7 +123,8 @@ Line-by-line explanation:
 - `happened\n`, the element itself
 
 :::note
-A typed array is currently a response specific data type (only sent by the server and never by the client)
+A typed array is currently a response specific data type (only sent by the server and never by the client). The `NULL`s correspond to the cases when the server can't find the requested
+item.
 :::
 
 ### Any array
@@ -163,5 +164,5 @@ Line-by-line explanation:
 7. `hiking\n` the element 'hiking' itself
 
 :::note
-A typed array is currently a query specific data type (only sent by the client and never by the server)
+An `AnyArray` is currently a query specific data type (only sent by the client and never by the server)
 :::
