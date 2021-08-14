@@ -219,20 +219,20 @@ again\n   # 'again' itself
 
 Let's take a look at what happens when we send `SET x ex`. First, the client needs to serialize
 it into a Skyhash compatible type. Since this is a simple query, we just have one single
-element in the query array. Most of Skytable's common actions use arrays, and SET uses a [flat array](#flat-arrays-_). So in `SET x ex`:
+element in the query array. Most of Skytable's common actions use arrays, and SET uses an [`AnyArray`](data-types#any-array). So in `SET x ex`:
 
 - This is a simple query
-- We need to send a flat array
+- We need to send an [`AnyArray`](data-types#any-array)
 - It has three elements: `['SET', 'x', 'ex']`
 
 ```sh
 *1\n  # '*1' because this is a simple query
-&3\n  # 3 elements
-+3\n  # 'SET' has 3 chars
+~3\n  # 3 elements
+3\n   # 'SET' has 3 chars
 SET\n # 'SET' itself
-+1\n  # 'x' has 1 char
+1\n   # 'x' has 1 char
 x\n   # 'x' itself
-+2\n  # 'ex' has 2 chars
+2\n   # 'ex' has 2 chars
 ex\n  # 'ex' itself
 ```
 

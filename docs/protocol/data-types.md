@@ -48,11 +48,12 @@ some additional properties (and serialization/deserialization differences).
 
 ### Table
 
-| Type symbol (tsymbol) | Type        | Additional notes            | Protocol |
-| --------------------- | ----------- | --------------------------- | -------- |
-| &                     | Array       | A recursive array           | 1.0      |
-| \_                    | Flat array  | A non-recursive array       | 1.0      |
-| @                     | Typed array | An array of a specific type | 1.1      |
+| Type symbol (tsymbol) | Type        | Additional notes                                              | Protocol |
+| --------------------- | ----------- | ------------------------------------------------------------- | -------- |
+| &                     | Array       | A recursive array                                             | 1.0      |
+| \_                    | Flat array  | A non-recursive array                                         | 1.0      |
+| @                     | Typed array | An array of a specific type                                   | 1.1      |
+| ~                     | Any array   | An array with a single type but no information about the type | 1.1      |
 
 ### Array
 
@@ -81,6 +82,10 @@ hello\n # the element 'hello' itself
 +5\n    # 'world' is an unicode string, so '+' and has 5 bytes
 ```
 
+:::note
+A flat array is currently a response specific data type (only sent by the server and never by the client)
+:::
+
 ### Typed array
 
 A typed array is like a flat array, but with the exception that it can only hold
@@ -100,10 +105,10 @@ then it will be serialized by Skyhash into:
 ```
 @+3\n
 3\n
-omg
+omg\n
 \0\n
 8\n
-happened
+happened\n
 ```
 
 Line-by-line explanation:
@@ -111,8 +116,52 @@ Line-by-line explanation:
 - `@+3\n` because it is a typed array, so `@`, the elements are unicode strings, so `+`
   and there are three elements, so `3`
 - `3\n` because 'omg' has 3 bytes
-- `omg`, the element itself
+- `omg\n`, the element itself
 - `\0\n`, `NULL` because there was no element
   > Here `\0` corresponds to the [null terminator](https://en.wikipedia.org/wiki/Null_character) (integer value of `0`)
 - `8\n` because 'happened' has 8 bytes
-- `happened`, the element itself
+- `happened\n`, the element itself
+
+:::note
+A typed array is currently a response specific data type (only sent by the server and never by the client)
+:::
+
+### Any array
+
+An `AnyArray` is like a typed array &mdash; but without any explicit information about the type that is sent. Currently,
+**all the element types have to be the same**, but however, no information about the type has to be sent. It is upto
+the server to convert them to the correct types. This makes running actions extremely simple as the clients don't have
+to specify the type. The server will convert it into the appropriate type for that action. No matter how flexible this
+may sound -- `AnyArray`s are extremely performant. Also, **no element in an `AnyArray` can be null**.
+
+If you have a programming language that represents a **singly-typed** array like:
+
+```cpp
+["sayan", "is", "hiking"]
+```
+
+then Skyhash will serialize it into:
+
+```
+~3\n
+5\n
+sayan\n
+2\n
+is\n
+6\n
+hiking\n
+```
+
+Line-by-line explanation:
+
+1. `~3\n` because this is an `AnyArray` with 3 elements
+2. `5\n` because 'sayan' has 5 bytes
+3. `sayan\n`, the element 'sayan' itself
+4. `2\n` because 'is' has 2 bytes
+5. `is\n` the element 'is' itself
+6. `6\n` because 'hiking' has 6 bytes
+7. `hiking\n` the element 'hiking' itself
+
+:::note
+A typed array is currently a query specific data type (only sent by the client and never by the server)
+:::
