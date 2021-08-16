@@ -96,32 +96,32 @@ Skytable currently supports the following actions:
 
 pub fn init_type_linklist() -> HashMap<&'static str, &'static str> {
     let mut hm = HashMap::new();
-    hm.insert("Rcode 0", "../protocol/response-codes");
-    hm.insert("Rcode 1", "../protocol/response-codes");
-    hm.insert("Rcode 2", "../protocol/response-codes");
-    hm.insert("Rcode 3", "../protocol/response-codes");
-    hm.insert("Rcode 4", "../protocol/response-codes");
-    hm.insert("Rcode 5", "../protocol/response-codes");
-    hm.insert("Rcode 6", "../protocol/response-codes");
-    hm.insert("Rcode 7", "../protocol/response-codes");
-    hm.insert("Rcode 8", "../protocol/response-codes");
-    hm.insert("Rcode 9", "../protocol/response-codes");
-    hm.insert("Error String", "../protocol/errors#table-of-errors");
-    hm.insert("err-snapshot-busy", "../protocol/errors/#table-of-errors");
+    hm.insert("Rcode 0", "protocol/response-codes.md");
+    hm.insert("Rcode 1", "protocol/response-codes.md");
+    hm.insert("Rcode 2", "protocol/response-codes.md");
+    hm.insert("Rcode 3", "protocol/response-codes.md");
+    hm.insert("Rcode 4", "protocol/response-codes.md");
+    hm.insert("Rcode 5", "protocol/response-codes.md");
+    hm.insert("Rcode 6", "protocol/response-codes.md");
+    hm.insert("Rcode 7", "protocol/response-codes.md");
+    hm.insert("Rcode 8", "protocol/response-codes.md");
+    hm.insert("Rcode 9", "protocol/response-codes.md");
+    hm.insert("Error String", "protocol/errors.md#table-of-errors");
+    hm.insert("err-snapshot-busy", "protocol/errors.md#table-of-errors");
     hm.insert(
         "err-invalid-snapshot-name",
-        "../protocol/errors/#table-of-errors",
+        "protocol/errors.md#table-of-errors",
     );
     hm.insert(
         "err-snapshot-disabled",
-        "../protocol/errors/#table-of-errors",
+        "protocol/errors.md#table-of-errors",
     );
-    hm.insert("AnyArray", "../protocol/data-types#any-array");
-    hm.insert("Flat Array", "../protocol/data-types#flat-array");
-    hm.insert("Typed Array", "../protocol/data-types#typed-array");
-    hm.insert("String", "../protocol/skyhash#strings-");
-    hm.insert("Binstr", "../protocol/skyhash#strings-");
-    hm.insert("Integer", "../protocol/skyhash#unsigned-integers-");
+    hm.insert("AnyArray", "protocol/data-types.md#any-array");
+    hm.insert("Flat Array", "protocol/data-types.md#flat-array");
+    hm.insert("Typed Array", "protocol/data-types.md#typed-array");
+    hm.insert("String", "protocol/skyhash.md#strings-");
+    hm.insert("Binstr", "protocol/skyhash.md#strings-");
+    hm.insert("Integer", "protocol/skyhash.md#unsigned-integers-");
     hm
 }
 

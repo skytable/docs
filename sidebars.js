@@ -31,6 +31,7 @@ module.exports = {
         "actions/lskeys",
         "actions/mget",
         "actions/mksnap",
+        "actions/mpop",
         "actions/mset",
         "actions/mupdate",
         "actions/pop",

@@ -7,11 +7,11 @@ title: MPOP
 **Time complexity**: O(n)  
 **Accept type**:
 
-- [AnyArray](../protocol/data-types#any-array)
+- [AnyArray](../protocol/data-types.md#any-array)
 
 **Return type**:
 
-- [Flat Array](../protocol/data-types#flat-array)
+- [Flat Array](../protocol/data-types.md#flat-array)
 
 **Syntax**:
 

@@ -7,12 +7,12 @@ title: KEYLEN
 **Time complexity**: O(1)  
 **Accept type**:
 
-- [AnyArray](../protocol/data-types#any-array)
+- [AnyArray](../protocol/data-types.md#any-array)
 
 **Return type**:
 
-- [Integer](../protocol/skyhash#unsigned-integers-)
-- [Rcode 1](../protocol/response-codes)
+- [Integer](../protocol/skyhash.md#unsigned-integers-)
+- [Rcode 1](../protocol/response-codes.md)
 
 **Syntax**:
 

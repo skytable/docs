@@ -7,11 +7,11 @@ title: MGET
 **Time complexity**: O(n)  
 **Accept type**:
 
-- [AnyArray](../protocol/data-types#any-array)
+- [AnyArray](../protocol/data-types.md#any-array)
 
 **Return type**:
 
-- [Typed Array](../protocol/data-types#typed-array)
+- [Typed Array](../protocol/data-types.md#typed-array)
 
 **Syntax**:
 

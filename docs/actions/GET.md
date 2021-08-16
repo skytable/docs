@@ -7,13 +7,13 @@ title: GET
 **Time complexity**: O(1)  
 **Accept type**:
 
-- [AnyArray](../protocol/data-types#any-array)
+- [AnyArray](../protocol/data-types.md#any-array)
 
 **Return type**:
 
-- [Rcode 1](../protocol/response-codes)
-- [String](../protocol/skyhash#strings-)
-- [Binstr](../protocol/skyhash#strings-)
+- [Rcode 1](../protocol/response-codes.md)
+- [String](../protocol/skyhash.md#strings-)
+- [Binstr](../protocol/skyhash.md#strings-)
 
 **Syntax**:
 
