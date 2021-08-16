@@ -45,6 +45,9 @@ impl Document {
             return_ty,
             description,
         } = self;
+
+        let description = description.replace('<', "&lt;");
+        let description = description.replace('>', "&gt;");
         let path = format!("docs/actions/{}.md", action_name);
         let syntax_rendered = render_list(syntax);
         let returns_rendered = render_link_list(return_ty, linklist);
@@ -86,7 +89,7 @@ title: {title}
 
 fn render_list(inp: Vec<String>) -> String {
     inp.into_iter()
-        .map(|v| format!("- {}\n", v).chars().collect::<Vec<_>>())
+        .map(|v| format!("- `{}`\n", v).chars().collect::<Vec<_>>())
         .flatten()
         .collect()
 }
@@ -94,8 +97,7 @@ fn render_list(inp: Vec<String>) -> String {
 fn render_link_list(inp: Vec<String>, linklist: &HashMap<&'static str, &'static str>) -> String {
     inp.into_iter()
         .map(|v| {
-            println!("looking for: {}", v);
-            format!("- [{}]({})\n", v, linklist.get(v.as_str()).unwrap())
+            format!("- [{}](../{})\n", v, linklist.get(v.as_str()).unwrap())
                 .chars()
                 .collect::<Vec<_>>()
         })

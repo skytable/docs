@@ -2,9 +2,21 @@
 id: exists
 title: EXISTS
 ---
+
 :::note About
 **Time complexity**: O(n)  
-**Arguments**: `EXISTS <key1> <key2> ...`  
-**Returns**: Number of keys that exist as an unsigned int  
+**Accept type**:
+
+- [AnyArray](../../protocol/data-types#any-array)
+
+**Return type**:
+
+- [Integer](../../protocol/skyhash#unsigned-integers-)
+
+**Syntax**:
+
+- `EXISTS <key1> <key2> ...`
+
 :::
-Check if 'n' keys exist
+
+Check if 'n' keys exist in the current table

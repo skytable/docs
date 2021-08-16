@@ -2,9 +2,22 @@
 id: mset
 title: MSET
 ---
+
 :::note About
 **Time complexity**: O(n)  
-**Arguments**: `MSET <key1> <value1> <key2> <value2> ...`  
-**Returns**: Number of keys that were set as an unsigned int  
+**Accept type**:
+
+- [AnyArray](../../protocol/data-types#any-array)
+
+**Return type**:
+
+- [Integer](../../protocol/skyhash#unsigned-integers-)
+- [Rcode 5](../../protocol/response-codes)
+
+**Syntax**:
+
+- `MSET <key1> <value1> <key2> <value2> ...`
+
 :::
-Set the value of 'n' keys
+
+Set the value of 'n' keys in the current table

@@ -2,9 +2,23 @@
 id: flushdb
 title: FLUSHDB
 ---
+
 :::note About
 **Time complexity**: O(n)  
-**Arguments**: `FLUSHDB`  
-**Returns**: (Code: 0) if the operation succeeded  
+**Accept type**:
+
+- [AnyArray](../../protocol/data-types#any-array)
+
+**Return type**:
+
+- [Rcode 0](../../protocol/response-codes)
+- [Rcode 5](../../protocol/response-codes)
+
+**Syntax**:
+
+- `FLUSHDB`
+- `FLUSHDB <entity>`
+
 :::
-Removes all the key/value pairs stored in the database
+
+Removes all entries stored in the current table or in the provided entity
