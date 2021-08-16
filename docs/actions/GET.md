@@ -2,9 +2,23 @@
 id: get
 title: GET
 ---
+
 :::note About
 **Time complexity**: O(1)  
-**Arguments**: `GET <key>`  
-**Returns**: Value if it exists or (Code: 1) if it does not  
+**Accept type**:
+
+- [AnyArray](../../protocol/data-types#any-array)
+
+**Return type**:
+
+- [Rcode 1](../../protocol/response-codes)
+- [String](../../protocol/skyhash#strings-)
+- [Binstr](../../protocol/skyhash#strings-)
+
+**Syntax**:
+
+- `GET <key>`
+
 :::
-Get the value of a key
+
+Get the value of a key from the current table

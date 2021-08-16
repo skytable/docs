@@ -2,9 +2,22 @@
 id: dbsize
 title: DBSIZE
 ---
+
 :::note About
 **Time complexity**: O(1)  
-**Arguments**: `DBSIZE`  
-**Returns**: Number of keys that exist in the database as an unsigned int  
+**Accept type**:
+
+- [AnyArray](../../protocol/data-types#any-array)
+
+**Return type**:
+
+- [Integer](../../protocol/skyhash#unsigned-integers-)
+
+**Syntax**:
+
+- `DBSIZE`
+- `DBSIZE <entity>`
+
 :::
-Number of key/value pairs stored in the database
+
+Check the number of entries stored in the current table or in the provided entity

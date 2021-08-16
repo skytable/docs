@@ -2,9 +2,22 @@
 id: del
 title: DEL
 ---
+
 :::note About
 **Time complexity**: O(n)  
-**Arguments**: `DEL <key1> <key2> ...`  
-**Returns**: Number of keys that were deleted as an unsigned int  
+**Accept type**:
+
+- [AnyArray](../../protocol/data-types#any-array)
+
+**Return type**:
+
+- [Integer](../../protocol/skyhash#unsigned-integers-)
+- [Rcode 5](../../protocol/response-codes)
+
+**Syntax**:
+
+- `DEL <key1> <key2> ...`
+
 :::
-Delete 'n' keys
+
+Delete 'n' keys from the current table

@@ -48,7 +48,6 @@ fn parse_into_actiondoc(output: Cow<'_, str>) {
     for map in yml.iter() {
         let name = getstr!(map, "name");
         let complexity = getstr!(map, "complexity");
-        println!("{:?}", map.get("accept").unwrap());
         let accept_ty = get_str_array!(map, "accept");
         let return_ty = get_str_array!(map, "return");
         let syntax = get_str_array!(map, "syntax");
@@ -97,29 +96,32 @@ Skytable currently supports the following actions:
 
 pub fn init_type_linklist() -> HashMap<&'static str, &'static str> {
     let mut hm = HashMap::new();
-    hm.insert("Rcode 0", "protocol/response-codes");
-    hm.insert("Rcode 1", "protocol/response-codes");
-    hm.insert("Rcode 2", "protocol/response-codes");
-    hm.insert("Rcode 3", "protocol/response-codes");
-    hm.insert("Rcode 4", "protocol/response-codes");
-    hm.insert("Rcode 5", "protocol/response-codes");
-    hm.insert("Rcode 6", "protocol/response-codes");
-    hm.insert("Rcode 7", "protocol/response-codes");
-    hm.insert("Rcode 8", "protocol/response-codes");
-    hm.insert("Rcode 9", "protocol/response-codes");
-    hm.insert("Error String", "protocol/errors#table-of-errors");
-    hm.insert("err-snapshot-busy", "protocol/errors/#table-of-errors");
+    hm.insert("Rcode 0", "../protocol/response-codes");
+    hm.insert("Rcode 1", "../protocol/response-codes");
+    hm.insert("Rcode 2", "../protocol/response-codes");
+    hm.insert("Rcode 3", "../protocol/response-codes");
+    hm.insert("Rcode 4", "../protocol/response-codes");
+    hm.insert("Rcode 5", "../protocol/response-codes");
+    hm.insert("Rcode 6", "../protocol/response-codes");
+    hm.insert("Rcode 7", "../protocol/response-codes");
+    hm.insert("Rcode 8", "../protocol/response-codes");
+    hm.insert("Rcode 9", "../protocol/response-codes");
+    hm.insert("Error String", "../protocol/errors#table-of-errors");
+    hm.insert("err-snapshot-busy", "../protocol/errors/#table-of-errors");
     hm.insert(
         "err-invalid-snapshot-name",
-        "protocol/errors/#table-of-errors",
+        "../protocol/errors/#table-of-errors",
     );
-    hm.insert("err-snapshot-disabled", "protocol/errors/#table-of-errors");
-    hm.insert("AnyArray", "protocol/data-types#any-array");
-    hm.insert("Flat Array", "protocol/data-types#flat-array");
-    hm.insert("Typed Array", "protocol/data-types#typed-array");
-    hm.insert("String", "skyhash#strings-");
-    hm.insert("Binstr", "skyhash#strings-");
-    hm.insert("Integer", "skyhash#unsigned-integers-");
+    hm.insert(
+        "err-snapshot-disabled",
+        "../protocol/errors/#table-of-errors",
+    );
+    hm.insert("AnyArray", "../protocol/data-types#any-array");
+    hm.insert("Flat Array", "../protocol/data-types#flat-array");
+    hm.insert("Typed Array", "../protocol/data-types#typed-array");
+    hm.insert("String", "../protocol/skyhash#strings-");
+    hm.insert("Binstr", "../protocol/skyhash#strings-");
+    hm.insert("Integer", "../protocol/skyhash#unsigned-integers-");
     hm
 }
 
