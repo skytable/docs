@@ -100,6 +100,9 @@ pub fn init_type_linklist() -> HashMap<&'static str, &'static str> {
     hm.insert("Rcode 8", "protocol/response-codes");
     hm.insert("Rcode 9", "protocol/response-codes");
     hm.insert("Error String", "protocol/errors#table-of-errors");
+    hm.insert("err-snapshot-busy", "protocol/errors/#table-of-errors");
+    hm.insert("err-invalid-snapshot-name", "protocol/errors/#table-of-errors");
+    hm.insert("err-snapshot-disabled", "protocol/errors/#table-of-errors");
     hm.insert("AnyArray", "protocol/data-types#any-array");
     hm.insert("Flat Array", "protocol/data-types#flat-array");
     hm.insert("Typed Array", "protocol/data-types#typed-array");
