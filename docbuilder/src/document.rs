@@ -1,4 +1,5 @@
 use core::cmp::Ordering;
+use std::collections::HashMap;
 
 #[derive(Debug)]
 pub struct Document {
@@ -9,11 +10,9 @@ pub struct Document {
     /// The syntax for the action
     syntax: Vec<String>,
     /// Return(s) with example(s)
-    returns: Vec<String>,
-    /// the accept type for the action
-    accept_ty: String,
+    accept_ty: Vec<String>,
     /// the return type for the action
-    return_ty: String,
+    return_ty: Vec<String>,
     /// longform description action
     description: String,
 }
@@ -22,62 +21,65 @@ impl Document {
     pub const fn new(
         action_name: String,
         complexity: String,
-        accept_ty: String,
-        return_ty: String,
+        accept_ty: Vec<String>,
+        return_ty: Vec<String>,
         description: String,
         syntax: Vec<String>,
-        returns: Vec<String>,
     ) -> Self {
         Self {
             action_name,
             complexity,
             syntax,
-            returns,
             accept_ty,
             return_ty,
             description,
         }
     }
     /// Returns (path, contents of markdown file)
-    pub fn into_md(self) -> (String, String) {
+    pub fn into_md(self, linklist: &HashMap<&'static str, &'static str>) -> (String, String) {
         let Self {
             action_name,
             complexity,
             syntax,
-            returns,
             accept_ty,
             return_ty,
             description,
         } = self;
         let path = format!("docs/actions/{}.md", action_name);
         let syntax_rendered = render_list(syntax);
-        let returns_rendered = render_list(returns);
+        let returns_rendered = render_link_list(return_ty, linklist);
+        let accept_rendered = render_link_list(accept_ty, linklist);
         let body = format!(
-            "
-            ---
-            id: {action_name}
-            title: {title}
-            ---
-            
-            :::note About
-            **Time complexity**: {complexity}  
-            **Accept type**: {accept_ty}  
-            **Return type**: {return_ty}  
-            **Syntax**: {syntax}  
-            **Returns** {returns}  
-            :::
+            "\
+---
+id: {action_name}
+title: {title}
+---
 
-            {description}
-            ",
-            action_name = action_name,
+:::note About
+**Time complexity**: {complexity}  
+**Accept type**:
+
+{accept_ty}
+**Return type**:
+
+{return_ty}
+**Syntax**:
+
+{syntax}
+:::
+
+{description}
+",
+            action_name = action_name.to_lowercase(),
             title = action_name,
             complexity = complexity,
-            accept_ty = accept_ty,
-            return_ty = return_ty,
+            accept_ty = accept_rendered,
+            return_ty = returns_rendered,
             syntax = syntax_rendered,
-            returns = returns_rendered,
             description = description
-        );
+        )
+        .to_string();
         (path, body)
     }
 }
@@ -85,6 +87,17 @@ impl Document {
 fn render_list(inp: Vec<String>) -> String {
     inp.into_iter()
         .map(|v| format!("- {}\n", v).chars().collect::<Vec<_>>())
+        .flatten()
+        .collect()
+}
+
+fn render_link_list(inp: Vec<String>, linklist: &HashMap<&'static str, &'static str>) -> String {
+    inp.into_iter()
+        .map(|v| {
+            format!("- [{}]({})\n", v, linklist.get(v.as_str()).unwrap())
+                .chars()
+                .collect::<Vec<_>>()
+        })
         .flatten()
         .collect()
 }
