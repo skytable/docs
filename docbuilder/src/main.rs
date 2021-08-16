@@ -28,12 +28,12 @@ macro_rules! get_str_array {
 fn main() {
     // download the file
     let _dlfile = Command::new("wget")
-        .arg("https://raw.githubusercontent.com/skytable/skytable/next/actions.jsonc")
+        .arg("https://raw.githubusercontent.com/skytable/skytable/next/actiondoc.yml")
         .output()
         .unwrap();
-    let output = Command::new("cat").arg("actions.jsonc").output().unwrap();
+    let output = Command::new("cat").arg("actiondoc.yml").output().unwrap();
     let output = String::from_utf8_lossy(&output.stdout);
-    let _rmfile = Command::new("rm").arg("actions.jsonc").output().unwrap();
+    let _rmfile = Command::new("rm").arg("actiondoc.yml").output().unwrap();
 
     // now parse it
     parse_into_actiondoc(output)
