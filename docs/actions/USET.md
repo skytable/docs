@@ -7,12 +7,12 @@ title: USET
 **Time complexity**: O(n)  
 **Accept type**:
 
-- [AnyArray](../../protocol/data-types#any-array)
+- [AnyArray](../protocol/data-types#any-array)
 
 **Return type**:
 
-- [Integer](../../protocol/skyhash#unsigned-integers-)
-- [Rcode 5](../../protocol/response-codes)
+- [Integer](../protocol/skyhash#unsigned-integers-)
+- [Rcode 5](../protocol/response-codes)
 
 **Syntax**:
 

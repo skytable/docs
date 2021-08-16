@@ -7,12 +7,12 @@ title: FLUSHDB
 **Time complexity**: O(n)  
 **Accept type**:
 
-- [AnyArray](../../protocol/data-types#any-array)
+- [AnyArray](../protocol/data-types#any-array)
 
 **Return type**:
 
-- [Rcode 0](../../protocol/response-codes)
-- [Rcode 5](../../protocol/response-codes)
+- [Rcode 0](../protocol/response-codes)
+- [Rcode 5](../protocol/response-codes)
 
 **Syntax**:
 

@@ -7,13 +7,13 @@ title: MKSNAP
 **Time complexity**: O(n)  
 **Accept type**:
 
-- [AnyArray](../../protocol/data-types#any-array)
+- [AnyArray](../protocol/data-types#any-array)
 
 **Return type**:
 
-- [Rcode 0](../../protocol/response-codes)
-- [err-snapshot-disabled](../../protocol/errors/#table-of-errors)
-- [err-snapshot-busy](../../protocol/errors/#table-of-errors)
+- [Rcode 0](../protocol/response-codes)
+- [err-snapshot-disabled](../protocol/errors/#table-of-errors)
+- [err-snapshot-busy](../protocol/errors/#table-of-errors)
 
 **Syntax**:
 

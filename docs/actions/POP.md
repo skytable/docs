@@ -7,13 +7,13 @@ title: POP
 **Time complexity**: O(1)  
 **Accept type**:
 
-- [AnyArray](../../protocol/data-types#any-array)
+- [AnyArray](../protocol/data-types#any-array)
 
 **Return type**:
 
-- [String](../../protocol/skyhash#strings-)
-- [Binstr](../../protocol/skyhash#strings-)
-- [Rcode 5](../../protocol/response-codes)
+- [String](../protocol/skyhash#strings-)
+- [Binstr](../protocol/skyhash#strings-)
+- [Rcode 5](../protocol/response-codes)
 
 **Syntax**:
 
