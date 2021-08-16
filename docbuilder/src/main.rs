@@ -47,11 +47,14 @@ fn main() {
         let accept_ty = get_str_array!(obj, "accept");
         let return_ty = get_str_array!(obj, "return");
         let syntax = get_str_array!(obj, "syntax");
-        let description = getstr!(obj, "description");
+        let description = getstr!(obj, "desc");
         actlist.push(name.clone());
         let doc = Document::new(name, complexity, accept_ty, return_ty, description, syntax);
         docs.push(doc);
     }
+
+    docs.sort();
+    actlist.sort();
 
     // write the docs
     let mut file = File::create("docs/6.all-actions.md").unwrap();
