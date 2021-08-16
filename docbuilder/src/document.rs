@@ -94,6 +94,7 @@ fn render_list(inp: Vec<String>) -> String {
 fn render_link_list(inp: Vec<String>, linklist: &HashMap<&'static str, &'static str>) -> String {
     inp.into_iter()
         .map(|v| {
+            println!("looking for: {}", v);
             format!("- [{}]({})\n", v, linklist.get(v.as_str()).unwrap())
                 .chars()
                 .collect::<Vec<_>>()

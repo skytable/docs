@@ -1,6 +1,7 @@
 mod document;
 use crate::document::Document;
-use serde_hjson::Value;
+use serde_yaml::Value;
+use std::borrow::Cow;
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::Write;
@@ -16,7 +17,7 @@ macro_rules! get_str_array {
     ($in:expr, $name:expr) => {
         $in.get($name)
             .unwrap()
-            .as_array()
+            .as_sequence()
             .unwrap()
             .iter()
             .map(|v| v.as_str().unwrap().to_owned())
@@ -33,21 +34,25 @@ fn main() {
     let output = Command::new("cat").arg("actions.jsonc").output().unwrap();
     let output = String::from_utf8_lossy(&output.stdout);
     let _rmfile = Command::new("rm").arg("actions.jsonc").output().unwrap();
-    let json: Value = serde_hjson::from_str(&output).unwrap();
-    let json = json.as_array().unwrap();
 
     // now parse it
+    parse_into_actiondoc(output)
+}
+
+fn parse_into_actiondoc(output: Cow<'_, str>) {
+    let yml: Value = serde_yaml::from_str(&output).unwrap();
+    let yml = yml.as_sequence().unwrap();
     let mut actlist = Vec::new();
     let mut docs = Vec::new();
     let linklist = init_type_linklist();
-    for item in json {
-        let obj = item.as_object().unwrap();
-        let name = getstr!(obj, "name");
-        let complexity = getstr!(obj, "complexity");
-        let accept_ty = get_str_array!(obj, "accept");
-        let return_ty = get_str_array!(obj, "return");
-        let syntax = get_str_array!(obj, "syntax");
-        let description = getstr!(obj, "desc");
+    for map in yml.iter() {
+        let name = getstr!(map, "name");
+        let complexity = getstr!(map, "complexity");
+        println!("{:?}", map.get("accept").unwrap());
+        let accept_ty = get_str_array!(map, "accept");
+        let return_ty = get_str_array!(map, "return");
+        let syntax = get_str_array!(map, "syntax");
+        let description = getstr!(map, "desc");
         actlist.push(name.clone());
         let doc = Document::new(name, complexity, accept_ty, return_ty, description, syntax);
         docs.push(doc);
@@ -67,13 +72,15 @@ fn main() {
 }
 
 fn gen_action_list(list: Vec<String>) -> String {
-    let mut act = "
-        ---
-        id: all-actions
-        title: Index of actions
-        ---
-        Skytable currently supports the following actions:
-        "
+    let mut act = "\
+---
+id: all-actions
+title: Index of actions
+---
+
+Skytable currently supports the following actions:
+
+"
     .to_owned();
     let linklist: String = list
         .into_iter()
@@ -90,6 +97,7 @@ fn gen_action_list(list: Vec<String>) -> String {
 
 pub fn init_type_linklist() -> HashMap<&'static str, &'static str> {
     let mut hm = HashMap::new();
+    hm.insert("Rcode 0", "protocol/response-codes");
     hm.insert("Rcode 1", "protocol/response-codes");
     hm.insert("Rcode 2", "protocol/response-codes");
     hm.insert("Rcode 3", "protocol/response-codes");
@@ -101,7 +109,10 @@ pub fn init_type_linklist() -> HashMap<&'static str, &'static str> {
     hm.insert("Rcode 9", "protocol/response-codes");
     hm.insert("Error String", "protocol/errors#table-of-errors");
     hm.insert("err-snapshot-busy", "protocol/errors/#table-of-errors");
-    hm.insert("err-invalid-snapshot-name", "protocol/errors/#table-of-errors");
+    hm.insert(
+        "err-invalid-snapshot-name",
+        "protocol/errors/#table-of-errors",
+    );
     hm.insert("err-snapshot-disabled", "protocol/errors/#table-of-errors");
     hm.insert("AnyArray", "protocol/data-types#any-array");
     hm.insert("Flat Array", "protocol/data-types#flat-array");
