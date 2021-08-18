@@ -11,7 +11,7 @@ title: MPOP
 
 **Return type**:
 
-- [Flat Array](../protocol/data-types.md#flat-array)
+- [Typed Array](../protocol/data-types.md#typed-array)
 
 **Syntax**:
 

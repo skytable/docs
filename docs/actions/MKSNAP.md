@@ -21,10 +21,10 @@ title: MKSNAP
 
 :::
 
-This action can be used to create a snapshot. Do note that this action# *requires
+This action can be used to create a snapshot. Do note that this action **requires
 snapshotting to be enabled on the server side**, before it can create snapshots.
-\nIf you want to create snapshots# *without** snapshots being enabled on the server-side,
+If you want to create snapshots **without** snapshots being enabled on the server-side,
 pass a second argument &lt;SNAPNAME&gt; to specify a snapshot name and a snapshot will
-be create in a folder called `remote` under your snapshots directory. \nFor more
+be create in a folder called `remote` under your snapshots directory. For more
 information on snapshots, read [this document](/snapshots)
 
