@@ -1,0 +1,192 @@
+{
+  "version-0.7.0/docs": [
+    {
+      "type": "doc",
+      "id": "version-0.7.0/index"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/getting-started"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/actions-overview"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/containers"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/ddl"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/examples"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/all-actions"
+    },
+    {
+      "type": "category",
+      "label": "Configuration",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.7.0/config-files"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/config-cmd"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/persistence"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/snapshots"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/ssl"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/clients"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/perf-guide"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/benchmarking"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/deployment-notes"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.0/building-from-source"
+    },
+    {
+      "type": "category",
+      "label": "Actions",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/dbsize"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/del"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/exists"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/flushdb"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/get"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/heya"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/keylen"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/lskeys"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/mget"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/mksnap"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/mpop"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/mset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/mupdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/pop"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/sdel"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/set"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/sset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/supdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/update"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/actions/uset"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "category",
+      "label": "Protocol",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.7.0/protocol/skyhash"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/protocol/data-types"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/protocol/response-codes"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.0/protocol/errors"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    }
+  ]
+}
