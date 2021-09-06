@@ -11,7 +11,7 @@ title: MPOP
 
 **Return type**:
 
-- [Flat Array](../protocol/data-types.md#flat-array)
+- [Typed Array](../protocol/data-types.md#typed-array)
 
 **Syntax**:
 
@@ -19,10 +19,10 @@ title: MPOP
 
 :::
 
-Deletes and returns the values of the provided keys from the current table. If the database is poisoned,
-this will return a server error. An exceptional scenario can arise when the database
-fails in-between removing all the keys. In that case, you get the server error
-response code instead of the keys. If the server recovers inbetween, then the
-appropriate values (if any) will be returned. In all other cases a NIL error is
+Deletes and returns the values of the provided 'n' keys from the current table.
+If the database is poisoned, this will return a server error. An exceptional scenario
+can arise when the database fails in-between removing all the keys. In that case, you
+get the server error response code instead of the keys. If the server recovers inbetween,
+then the appropriate values (if any) will be returned. In all other cases a NIL error is
 returned (code 1)
 

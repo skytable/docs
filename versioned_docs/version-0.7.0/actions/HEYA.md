@@ -2,10 +2,23 @@
 id: heya
 title: HEYA
 ---
+
 :::note About
 **Time complexity**: O(1)  
-**Arguments**: `HEYA`  
-**Returns**: HEY!
+**Accept type**:
+
+- [AnyArray](../protocol/data-types.md#any-array)
+
+**Return type**:
+
+- [String](../protocol/skyhash.md#strings-)
+
+**Syntax**:
+
+- `HEYA`
+- `HEYA <message>`
+
 :::
-### Description
-A ping action. `HEYA` should return `HEY!`
+
+Either returns a "HEY!" or returns the provided argument as a String
+
