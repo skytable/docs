@@ -45,10 +45,7 @@ impl Document {
             return_ty,
             description,
         } = self;
-
-        let description = description.replace('<', "&lt;");
-        let description = description.replace('>', "&gt;");
-        let description = description.replace("\\n", "\n");
+        let description = description.replace("\\n", "");
         let path = format!("docs/actions/{}.md", action_name);
         let syntax_rendered = render_list(syntax);
         let returns_rendered = render_link_list(return_ty, linklist);
