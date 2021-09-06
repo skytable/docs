@@ -20,4 +20,6 @@ title: MSET
 
 :::
 
-Set the value of 'n' keys in the current table
+Set the value of 'n' keys in the current table, if they don't already exist. This will
+return the number of keys that were set as an unsigned integer.
+

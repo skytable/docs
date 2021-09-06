@@ -21,4 +21,4 @@ title: SET
 
 :::
 
-Set the value of a key in the current table
+Set the value of a key in the current table, if it doesn't already exist

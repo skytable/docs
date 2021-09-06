@@ -20,4 +20,6 @@ title: DEL
 
 :::
 
-Delete 'n' keys from the current table
+Delete 'n' keys from the current table. This will return the number of keys that were deleted
+as an unsigned integer
+

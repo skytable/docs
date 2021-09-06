@@ -19,4 +19,6 @@ title: EXISTS
 
 :::
 
-Check if 'n' keys exist in the current table
+Check if 'n' keys exist in the current table. This will return the number of keys that exist
+as an unsigned integer.
+

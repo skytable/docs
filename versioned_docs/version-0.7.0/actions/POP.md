@@ -22,3 +22,5 @@ title: POP
 :::
 
 Deletes and return the value of the provided key from the current table.
+If the database is poisoned, this will return a server error.
+

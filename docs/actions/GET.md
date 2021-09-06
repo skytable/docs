@@ -21,4 +21,4 @@ title: GET
 
 :::
 
-Get the value of a key from the current table
+Get the value of a key from the current table, if it exists

@@ -20,5 +20,5 @@ title: HEYA
 
 :::
 
-Either returns a "HEY!" or returns the provided argument as a String
+Either returns a "HEY!" or returns the provided argument as an `str`
 

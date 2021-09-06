@@ -19,4 +19,4 @@ title: MGET
 
 :::
 
-Get the value of 'n' keys from the current table
+Get the value of 'n' keys from the current table, if they exist

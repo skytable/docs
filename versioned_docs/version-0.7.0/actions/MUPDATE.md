@@ -20,4 +20,6 @@ title: MUPDATE
 
 :::
 
-Update the value of 'n' keys in the current table
+Update the value of 'n' keys in the current table, if they already exist. This will return
+the number of keys that were updated as an unsigned integer.
+
