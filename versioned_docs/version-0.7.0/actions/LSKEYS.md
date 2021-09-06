@@ -22,6 +22,6 @@ title: LSKEYS
 :::
 
 Returns a flat string array of keys present in the current table or in the provided entity.
-If no &lt;limit&gt; is given, then a maximum of 10 keys are returned. If a limit is specified,
-then a maximum of &lt;limit&gt; keys are returned. The order of keys is meaningless.
+If no `<limit>` is given, then a maximum of 10 keys are returned. If a limit is specified,
+then a maximum of `<limit>` keys are returned. The order of keys is meaningless.
 
