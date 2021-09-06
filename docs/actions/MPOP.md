@@ -16,7 +16,7 @@ title: MPOP
 
 **Syntax**:
 
-- `POP <key1> <key2> ...`
+- `MPOP <key1> <key2> ...`
 
 :::
 
