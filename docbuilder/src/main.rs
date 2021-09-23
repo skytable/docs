@@ -1,3 +1,4 @@
+mod doc;
 mod document;
 use crate::document::Document;
 use serde_yaml::Value;
