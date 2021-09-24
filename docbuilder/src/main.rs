@@ -1,7 +1,6 @@
 mod doc;
 mod util;
 use crate::doc::Document;
-use std::borrow::Cow;
 use std::collections::HashMap;
 use std::process::Command;
 
@@ -16,11 +15,11 @@ fn main() {
     let _rmfile = Command::new("rm").arg("actiondoc.yml").output().unwrap();
 
     // now parse it
-    parse_into_actiondoc(output)
+    parse_into_actiondoc(&output);
 }
 
-fn parse_into_actiondoc(output: Cow<'_, str>) {
-    let v: Document = serde_yaml::from_str(&output).unwrap();
+fn parse_into_actiondoc(output: &str) {
+    let v: Document = serde_yaml::from_str(output).unwrap();
     let list = init_type_linklist();
     v.write_and_finish(&list).unwrap();
 }

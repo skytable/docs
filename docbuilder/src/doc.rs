@@ -30,8 +30,10 @@ impl Document {
         linklist: &HashMap<&'static str, &'static str>,
     ) -> std::io::Result<()> {
         // first we need to create the index
+        println!("Rendering index");
         self.render_index()?;
         // now create the appropriate actions
+        println!("Rendering actions");
         self.render_actions(linklist)?;
         Ok(())
     }
@@ -99,8 +101,7 @@ For DDL, see [this document](ddl).
 ## Global Actions
 
 These actions can be used globally irrespective of the underlying keyspace or table properties:
-
-        "
+"
         .to_owned();
         // now render the global actions
         action_index.push_str(&util::gen_action_list(global_actions));
@@ -137,7 +138,7 @@ These actions can be used on keymap tables that have list types (`list<type>`) a
 ",
         );
         action_index.push_str(&util::gen_action_list(list_actions));
-        let mut index_file = fs::File::open("docs/6.all-actions.md")?;
+        let mut index_file = fs::File::create("./docs/6.all-actions.md")?;
         index_file.write_all(action_index.as_bytes())?;
         Ok(())
     }

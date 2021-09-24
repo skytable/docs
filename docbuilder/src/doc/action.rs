@@ -121,10 +121,10 @@ impl Action {
     fn render_top_block(&self) -> String {
         let s = format!(
             "\
-        ---
-        id: {action_name}
-        title: {title}
-        ---
+---
+id: {action_name}
+title: {title}
+---
         
 ",
             action_name = self.name.to_lowercase(),

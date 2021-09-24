@@ -25,16 +25,7 @@ pub fn render_link_list(
 }
 
 pub fn gen_action_list(list: Vec<String>) -> String {
-    let mut act = "\
----
-id: all-actions
-title: Index of actions
----
-
-Skytable currently supports the following actions:
-
-"
-    .to_owned();
+    let mut act = "".to_owned();
     let linklist: String = list
         .into_iter()
         .map(|v| {
@@ -53,7 +44,7 @@ pub fn write_action(
     linklist: &HashMap<&'static str, &'static str>,
 ) -> std::io::Result<()> {
     let (filepath, filebody) = action.into_md_file(linklist);
-    let mut f = fs::File::open(filepath)?;
+    let mut f = fs::File::create(filepath)?;
     f.write_all(filebody.as_bytes())?;
     Ok(())
 }
