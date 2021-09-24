@@ -57,8 +57,19 @@ impl Document {
         }
         // now list actions
         for list_action in kv.lists {
+            let top_block = format!(
+                "\
+---
+id: {id}
+title: {title}
+---
+",
+                id = list_action.name.to_lowercase(),
+                title = list_action.name
+            );
             let (path, body) = list_action.render(linklist);
             let mut f = fs::File::create(path)?;
+            f.write_all(top_block.as_bytes())?;
             f.write_all(body.as_bytes())?;
         }
         Ok(())

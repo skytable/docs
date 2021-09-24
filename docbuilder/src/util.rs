@@ -16,9 +16,15 @@ pub fn render_link_list(
 ) -> String {
     inp.into_iter()
         .map(|v| {
-            format!("- [{}](../{})\n", v, linklist.get(v.as_str()).unwrap())
-                .chars()
-                .collect::<Vec<_>>()
+            format!(
+                "- [{}](../{})\n",
+                v,
+                linklist
+                    .get(v.as_str())
+                    .unwrap_or_else(|| panic!("Failed to get: {}", v))
+            )
+            .chars()
+            .collect::<Vec<_>>()
         })
         .flatten()
         .collect()
