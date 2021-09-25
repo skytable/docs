@@ -2,6 +2,7 @@
 id: mksnap
 title: MKSNAP
 ---
+        
 
 :::note About
 **Time complexity**: O(n)  

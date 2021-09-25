@@ -1,9 +1,9 @@
 ---
-id: sdel
-title: SDEL
+id: lset
+title: LSET
 ---
-        
-
+`LSET` can be used to create empty lists or lists with the provided values.
+### `LSET`
 :::note About
 **Time complexity**: O(n)  
 **Accept type**:
@@ -18,10 +18,12 @@ title: SDEL
 
 **Syntax**:
 
-- `SDEL <key1> <key2> ...`
+- `LSET <list>`
+- `LSET <list> <value1> <value2> ...`
 
 :::
 
-Delete all keys if all of the keys exist in the current table. Do note that if a single key doesn't
-exist, then a `Nil` code is returned.
+Creates a list with the provided values, or simply creates an empty list if it doesn't
+already exist in the table.
+
 

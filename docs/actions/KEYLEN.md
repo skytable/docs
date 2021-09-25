@@ -2,6 +2,7 @@
 id: keylen
 title: KEYLEN
 ---
+        
 
 :::note About
 **Time complexity**: O(1)  

@@ -2,6 +2,7 @@
 id: supdate
 title: SUPDATE
 ---
+        
 
 :::note About
 **Time complexity**: O(n)  

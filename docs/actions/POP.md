@@ -2,6 +2,7 @@
 id: pop
 title: POP
 ---
+        
 
 :::note About
 **Time complexity**: O(1)  

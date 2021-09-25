@@ -2,6 +2,7 @@
 id: del
 title: DEL
 ---
+        
 
 :::note About
 **Time complexity**: O(n)  

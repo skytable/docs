@@ -2,6 +2,7 @@
 id: lskeys
 title: LSKEYS
 ---
+        
 
 :::note About
 **Time complexity**: O(n)  

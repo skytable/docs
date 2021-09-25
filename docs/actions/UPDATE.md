@@ -2,6 +2,7 @@
 id: update
 title: UPDATE
 ---
+        
 
 :::note About
 **Time complexity**: O(1)  
