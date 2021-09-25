@@ -1,7 +1,32 @@
-use crate::util;
+/*
+ * Created on Sat Sep 25 2021
+ *
+ * This file is a part of Skytable
+ * Skytable (formerly known as TerrabaseDB or Skybase) is a free and open-source
+ * NoSQL database written by Sayan Nandan ("the Author") with the
+ * vision to provide flexibility in data modelling without compromising
+ * on performance, queryability or scalability.
+ *
+ * Copyright (c) 2021, Sayan Nandan <ohsayan@outlook.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ *
+*/
+
+use super::util;
 use core::cmp::Ordering;
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ExtendedAction {
@@ -70,7 +95,7 @@ impl Ord for ExtendedAction {
 
 impl Action {
     /// Returns `(path, body)`
-    pub fn into_md_file(self, linklist: &HashMap<&'static str, &'static str>) -> (String, String) {
+    pub fn into_md_file(self, linklist: crate::LinkList<'_>) -> (String, String) {
         let path = format!("docs/actions/{}.md", self.name);
         let body = format!(
             "{top}\n{bottom}",
@@ -79,7 +104,7 @@ impl Action {
         );
         (path, body)
     }
-    fn render_bottom_block(self, linklist: &HashMap<&'static str, &'static str>) -> String {
+    fn render_bottom_block(self, linklist: crate::LinkList<'_>) -> String {
         let Action {
             complexity,
             syntax,
@@ -136,7 +161,7 @@ title: {title}
 
 impl ExtendedAction {
     /// Returns `(path, body)`
-    pub fn render(self, linklist: &HashMap<&'static str, &'static str>) -> (String, String) {
+    pub fn render(self, linklist: crate::LinkList<'_>) -> (String, String) {
         // path
         let path = format!("docs/actions/{}.md", self.name);
         // now body

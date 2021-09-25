@@ -1,8 +1,33 @@
+/*
+ * Created on Sat Sep 25 2021
+ *
+ * This file is a part of Skytable
+ * Skytable (formerly known as TerrabaseDB or Skybase) is a free and open-source
+ * NoSQL database written by Sayan Nandan ("the Author") with the
+ * vision to provide flexibility in data modelling without compromising
+ * on performance, queryability or scalability.
+ *
+ * Copyright (c) 2021, Sayan Nandan <ohsayan@outlook.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ *
+*/
+
 mod action;
+mod util;
 pub use self::action::{Action, ExtendedAction};
-use crate::util;
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 use std::fs;
 use std::io::Write;
 
@@ -25,10 +50,7 @@ pub struct KeyValueDocument {
 }
 
 impl Document {
-    pub fn write_and_finish(
-        self,
-        linklist: &HashMap<&'static str, &'static str>,
-    ) -> std::io::Result<()> {
+    pub fn write_and_finish(self, linklist: crate::LinkList<'_>) -> std::io::Result<()> {
         // first we need to create the index
         println!("Rendering index");
         self.render_index()?;
@@ -37,10 +59,7 @@ impl Document {
         self.render_actions(linklist)?;
         Ok(())
     }
-    pub fn render_actions(
-        self,
-        linklist: &HashMap<&'static str, &'static str>,
-    ) -> std::io::Result<()> {
+    pub fn render_actions(self, linklist: crate::LinkList<'_>) -> std::io::Result<()> {
         // let us first render the global actions
         for global_action in self.global {
             util::write_action(global_action, linklist)?;
