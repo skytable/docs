@@ -10,7 +10,14 @@ module.exports = {
     {
       type: "category",
       label: "Configuration",
-      items: ["config-files", "config-cmd", "persistence", "snapshots", "ssl"],
+      items: [
+        "config-files",
+        "config-env",
+        "config-cmd",
+        "persistence",
+        "snapshots",
+        "ssl",
+      ],
     },
     "clients",
     "perf-guide",
