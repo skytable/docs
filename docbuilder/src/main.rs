@@ -34,7 +34,7 @@ type LinkList<'a> = &'a HashMap<&'static str, &'static str>;
 fn main() {
     // download the file
     let _dlfile = Command::new("wget")
-        .arg("https://raw.githubusercontent.com/skytable/skytable/docs/subactions/actiondoc.yml")
+        .arg("https://raw.githubusercontent.com/skytable/skytable/next/actiondoc.yml")
         .output()
         .unwrap();
     let output = Command::new("cat").arg("actiondoc.yml").output().unwrap();
