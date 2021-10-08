@@ -26,11 +26,6 @@ module.exports = {
           position: "right",
         },
         {
-          href: "/versions",
-          label: "Supported Versions",
-          position: "right",
-        },
-        {
           type: "docsVersionDropdown",
           position: "left",
         },
