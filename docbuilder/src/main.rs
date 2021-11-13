@@ -79,6 +79,10 @@ pub fn init_type_linklist() -> HashMap<&'static str, &'static str> {
     hm.insert("AnyArray", "protocol/data-types.md#any-array");
     hm.insert("Flat Array", "protocol/data-types.md#flat-array");
     hm.insert("Typed Array", "protocol/data-types.md#typed-array");
+    hm.insert(
+        "Non-null array",
+        "protocol/data-types.md#typed-non-null-array",
+    );
     hm.insert("String", "protocol/skyhash.md#strings-");
     hm.insert("Binstr", "protocol/skyhash.md#strings-");
     hm.insert("binstr", "protocol/skyhash.md#strings-");
