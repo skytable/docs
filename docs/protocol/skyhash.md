@@ -52,7 +52,7 @@ Usually serialized data types look like:
 where the `<tsymbol>` corresponds to the Type Symbol and the `<len>` corresponds to the length of
 this element. Below is a list of data types and their `<tsymbol>`s.
 
-### Strings (+)
+### Strings (+/?)
 
 String elements are serialized like:
 
@@ -69,7 +69,8 @@ So a string 'Sayan' will be serialized into:
 Sayan\n
 ```
 
-Strings are binary safe because they have prefixed lengths
+There is also a binary string (binstr) type with a tsymbol `?`. For this kind of string, no unicode validation
+is carried out.
 
 ### Unsigned integers (:)
 
@@ -192,7 +193,7 @@ Where `<c>` is the number of characters in the code and `<code>` is the code its
 
 You find a full list of response codes [in this table](response-codes).
 
-## A full example
+## A full example (a simple query)
 
 Let's take a look at what happens when we send `SET x ex`. First, the client needs to serialize
 it into a Skyhash compatible type. Since this is a simple query, we just have one single
@@ -202,7 +203,7 @@ element in the query array. Most of Skytable's common actions use arrays, and SE
 - We need to send an [`AnyArray`](data-types#any-array)
 - It has three elements: `['SET', 'x', 'ex']`
 
-```sh
+```shell
 *1\n  # '*1' because this is a simple query
 ~3\n  # 3 elements
 3\n   # 'SET' has 3 chars
@@ -230,5 +231,30 @@ Here:
 - `!1` because the returned data type is a response code with tsymbol `!` and a length of `1`
   char
 - `0` because this is the response code that corresponds to _Okay_
+
+## A full example (a pipelined query)
+
+Let's take a look at when we send two queries `HEYA once` and `HEYA twice` to the server, as a pipelined query.
+
+- This is a pipelined query
+- We need to send two [`AnyArray`](data-types#any-array)s, one for each query
+
+This is what the client has to send (`#`s are used to denote comments):
+
+```shell
+*2\n    # *2 because this a pipelined query with two queries
+# we begin our first query from here
+~2\n    # our first query has two elements: "HEYA" and "once"
+4\n     # "HEYA" has 4 characters
+HEYA\n  # the element itself
+4\n     # "once" has 4 characters
+once\n  # the element itself
+# we're done. the second query begins here
+~2\n    # our second query has two elements: "HEYA" and "twice"
+4\n     # "HEYA" has 4 characters
+HEYA\n  # the element itself
+5\n     # "twice" has 5 characters
+twice\n # the element itself
+```
 
 And there &mdash; you've learned Skyhash!

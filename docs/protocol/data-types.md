@@ -48,12 +48,13 @@ some additional properties (and serialization/deserialization differences).
 
 ### Table
 
-| Type symbol (tsymbol) | Type        | Additional notes                                              | Protocol |
-| --------------------- | ----------- | ------------------------------------------------------------- | -------- |
-| &                     | Array       | A recursive array                                             | 1.0      |
-| \_                    | Flat array  | A non-recursive array                                         | 1.0      |
-| @                     | Typed array | An array of a specific type                                   | 1.1      |
-| ~                     | Any array   | An array with a single type but no information about the type | 1.1      |
+| Type symbol (tsymbol) | Type                 | Additional notes                                              | Protocol |
+| --------------------- | -------------------- | ------------------------------------------------------------- | -------- |
+| &                     | Array                | A recursive array                                             | 1.0      |
+| \_                    | Flat array           | A non-recursive array                                         | 1.0      |
+| @                     | Typed array          | An array of a specific type, with nullable elements           | 1.1      |
+| ~                     | Any array            | An array with a single type but no information about the type | 1.1      |
+| ^                     | Typed non-null array | A non-recursive array with non-null elements                  | 1.1      |
 
 ### Array
 
@@ -167,3 +168,30 @@ Line-by-line explanation:
 :::note
 An `AnyArray` is currently a query specific data type (only sent by the client and never by the server)
 :::
+
+### Typed non-null array
+
+A typed non-null array is just like a typed array, except for one thing &mdash; its elements can never be null. Say you
+have an array of three strings like this:
+
+```js
+["super", "wind"]
+```
+
+Then it will be represented like this:
+
+```shell
+^+2\n
+5\n
+super\n
+4\n
+wind
+```
+
+Line-by-line explanation:
+
+1. `^+2\n` because this a typed non-null array, with two string elements
+2. `5\n` because the first element is "super" and has 5 chars
+3. `super\n` the element itself
+4. `4\n` the second element is "wind" and has 4 chars
+5. `wind\n` the element itself
