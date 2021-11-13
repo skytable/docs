@@ -257,4 +257,16 @@ HEYA\n  # the element itself
 twice\n # the element itself
 ```
 
+The server then responds with (`#`s are used to denote comments):
+
+```shell
+*2\n    # this response has two responses, for two queries
+# the first response
++4\n    # the first element "once" has 4 chars
+once\n  # the element itself
+# the second response
++5\n    # the second element "twice" has 5 chars
+twice\n # the element itself
+```
+
 And there &mdash; you've learned Skyhash!
