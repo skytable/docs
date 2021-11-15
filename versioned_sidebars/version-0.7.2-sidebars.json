@@ -1,0 +1,212 @@
+{
+  "version-0.7.2/docs": [
+    {
+      "type": "doc",
+      "id": "version-0.7.2/index"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/getting-started"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/actions-overview"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/containers"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/ddl"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/examples"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/all-actions"
+    },
+    {
+      "type": "category",
+      "label": "Configuration",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.7.2/config-files"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/config-env"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/config-cmd"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/persistence"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/snapshots"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/ssl"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/clients"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/perf-guide"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/benchmarking"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/deployment-notes"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.7.2/building-from-source"
+    },
+    {
+      "type": "category",
+      "label": "Actions",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/dbsize"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/del"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/exists"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/flushdb"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/get"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/heya"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/keylen"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/lskeys"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/lget"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/lmod"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/lset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/mget"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/mksnap"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/mpop"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/mset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/mupdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/pop"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/sdel"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/set"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/sset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/supdate"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/update"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/uset"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/actions/whereami"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    },
+    {
+      "type": "category",
+      "label": "Protocol",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.7.2/protocol/skyhash"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/protocol/data-types"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/protocol/response-codes"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.7.2/protocol/errors"
+        }
+      ],
+      "collapsible": true,
+      "collapsed": true
+    }
+  ]
+}
