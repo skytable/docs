@@ -19,7 +19,12 @@ used by Skytable for client/server communication. All clients willing to communi
 Skyhash uses a query/response action just like HTTP's request/response action &mdash;
 clients send queries while the server sends responses. All the bytes sent by a client to a server is called a _Query Packet_ while all the bytes sent by the server in response to this is called the _Response packet_.
 
-Irrespective of the action type, all these packets are made of a metaframe and a dataframe.
+There are different kinds of queries:
+- **Simple queries**: These queries just have one action in the query packet, and hence, have just one response in the response packet
+- **Pipeline queries**: These queries carry multiple actions in the query pakcet and hence their response packet also contains multiple responses. You can read more about querying [here](../actions-overview).
+
+Irrespective of the query type, all these packets are made of a metaframe and a dataframe.
+
 
 ### The Metaframe
 
