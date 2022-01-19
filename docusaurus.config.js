@@ -38,6 +38,10 @@ module.exports = {
           title: "Links",
           items: [
             {
+              label: "Homepage",
+              to: "https://skytable.io"
+            },
+            {
               label: "Docs",
               to: "/",
             },
