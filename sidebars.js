@@ -11,6 +11,7 @@ module.exports = {
       type: "category",
       label: "Configuration",
       items: [
+        "config",
         "config-files",
         "config-env",
         "config-cmd",
