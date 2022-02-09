@@ -78,7 +78,7 @@ Returns the length of the list
 - [String](../protocol/skyhash.md#strings-)
 - [binstr](../protocol/skyhash.md#strings-)
 - [Rcode 1](../protocol/response-codes.md)
-- [list-bad-index](../protocol/errors.md#table-of-errors)
+- [bad-list-index](../protocol/errors.md#table-of-errors)
 
 **Syntax**:
 
@@ -131,4 +131,28 @@ Returns the first element present in the list, if it exists.
 :::
 
 Returns the last element present in the list, if it exists.
+
+### `range`
+:::note About
+**Time complexity**: O(n)  
+**Accept type**:
+
+- [AnyArray](../protocol/data-types.md#any-array)
+
+**Return type**:
+
+- [Typed Array](../protocol/data-types.md#typed-array)
+- [Rcode 1](../protocol/response-codes.md)
+- [bad-list-index](../protocol/errors.md#table-of-errors)
+
+**Syntax**:
+
+- `LGET <list> range <start>`
+- `LGET <list> range <start> <stop>`
+
+:::
+
+Returns items in the given range. If no value for `stop` is provided, all the elements from that
+index are returned. If a value for `stop` is provided, then a subarray is returned
+
 
