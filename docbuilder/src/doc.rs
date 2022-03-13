@@ -31,10 +31,33 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 use std::io::Write;
 
+#[derive(Deserialize, Serialize, Debug)]
+#[serde(untagged)]
+pub enum ActionType {
+    Action(Action),
+    ExtAction(ExtendedAction),
+}
+
+impl ActionType {
+    pub fn get_name(&self) -> String {
+        match self {
+            Self::Action(Action { name, .. }) | Self::ExtAction(ExtendedAction { name, .. }) => {
+                name.clone()
+            }
+        }
+    }
+    pub fn write_action(self, linklist: crate::LinkList<'_>) -> std::io::Result<()> {
+        match self {
+            Self::Action(a) => util::write_action(a, linklist),
+            Self::ExtAction(a) => write_extended_action(a, linklist),
+        }
+    }
+}
+
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Document {
     /// global actions
-    global: Vec<Action>,
+    global: Vec<ActionType>,
     /// key/value model actions
     keyvalue: KeyValueDocument,
 }
@@ -42,11 +65,32 @@ pub struct Document {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct KeyValueDocument {
     /// generic actions (any type in the KVE)
-    generic: Vec<Action>,
+    generic: Vec<ActionType>,
     /// string actions (specific to `<string type>, <string type>`) tables
-    string: Vec<Action>,
+    string: Vec<ActionType>,
     /// list actions specific to (`<string type>`, `<list type>`) tables
-    lists: Vec<ExtendedAction>,
+    lists: Vec<ActionType>,
+}
+
+fn write_extended_action(
+    action: ExtendedAction,
+    linklist: crate::LinkList<'_>,
+) -> std::io::Result<()> {
+    let top_block = format!(
+        "\
+---
+id: {id}
+title: {title}
+---
+",
+        id = action.name.to_lowercase(),
+        title = action.name
+    );
+    let (path, body) = action.render(linklist);
+    let mut f = fs::File::create(path)?;
+    f.write_all(top_block.as_bytes())?;
+    f.write_all(body.as_bytes())?;
+    Ok(())
 }
 
 impl Document {
@@ -62,60 +106,39 @@ impl Document {
     pub fn render_actions(self, linklist: crate::LinkList<'_>) -> std::io::Result<()> {
         // let us first render the global actions
         for global_action in self.global {
-            util::write_action(global_action, linklist)?;
+            global_action.write_action(linklist)?;
         }
         // let us now render the key/value actions
         // start with generic actions
         let kv = self.keyvalue;
         for generic_action in kv.generic {
-            util::write_action(generic_action, linklist)?;
+            generic_action.write_action(linklist)?;
         }
         // now string actions
         for string_action in kv.string {
-            util::write_action(string_action, linklist)?;
+            string_action.write_action(linklist)?;
         }
         // now list actions
         for list_action in kv.lists {
-            let top_block = format!(
-                "\
----
-id: {id}
-title: {title}
----
-",
-                id = list_action.name.to_lowercase(),
-                title = list_action.name
-            );
-            let (path, body) = list_action.render(linklist);
-            let mut f = fs::File::create(path)?;
-            f.write_all(top_block.as_bytes())?;
-            f.write_all(body.as_bytes())?;
+            list_action.write_action(linklist)?;
         }
         Ok(())
     }
     pub fn render_index(&self) -> std::io::Result<()> {
-        let mut global_actions: Vec<String> = self.global.iter().map(|v| v.name.clone()).collect();
+        let mut global_actions: Vec<String> = self.global.iter().map(|v| v.get_name()).collect();
         global_actions.sort();
         // now collect the KVE actions
         // first the generic actions
-        let mut generic_actions: Vec<String> = self
-            .keyvalue
-            .generic
-            .iter()
-            .map(|v| v.name.clone())
-            .collect();
+        let mut generic_actions: Vec<String> =
+            self.keyvalue.generic.iter().map(|v| v.get_name()).collect();
         generic_actions.sort();
         // string actions
-        let mut string_actions: Vec<String> = self
-            .keyvalue
-            .string
-            .iter()
-            .map(|v| v.name.clone())
-            .collect();
+        let mut string_actions: Vec<String> =
+            self.keyvalue.string.iter().map(|v| v.get_name()).collect();
         string_actions.sort();
         // list actions; only bother with the root action
         let mut list_actions: Vec<String> =
-            self.keyvalue.lists.iter().map(|v| v.name.clone()).collect();
+            self.keyvalue.lists.iter().map(|v| v.get_name()).collect();
         list_actions.sort();
         // now generate the index
         let mut action_index = "\
@@ -161,7 +184,6 @@ both the key and value:
         action_index.push_str(&util::gen_action_list(string_actions));
         action_index.push_str(
             "\
-
 ### List actions
 
 These actions can be used on keymap tables that have list types (`list<type>`) as their value type:
