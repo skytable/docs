@@ -17,4 +17,6 @@ Skytable may return any of the response codes listed here:
 | `7`            | Wrongtype error              | The client sent the wrong type                         |
 | `8`            | Unknown data type            | The client sent an unknown data type                   |
 | `9`            | Encoding error               | The client sent a badly encoded query                  |
+| `10`           | Bad credentials              | The authn credentials are invalid                      |
+| `11`           | Authn realm error            | The current user is not allowed to perform the action  |
 | _Error String_ | Other error with description | Some other error occurred. See [this document](errors) |

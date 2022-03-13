@@ -32,3 +32,7 @@ In certain situations, the server may return error strings (also known as other 
 | unknown-property           | An unknown table property was passed to `CREATE TABLE`       |
 | keyspace-not-empty         | The keyspace couldn't be removed because it still has tables |
 | pipeline-not-supported-yet | Pipelining is not supported in this server version           |
+| err-auth-disabled          | Authn/authz is not enabled                                   |
+| err-auth-already-claimed   | The username has already been created                        |
+| err-auth-illegal-username  | The username is too long or has invalid characters           |
+| err-auth-deluser-fail      | The user cannot be removed                                   |

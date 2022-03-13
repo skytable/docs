@@ -63,6 +63,8 @@ pub fn init_type_linklist() -> HashMap<&'static str, &'static str> {
     hm.insert("Rcode 7", "protocol/response-codes.md");
     hm.insert("Rcode 8", "protocol/response-codes.md");
     hm.insert("Rcode 9", "protocol/response-codes.md");
+    hm.insert("Rcode 10", "protocol/response-codes.md");
+    hm.insert("Rcode 11", "protocol/response-codes.md");
     hm.insert("Error String", "protocol/errors.md#table-of-errors");
     hm.insert("err-snapshot-busy", "protocol/errors.md#table-of-errors");
     hm.insert(
