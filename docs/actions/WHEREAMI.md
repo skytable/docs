@@ -2,7 +2,7 @@
 id: whereami
 title: WHEREAMI
 ---
-        
+
 
 :::note About
 **Time complexity**: O(1)  

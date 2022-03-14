@@ -2,7 +2,9 @@
 id: lset
 title: LSET
 ---
+
 `LSET` can be used to create empty lists or lists with the provided values.
+
 ### `LSET`
 :::note About
 **Time complexity**: O(n)  

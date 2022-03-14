@@ -95,16 +95,16 @@ impl Ord for ExtendedAction {
 
 impl Action {
     /// Returns `(path, body)`
-    pub fn into_md_file(self, linklist: crate::LinkList<'_>) -> (String, String) {
+    pub fn into_md_file(self) -> (String, String) {
         let path = format!("docs/actions/{}.md", self.name);
         let body = format!(
             "{top}\n{bottom}",
             top = self.render_top_block(),
-            bottom = self.render_bottom_block(linklist)
+            bottom = self.render_bottom_block()
         );
         (path, body)
     }
-    fn render_bottom_block(self, linklist: crate::LinkList<'_>) -> String {
+    fn render_bottom_block(self) -> String {
         let Action {
             complexity,
             syntax,
@@ -115,8 +115,8 @@ impl Action {
         } = self;
         let description = desc.replace("\\n", "");
         let syntax_rendered = util::render_list(syntax);
-        let returns_rendered = util::render_link_list(returns, linklist);
-        let accept_rendered = util::render_link_list(accept, linklist);
+        let returns_rendered = util::render_link_list(returns);
+        let accept_rendered = util::render_link_list(accept);
         let body = format!(
             "\
 :::note About
@@ -150,7 +150,7 @@ impl Action {
 id: {action_name}
 title: {title}
 ---
-        
+
 ",
             action_name = self.name.to_lowercase(),
             title = self.name
@@ -161,15 +161,20 @@ title: {title}
 
 impl ExtendedAction {
     /// Returns `(path, body)`
-    pub fn render(self, linklist: crate::LinkList<'_>) -> (String, String) {
+    pub fn render(self) -> (String, String) {
         // path
         let path = format!("docs/actions/{}.md", self.name);
         // now body
         let mut body = "".to_owned();
         body.push_str(&self.desc);
+        if self.desc.as_bytes()[self.desc.len() - 1] != b'\n' {
+            // if it doesn't end with a newline, insert one
+            body.push('\n');
+        }
+        body.push('\n');
         for subaction in self.subactions {
             body.push_str(&format!("### `{subaction}`\n", subaction = subaction.name));
-            let innerbody = subaction.render_bottom_block(linklist);
+            let innerbody = subaction.render_bottom_block();
             body.push_str(&innerbody);
             body.push('\n');
         }

@@ -29,7 +29,9 @@ use crate::doc::Document;
 use std::collections::HashMap;
 use std::process::Command;
 
-type LinkList<'a> = &'a HashMap<&'static str, &'static str>;
+lazy_static::lazy_static! {
+    static ref LINKLIST: HashMap<&'static str, &'static str> = init_type_linklist();
+}
 
 fn main() {
     // download the file
@@ -47,8 +49,7 @@ fn main() {
 
 fn parse_into_actiondoc(output: &str) {
     let v: Document = serde_yaml::from_str(output).unwrap();
-    let list = init_type_linklist();
-    v.write_and_finish(&list).unwrap();
+    v.write_and_finish().unwrap();
 }
 
 pub fn init_type_linklist() -> HashMap<&'static str, &'static str> {

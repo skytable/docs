@@ -2,7 +2,7 @@
 id: mpop
 title: MPOP
 ---
-        
+
 
 :::note About
 **Time complexity**: O(n)  

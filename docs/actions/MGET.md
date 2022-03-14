@@ -2,7 +2,7 @@
 id: mget
 title: MGET
 ---
-        
+
 
 :::note About
 **Time complexity**: O(n)  

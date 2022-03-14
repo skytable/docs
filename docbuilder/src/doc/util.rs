@@ -35,13 +35,13 @@ pub fn render_list(inp: Vec<String>) -> String {
         .collect()
 }
 
-pub fn render_link_list(inp: Vec<String>, linklist: crate::LinkList<'_>) -> String {
+pub fn render_link_list(inp: Vec<String>) -> String {
     inp.into_iter()
         .map(|v| {
             format!(
                 "- [{}](../{})\n",
                 v,
-                linklist
+                crate::LINKLIST
                     .get(v.as_str())
                     .unwrap_or_else(|| panic!("Failed to get: {}", v))
             )
@@ -67,8 +67,8 @@ pub fn gen_action_list(list: Vec<String>) -> String {
     act
 }
 
-pub fn write_action(action: Action, linklist: crate::LinkList<'_>) -> std::io::Result<()> {
-    let (filepath, filebody) = action.into_md_file(linklist);
+pub fn write_action(action: Action) -> std::io::Result<()> {
+    let (filepath, filebody) = action.into_md_file();
     let mut f = fs::File::create(filepath)?;
     f.write_all(filebody.as_bytes())?;
     Ok(())

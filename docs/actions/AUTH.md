@@ -2,7 +2,10 @@
 id: auth
 title: AUTH
 ---
-Change global authn/authz settings### `LOGIN`
+
+Change global authn/authz settings
+
+### `LOGIN`
 :::note About
 **Time complexity**: O(1)  
 **Accept type**:

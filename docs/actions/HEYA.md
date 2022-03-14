@@ -2,7 +2,7 @@
 id: heya
 title: HEYA
 ---
-        
+
 
 :::note About
 **Time complexity**: O(1)  

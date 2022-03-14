@@ -2,7 +2,7 @@
 id: get
 title: GET
 ---
-        
+
 
 :::note About
 **Time complexity**: O(1)  

@@ -2,8 +2,10 @@
 id: lget
 title: LGET
 ---
+
 `LGET` can be used to access the items in a list. Through the sub-actions provided by `lget`,
  you can access multiple or individual elements in lists.
+
 ### `LGET`
 :::note About
 **Time complexity**: O(n)  

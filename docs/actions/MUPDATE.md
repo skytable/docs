@@ -2,7 +2,7 @@
 id: mupdate
 title: MUPDATE
 ---
-        
+
 
 :::note About
 **Time complexity**: O(n)  

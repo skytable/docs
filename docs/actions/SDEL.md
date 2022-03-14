@@ -2,7 +2,7 @@
 id: sdel
 title: SDEL
 ---
-        
+
 
 :::note About
 **Time complexity**: O(n)  

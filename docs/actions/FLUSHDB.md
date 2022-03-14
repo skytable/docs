@@ -2,7 +2,7 @@
 id: flushdb
 title: FLUSHDB
 ---
-        
+
 
 :::note About
 **Time complexity**: O(n)  

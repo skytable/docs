@@ -46,10 +46,10 @@ impl ActionType {
             }
         }
     }
-    pub fn write_action(self, linklist: crate::LinkList<'_>) -> std::io::Result<()> {
+    pub fn write_action(self) -> std::io::Result<()> {
         match self {
-            Self::Action(a) => util::write_action(a, linklist),
-            Self::ExtAction(a) => write_extended_action(a, linklist),
+            Self::Action(a) => util::write_action(a),
+            Self::ExtAction(a) => write_extended_action(a),
         }
     }
 }
@@ -72,13 +72,9 @@ pub struct KeyValueDocument {
     lists: Vec<ActionType>,
 }
 
-fn write_extended_action(
-    action: ExtendedAction,
-    linklist: crate::LinkList<'_>,
-) -> std::io::Result<()> {
+fn write_extended_action(action: ExtendedAction) -> std::io::Result<()> {
     let top_block = format!(
-        "\
----
+        "---
 id: {id}
 title: {title}
 ---
@@ -86,41 +82,42 @@ title: {title}
         id = action.name.to_lowercase(),
         title = action.name
     );
-    let (path, body) = action.render(linklist);
+    let (path, body) = action.render();
     let mut f = fs::File::create(path)?;
     f.write_all(top_block.as_bytes())?;
+    f.write_all(&[b'\n'])?;
     f.write_all(body.as_bytes())?;
     Ok(())
 }
 
 impl Document {
-    pub fn write_and_finish(self, linklist: crate::LinkList<'_>) -> std::io::Result<()> {
+    pub fn write_and_finish(self) -> std::io::Result<()> {
         // first we need to create the index
         println!("Rendering index");
         self.render_index()?;
         // now create the appropriate actions
         println!("Rendering actions");
-        self.render_actions(linklist)?;
+        self.render_actions()?;
         Ok(())
     }
-    pub fn render_actions(self, linklist: crate::LinkList<'_>) -> std::io::Result<()> {
+    pub fn render_actions(self) -> std::io::Result<()> {
         // let us first render the global actions
         for global_action in self.global {
-            global_action.write_action(linklist)?;
+            global_action.write_action()?;
         }
         // let us now render the key/value actions
         // start with generic actions
         let kv = self.keyvalue;
         for generic_action in kv.generic {
-            generic_action.write_action(linklist)?;
+            generic_action.write_action()?;
         }
         // now string actions
         for string_action in kv.string {
-            string_action.write_action(linklist)?;
+            string_action.write_action()?;
         }
         // now list actions
         for list_action in kv.lists {
-            list_action.write_action(linklist)?;
+            list_action.write_action()?;
         }
         Ok(())
     }
