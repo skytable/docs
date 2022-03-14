@@ -15,6 +15,7 @@ module.exports = {
         "config-files",
         "config-env",
         "config-cmd",
+        "auth",
         "persistence",
         "snapshots",
         "ssl",
