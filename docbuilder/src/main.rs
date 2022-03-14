@@ -25,6 +25,7 @@
 */
 
 mod doc;
+mod sidebar;
 use crate::doc::Document;
 use std::collections::HashMap;
 use std::process::Command;
@@ -44,12 +45,14 @@ fn main() {
     let _rmfile = Command::new("rm").arg("actiondoc.yml").output().unwrap();
 
     // now parse it
-    parse_into_actiondoc(&output);
+    let list = parse_into_actiondoc(&output);
+    println!("Updating sidebar");
+    sidebar::update_sidebar(list);
 }
 
-fn parse_into_actiondoc(output: &str) {
+fn parse_into_actiondoc(output: &str) -> Vec<String> {
     let v: Document = serde_yaml::from_str(output).unwrap();
-    v.write_and_finish().unwrap();
+    v.write_and_finish().unwrap()
 }
 
 pub fn init_type_linklist() -> HashMap<&'static str, &'static str> {

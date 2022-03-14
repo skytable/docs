@@ -91,14 +91,14 @@ title: {title}
 }
 
 impl Document {
-    pub fn write_and_finish(self) -> std::io::Result<()> {
+    pub fn write_and_finish(self) -> std::io::Result<Vec<String>> {
         // first we need to create the index
         println!("Rendering index");
-        self.render_index()?;
+        let idx = self.render_index()?;
         // now create the appropriate actions
         println!("Rendering actions");
         self.render_actions()?;
-        Ok(())
+        Ok(idx)
     }
     pub fn render_actions(self) -> std::io::Result<()> {
         // let us first render the global actions
@@ -121,21 +121,26 @@ impl Document {
         }
         Ok(())
     }
-    pub fn render_index(&self) -> std::io::Result<()> {
+    pub fn render_index(&self) -> std::io::Result<Vec<String>> {
+        let mut complete_actions_list = Vec::new();
         let mut global_actions: Vec<String> = self.global.iter().map(|v| v.get_name()).collect();
+        complete_actions_list.extend(global_actions.iter().cloned());
         global_actions.sort();
         // now collect the KVE actions
         // first the generic actions
         let mut generic_actions: Vec<String> =
             self.keyvalue.generic.iter().map(|v| v.get_name()).collect();
+        complete_actions_list.extend(generic_actions.iter().cloned());
         generic_actions.sort();
         // string actions
         let mut string_actions: Vec<String> =
             self.keyvalue.string.iter().map(|v| v.get_name()).collect();
+        complete_actions_list.extend(string_actions.iter().cloned());
         string_actions.sort();
         // list actions; only bother with the root action
         let mut list_actions: Vec<String> =
             self.keyvalue.lists.iter().map(|v| v.get_name()).collect();
+        complete_actions_list.extend(list_actions.iter().cloned());
         list_actions.sort();
         // now generate the index
         let mut action_index = "\
@@ -189,6 +194,6 @@ These actions can be used on keymap tables that have list types (`list<type>`) a
         action_index.push_str(&util::gen_action_list(list_actions));
         let mut index_file = fs::File::create("./docs/6.all-actions.md")?;
         index_file.write_all(action_index.as_bytes())?;
-        Ok(())
+        Ok(complete_actions_list)
     }
 }

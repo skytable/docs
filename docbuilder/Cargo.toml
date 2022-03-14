@@ -10,3 +10,5 @@ edition = "2018"
 serde_yaml = "0.8.23"
 serde = { version = "1.0.136", features = ["derive"] }
 lazy_static = "1.4.0"
+deser-hjson = "1.0.2"
+serde_json = "1.0.79"
