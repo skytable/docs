@@ -21,6 +21,11 @@ module.exports = {
       },
       items: [
         {
+          href: "https://skytable.io",
+          label: "Homepage",
+          position: "right",
+        },
+        {
           href: "https://github.com/skytable/docs",
           label: "GitHub",
           position: "right",
@@ -39,7 +44,7 @@ module.exports = {
           items: [
             {
               label: "Homepage",
-              to: "https://skytable.io"
+              to: "https://skytable.io",
             },
             {
               label: "Docs",
