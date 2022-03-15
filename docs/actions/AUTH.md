@@ -106,3 +106,28 @@ Attempts to create a new user with the provided username, returning the token
 
 Attempts to delete the user with the provided username
 
+### `RESTORE`
+:::note About
+**Time complexity**: O(1)  
+**Accept type**:
+
+- [AnyArray](../protocol/data-types.md#any-array)
+
+**Return type**:
+
+- [String](../protocol/skyhash.md#strings-)
+- [Rcode 10](../protocol/response-codes.md)
+- [Rcode 11](../protocol/response-codes.md)
+
+**Syntax**:
+
+- `AUTH RESTORE <username>`
+- `AUTH RESTORE <origin-key> <username>`
+
+:::
+
+Attempts to restore the password for the provided user. This will regenerate the token
+and return the newly issued token. However, if you aren't a root account, that is, you
+lost your root password, then you'll need to run `AUTH RESTORE <origin-key> root`.
+
+
