@@ -131,3 +131,23 @@ and return the newly issued token. However, if you aren't a root account, that i
 lost your root password, then you'll need to run `AUTH RESTORE <origin-key> root`.
 
 
+### `LISTUSER`
+:::note About
+**Time complexity**: O(1)  
+**Accept type**:
+
+- [AnyArray](../protocol/data-types.md#any-array)
+
+**Return type**:
+
+- [Non-null array](../protocol/data-types.md#typed-non-null-array)
+
+**Syntax**:
+
+- `AUTH LISTUSER`
+
+:::
+
+Attempts to return a list of users for the current database instance
+
+
