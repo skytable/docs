@@ -151,3 +151,24 @@ lost your root password, then you'll need to run `AUTH RESTORE <origin-key> root
 Attempts to return a list of users for the current database instance
 
 
+### `WHOAMI`
+:::note About
+**Time complexity**: O(1)  
+**Accept type**:
+
+- [AnyArray](../protocol/data-types.md#any-array)
+
+**Return type**:
+
+- [String](../protocol/skyhash.md#strings-)
+
+**Syntax**:
+
+- `AUTH WHOAMI`
+
+:::
+
+Returns a string with the AuthID of the currently logged in user or errors if the user
+is not logged in
+
+
