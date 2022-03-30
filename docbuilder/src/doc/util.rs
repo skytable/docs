@@ -30,25 +30,21 @@ use std::io::Write;
 
 pub fn render_list(inp: Vec<String>) -> String {
     inp.into_iter()
-        .map(|v| format!("- `{}`\n", v).chars().collect::<Vec<_>>())
-        .flatten()
+        .flat_map(|v| format!("- `{}`\n", v).chars().collect::<Vec<_>>())
         .collect()
 }
 
 pub fn render_link_list(inp: Vec<String>) -> String {
     inp.into_iter()
-        .map(|v| {
-            format!(
-                "- [{}](../{})\n",
-                v,
-                crate::LINKLIST
-                    .get(v.as_str())
-                    .unwrap_or_else(|| panic!("Failed to get: {}", v))
-            )
+        .flat_map(|ty| {
+            if let Some(tylink) = crate::LINKLIST.get(ty.as_str()) {
+                format!("- [{ty}](../{tylink})\n")
+            } else {
+                format!("- {ty}\n")
+            }
             .chars()
             .collect::<Vec<_>>()
         })
-        .flatten()
         .collect()
 }
 
@@ -56,12 +52,11 @@ pub fn gen_action_list(list: Vec<String>) -> String {
     let mut act = "".to_owned();
     let linklist: String = list
         .into_iter()
-        .map(|v| {
+        .flat_map(|v| {
             format!("- [{}](actions/{}.md)\n", v, v)
                 .chars()
                 .collect::<Vec<_>>()
         })
-        .flatten()
         .collect();
     act.push_str(&linklist);
     act
