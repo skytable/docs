@@ -52,6 +52,7 @@ module.exports = {
       "actions/set",
       "actions/sset",
       "actions/supdate",
+      "actions/sys",
       "actions/update",
       "actions/uset",
       "actions/whereami"

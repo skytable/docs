@@ -20,11 +20,11 @@ title: LMOD
 
 **Syntax**:
 
-- `LMOD <list> push <value>`
+- `LMOD <list> push <v1> <v2> ...`
 
 :::
 
-Appends the element to the end of the provided list
+Appends the elements to the end of the provided list, if it exists.
 
 ### `insert`
 :::note About
