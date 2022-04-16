@@ -10,6 +10,9 @@ module.exports = {
   organizationName: "skytable",
   projectName: "docs",
   themeConfig: {
+    tableOfContents: {
+      maxHeadingLevel: 4,
+    },
     prism: {
       additionalLanguages: ["toml", "rust"],
     },
