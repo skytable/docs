@@ -7,6 +7,9 @@ Skyhash has simple and compound types. In this document, we explore these types,
 and how we can serialize/deserialize them. As noted earlier, as of Skyhash
 2.0 only responses are strongly typed. The server automatically determines an appropriate type for queries, so you do not need to send any type information.
 
+All types which are currently reserved will be implemented
+in future iterations of Skyhash (non-breaking changes like 2.x).
+
 ## Simple types
 
 Simple types are like primitive types in programming languages, and hence are not collections.
@@ -133,9 +136,82 @@ Compound types are better called collections. Simply put, they are collections o
 supported by Skyhash followed by descriptions of the structures of each
 (exclusive of reserved types).
 
-| Type symbol | Type                 | Description                                                               |
-| ----------- | -------------------- | ------------------------------------------------------------------------- |
-| `&`         | Multi-typed array    | An array comprised of multiple-types, including itself (nested arrays)    |
-| `_`         | Flat array           | An array made up of multiple types, excluding itself (a non-nested array) |
-| `@`         | Typed array          | An array of a specific type, with nullable elements                       |
-| `^`         | Typed non-null array | An array of a specific type, without nullable elements                    |
+| Type symbol    | Type                 | Description                                                               |
+| -------------- | -------------------- | ------------------------------------------------------------------------- |
+| `&` (reserved) | Multi-typed array    | An array comprised of multiple-types, including itself (nested arrays)    |
+| `_` (reserved) | Flat array           | An array made up of multiple types, excluding itself (a non-nested array) |
+| `@`            | Typed array          | An array of a specific type, with nullable elements                       |
+| `^`            | Typed non-null array | An array of a specific type, without nullable elements                    |
+
+### Typed array
+
+The general structure of a typed array looks like:
+
+```shell
+@       # the type symbol for typed arrays
+<t>     # the type symbol for the elements
+<l>\n   # the length of the array
+<data>  # data
+```
+
+**Examples**:
+
+1. A typed array with two strings and a NULL:
+   ```js
+   ["sayan", "goes", NULL];
+   ```
+   will be represented as:
+   ```shell
+   @+3\n   # this typed array has elements of the string type
+   5\n     # the first element has 5 bytes
+   sayan   # the first element
+   4\n     # the second element has 4 bytes
+   goes    # the second element
+   \0\n    # the third element is NULL
+   ```
+2. A typed array which is supposed to have strings, but has all null elements:
+   ```js
+   [NULL, NULL, NULL];
+   ```
+   will be represented as:
+   ```
+   @+3\n
+   \0\n
+   \0\n
+   \0\n
+   ```
+
+### Typed non-null array
+
+The general structure of a typed non-null array looks like:
+
+```shell
+^           # the type symbol for a typed non-null array
+<tsymbol>   # the type symbol for the elements
+<l>\n       # the length of the array
+```
+
+The structure of this array type is exactly the same as that of a typed array with one exception: it never contains
+null elements.
+
+**Example**
+
+A non-null array with four strings:
+
+```js
+["this", "can't", "be", "null"];
+```
+
+will be represented as:
+
+```
+^+4\n
+4\n
+this
+5\n
+can't
+2\n
+be
+4\n
+null
+```
