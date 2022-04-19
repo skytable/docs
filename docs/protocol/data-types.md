@@ -7,8 +7,8 @@ Skyhash has simple and compound types. In this document, we explore these types,
 and how we can serialize/deserialize them. As noted earlier, as of Skyhash
 2.0 only responses are strongly typed. The server automatically determines an appropriate type for queries, so you do not need to send any type information.
 
-All types which are currently reserved will be implemented
-in future iterations of Skyhash (non-breaking changes like 2.x).
+All types which are currently reserved will be implemented in future iterations of Skyhash (non-breaking
+changes like 2.x).
 
 ## Simple types
 
@@ -162,12 +162,12 @@ The general structure of a typed array looks like:
    ```
    will be represented as:
    ```shell
-   @+3\n   # this typed array has elements of the string type
-   5\n     # the first element has 5 bytes
-   sayan   # the first element
-   4\n     # the second element has 4 bytes
-   goes    # the second element
-   \0\n    # the third element is NULL
+   @+3\n    # this typed array has elements of the string type
+   5\n      # the first element has 5 bytes
+   sayan    # the first element
+   4\n      # the second element has 4 bytes
+   goes     # the second element
+   \0       # the third element is NULL
    ```
 2. A typed array which is supposed to have strings, but has all null elements:
    ```js
@@ -176,9 +176,9 @@ The general structure of a typed array looks like:
    will be represented as:
    ```
    @+3\n
-   \0\n
-   \0\n
-   \0\n
+   \0
+   \0
+   \0
    ```
 
 ### Typed non-null array
