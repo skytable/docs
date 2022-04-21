@@ -59,7 +59,7 @@ some additional properties (and serialization/deserialization differences).
 
 ### Array
 
-See the full discussion on arrays [here](skyhash#arrays-).
+See the full discussion on arrays [here](skyhash-1.0#arrays-).
 
 ### Flat array
 

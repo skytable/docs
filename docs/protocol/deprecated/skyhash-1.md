@@ -12,7 +12,7 @@ Copyright (c) 2021 Sayan Nandan &lt;nandansayan@outlook.com&gt;
 :::
 
 :::caution Deprecation notice
-Skyhash 1.0 has been deprecated. All new clients should use [Skyhash 2.0](skyhash)
+Skyhash 1.0 has been deprecated. All new clients should use [Skyhash 2.0](../skyhash)
 :::
 
 ## Introduction
@@ -27,7 +27,7 @@ clients send queries while the server sends responses. All the bytes sent by a c
 
 There are different kinds of queries:
 - **Simple queries**: These queries just have one action in the query packet, and hence, have just one response in the response packet
-- **Pipeline queries**: These queries carry multiple actions in the query pakcet and hence their response packet also contains multiple responses. You can read more about querying [here](../actions-overview).
+- **Pipeline queries**: These queries carry multiple actions in the query pakcet and hence their response packet also contains multiple responses. You can read more about querying [here](actions-overview).
 
 Irrespective of the query type, all these packets are made of a metaframe and a dataframe.
 

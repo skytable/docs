@@ -11,7 +11,7 @@ In certain situations, the server may return error strings (also known as other 
 
 | Error String               | Meaning                                                      |
 | -------------------------- | ------------------------------------------------------------ |
-| Unknown action             | The [action](../actions-overview) is not known by the server |
+| Unknown action             | The [action](actions-overview) is not known by the server |
 | err-snapshot-busy          | A snapshot operation is already in progress                  |
 | err-snapshot-disabled      | Snapshots have been disabled on the server-side              |
 | err-invalid-snapshot-name  | The supplied snapshot name has invalid chars                 |
