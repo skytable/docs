@@ -30,6 +30,7 @@ module.exports = {
       "type": "category",
       "label": "Actions",
       "items": [
+        //AUTOBEGIN
         "actions/auth",
         "actions/dbsize",
         "actions/del",
@@ -55,7 +56,9 @@ module.exports = {
         "actions/sys",
         "actions/update",
         "actions/uset",
-        "actions/whereami"
+        "actions/whereami",
+
+        //AUTOEND
       ]
     },
     {
