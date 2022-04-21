@@ -32,10 +32,10 @@ containing such types.
 
 ### String
 
-```
-+         --> The type symbol
-<l>\n     --> The length terminated by an LF
-<element> --> The element itself
+```shell
++           # The type symbol
+<l>\n       # The length terminated by an LF
+<element>   # The element itself
 ```
 
 **Examples**
@@ -49,10 +49,10 @@ sayan
 
 ### Binary
 
-```
-?         --> the type symbol
-<l>\n     --> the length terminated by an LF
-<element> --> the element itself
+```shell
+?           # the type symbol
+<l>\n       # length terminated by an LF
+<element>   # the element itself
 ```
 
 **Examples**
@@ -66,14 +66,13 @@ ABCDE
 
 ### Status message
 
-A status message is either an 8-bit integer or a string. When the response
-is an integer, it is a response code (or respcode). If it is a string, then
-For languages
-that support enumerations, this can be lucidly represented.
+A status message is either an 8-bit integer or a string. When the response is an integer, it is a response
+code (or respcode). If it is a string, then it is called a respstring. For languages that support
+enumerations, this can be lucidly represented.
 
-```
-!            --> The type symbol
-<message>\n  --> The message terminated by an LF
+```shell
+!           # The type symbol
+<message>\n # The message terminated by an LF
 ```
 
 **Examples**
@@ -96,9 +95,9 @@ You can find a full list of respcodes and respstrings [in this document](respons
 
 ### Integer (64-bit)
 
-```
-:           --> the type symbol
-<integer>\n --> the integer terminated by an LF
+```shell
+:           # the type symbol
+<integer>\n # the integer itself terminated by an LF
 ```
 
 **Examples**
@@ -111,9 +110,9 @@ For an integer `2003`:
 
 ### Float (32-bit)
 
-```
-%           --> the type symbol
-<float>\n   --> the float terminated by an LF
+```shell
+%           # the type symbol
+<float>\n   # the float terminated by an LF
 ```
 
 **Examples**
@@ -154,6 +153,11 @@ The general structure of a typed array looks like:
 <data>  # data
 ```
 
+Whenever an element is null, instead of including `<length>\n<payload>`, the server simply returns
+ASCII Code `0` or NULL: `\0`. For clients, you need to simply branch on whether the first byte of is
+NULL or not; if it is, attempt to parse the next element (if any); if it isn't attempt to parse the
+element into the appropriate type.
+
 **Examples**:
 
 1. A typed array with two strings and a NULL:
@@ -174,11 +178,30 @@ The general structure of a typed array looks like:
    [NULL, NULL, NULL];
    ```
    will be represented as:
+   ```shell
+   @+3\n # this typed array has 3 string elements
+   \0    # the first element is NULL
+   \0    # the second element is also NULL
+   \0    # the third element is also NULL
    ```
-   @+3\n
-   \0
-   \0
-   \0
+3. A typed array full of respstrings:
+   ```shell
+   @!5\n # this typed array has 5 status message elements
+   0\n   # the first element has respcode 0
+   1\n   # the second element has respcode 1
+   2\n   # the third element has respcode 2
+   3\n   # the fourth element has respcode 3
+   4\n   # the fifth element has respcode 4
+   ```
+4. A typed array full of integers (with two being NULL):
+
+   ```shell
+   @:5\n    # this array has 5 integer elements
+   12345\n  # the first integer is 12345
+   23456\n  # the second integer is 23456
+   34567\n  # the third integer is 34567
+   \0       # the fourth integer is NULL
+   \0       # the fifth integer is also NULL
    ```
 
 ### Typed non-null array
@@ -194,24 +217,38 @@ The general structure of a typed non-null array looks like:
 The structure of this array type is exactly the same as that of a typed array with one exception: it never contains
 null elements.
 
-**Example**
+**Examples**
 
-A non-null array with four strings:
+1. A non-null array with four strings:
 
-```js
-["this", "can't", "be", "null"];
-```
+   ```js
+   ["this", "can't", "be", "null"];
+   ```
 
-will be represented as:
+   will be represented as:
 
-```
-^+4\n
-4\n
-this
-5\n
-can't
-2\n
-be
-4\n
-null
-```
+   ```
+   ^+4\n
+   4\n
+   this
+   5\n
+   can't
+   2\n
+   be
+   4\n
+   null
+   ```
+
+2. A typed non-null array with five integers:
+   ```js
+   [12345, 23456, 34567, 45678, 56789];
+   ```
+   would be represented as:
+   ```shell
+   @:5\n
+   12345\n
+   23456\n
+   34567\n
+   45678\n
+   56789\n
+   ```
