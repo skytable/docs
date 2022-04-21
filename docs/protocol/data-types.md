@@ -1,197 +1,254 @@
 ---
 id: data-types
-title: Data Types
+title: Data types
 ---
 
-This table lists all data types supported by Skytable and their corresponding
-type symbols ( `tsymbol` s) and additional information.
+Skyhash has simple and compound types. In this document, we explore these types, their structure
+and how we can serialize/deserialize them. As noted earlier, as of Skyhash
+2.0 only responses are strongly typed. The server automatically determines an appropriate type for queries, so you do not need to send any type information.
+
+All types which are currently reserved will be implemented in future iterations of Skyhash (non-breaking
+changes like 2.x).
 
 ## Simple types
 
-Simple types only contain one type. This makes them very simple to serialize/deserialize. All simple types have the
-following layout:
+Simple types are like primitive types in programming languages, and hence are not collections.
+This table presents a list of all the data types Skyhash supports (some are reserved) along with
+their corresponding type symbols and a brief description.
+
+| Type symbol    | Type             | Description                                             |
+| -------------- | ---------------- | ------------------------------------------------------- |
+| `+`            | String           | An unicode string                                       |
+| `?`            | Binary           | An arbitrary sequence of bytes                          |
+| `!`            | Status message   | A status message. Can be an 8-bit integer or a string   |
+| `.` (reserved) | Integer (32-bit) | An integer in the range [0, 4,294,967,295]              |
+| `:`            | Integer (64-bit) | An integer in the range [0, 18,446,744,073,709,551,615] |
+| `%`            | Float (32-bit)   | A 32-bit floating point number                          |
+| `/` (reserved) | Double (64-bit)  | A 64-bit floating point number                          |
+| `$` (reserved) | JSON             | A JSON document                                         |
+
+We'll now take a look at how the data types currently in use (not reserved) are structured and how your clients can deserialize responses
+containing such types.
+
+### String
+
+```shell
++           # The type symbol
+<l>\n       # The length terminated by an LF
+<element>   # The element itself
+```
+
+**Examples**
+
+Example for a string "sayan":
 
 ```
-<tsymbol><number of bytes>\n
-<element>
++5\n
+sayan
 ```
 
-### Example
+### Binary
 
-For an unicode string 'sayan', the layout of the unicode string type (`+`) will look like:
-
-```sh
-+5\n    # 'sayan' is an unicode string, so '+' and has 5 bytes so '5'
-sayan\n # the element 'sayan' itself
+```shell
+?           # the type symbol
+<l>\n       # length terminated by an LF
+<element>   # the element itself
 ```
 
-### Table
+**Examples**
 
-| Type symbol (tsymbol) | Type            | Additional notes                                         |
-| --------------------- | --------------- | -------------------------------------------------------- |
-| `+`                   | String          | a string                                                 |
-| `!`                   | Response Code   | a response code                                          |
-| `$` (reserved)        | JSON            | a `JSON` value                                           |
-| `.` (reserved)        | smallint        | An integer in the range: [0, 255]                        |
-| `-` (reserved)        | smallint signed | An integer in the range: [-128, 127]                     |
-| `:`                   | int             | An integer in the range: [0, 4,294,967,295]              |
-| `;` (reserved)        | int signed      | An integer in the range: [-2,147,483,647, 2,147,483,647] |
-| `%`                   | float           | A 32-bit floating point value                            |
-| `?`                   | binary string   | the next line contains binary data (often called a blob) |
+Example for a random byte sequence: `[0x41, 0x42, 0x43, 0x44, 0x45]`:
 
-Do keep the matching for this symbol _non-exhaustive_ since we might add more types in future revisions of the protocol.
+```
+?5\n
+ABCDE
+```
+
+### Status message
+
+A status message is either an 8-bit integer or a string. When the response is an integer, it is a response
+code (or respcode). If it is a string, then it is called a respstring. For languages that support
+enumerations, this can be lucidly represented.
+
+```shell
+!           # The type symbol
+<message>\n # The message terminated by an LF
+```
+
+**Examples**
+
+An example of respcode 0 (okay):
+
+```
+!0\n
+```
+
+An example respstring (snap-busy):
+
+```
+!snapbusy\n
+```
+
+:::tip
+You can find a full list of respcodes and respstrings [in this document](response-codes)
+:::
+
+### Integer (64-bit)
+
+```shell
+:           # the type symbol
+<integer>\n # the integer itself terminated by an LF
+```
+
+**Examples**
+
+For an integer `2003`:
+
+```
+:2003\n
+```
+
+### Float (32-bit)
+
+```shell
+%           # the type symbol
+<float>\n   # the float terminated by an LF
+```
+
+**Examples**
+
+For a float `3.141592654`:
+
+```
+%3.141592654\n
+```
+
+For a float `100.00` (see below). Note the truncation of the pointless decimal point; this is done to save bandwidth.
+
+```
+%100\n
+```
 
 ## Compound types
 
-Compound types are derived types -- they are based on simple types, but often with
-some additional properties (and serialization/deserialization differences).
+Compound types are better called collections. Simply put, they are collections of simple types. The below table outlines the compound types
+supported by Skyhash followed by descriptions of the structures of each
+(exclusive of reserved types).
 
-### Table
-
-| Type symbol (tsymbol) | Type                 | Additional notes                                              | Protocol |
-| --------------------- | -------------------- | ------------------------------------------------------------- | -------- |
-| &                     | Array                | A recursive array                                             | 1.0      |
-| \_                    | Flat array           | A non-recursive array                                         | 1.0      |
-| @                     | Typed array          | An array of a specific type, with nullable elements           | 1.1      |
-| ~                     | Any array            | An array with a single type but no information about the type | 1.1      |
-| ^                     | Typed non-null array | A non-recursive array with non-null elements                  | 1.1      |
-
-### Array
-
-See the full discussion on arrays [here](skyhash#arrays-).
-
-### Flat array
-
-A flat array is like an array, but with the exception that it is non-recursive. This
-means that a flat array can contain all types except other compound types (hence the
-name 'flat').
-
-So if you represent an array in a programming language like:
-
-```js
-["hello", 12345, "world"];
-```
-
-then it will be serialized by Skyhash into:
-
-```
-_3\n    # 3 elements
-+5\n    # 'hello' is an unicode string, so '+' and has 5 bytes
-hello\n # the element 'hello' itself
-:5\n    # 12345 has 5 bytes and is an unsigned int
-12345\n # the element 12345 itself
-+5\n    # 'world' is an unicode string, so '+' and has 5 bytes
-```
-
-:::note
-A flat array is currently a response specific data type (only sent by the server and never by the client)
-:::
+| Type symbol    | Type                 | Description                                                               |
+| -------------- | -------------------- | ------------------------------------------------------------------------- |
+| `&` (reserved) | Multi-typed array    | An array comprised of multiple-types, including itself (nested arrays)    |
+| `_` (reserved) | Flat array           | An array made up of multiple types, excluding itself (a non-nested array) |
+| `@`            | Typed array          | An array of a specific type, with nullable elements                       |
+| `^`            | Typed non-null array | An array of a specific type, without nullable elements                    |
 
 ### Typed array
 
-A typed array is like a flat array, but with the exception that it can only hold
-two types: either a [simple type](#simple-types) or a `NULL`. Since this array just has a specific type in its declaration, unlike flat arrays, `tsymbol`s are not required.
+The general structure of a typed array looks like:
 
-You can think of it to be like:
-
-- there is either no element (integer value of `0`; also called `NULL`)
-- or there is an element of the declared type
-
-Say a programming language represents an array like:
-
-```cpp
-["omg", NULL, "happened"]
+```shell
+@       # the type symbol for typed arrays
+<t>     # the type symbol for the elements
+<l>\n   # the length of the array
+<data>  # data
 ```
 
-then it will be serialized by Skyhash into:
+Whenever an element is null, instead of including `<length>\n<payload>`, the server simply returns
+ASCII Code `0` or NULL: `\0`. For clients, you need to simply branch on whether the first byte of is
+NULL or not; if it is, attempt to parse the next element (if any); if it isn't attempt to parse the
+element into the appropriate type.
 
-```
-@+3\n
-3\n
-omg\n
-\0\n
-8\n
-happened\n
-```
+**Examples**:
 
-Line-by-line explanation:
+1. A typed array with two strings and a NULL:
+   ```js
+   ["sayan", "goes", NULL];
+   ```
+   will be represented as:
+   ```shell
+   @+3\n    # this typed array has elements of the string type
+   5\n      # the first element has 5 bytes
+   sayan    # the first element
+   4\n      # the second element has 4 bytes
+   goes     # the second element
+   \0       # the third element is NULL
+   ```
+2. A typed array which is supposed to have strings, but has all null elements:
+   ```js
+   [NULL, NULL, NULL];
+   ```
+   will be represented as:
+   ```shell
+   @+3\n # this typed array has 3 string elements
+   \0    # the first element is NULL
+   \0    # the second element is also NULL
+   \0    # the third element is also NULL
+   ```
+3. A typed array full of respstrings:
+   ```shell
+   @!5\n # this typed array has 5 status message elements
+   0\n   # the first element has respcode 0
+   1\n   # the second element has respcode 1
+   2\n   # the third element has respcode 2
+   3\n   # the fourth element has respcode 3
+   4\n   # the fifth element has respcode 4
+   ```
+4. A typed array full of integers (with two being NULL):
 
-- `@+3\n` because it is a typed array, so `@`, the elements are unicode strings, so `+`
-  and there are three elements, so `3`
-- `3\n` because 'omg' has 3 bytes
-- `omg\n`, the element itself
-- `\0\n`, `NULL` because there was no element
-  > Here `\0` corresponds to the [null terminator](https://en.wikipedia.org/wiki/Null_character) (integer value of `0`)
-- `8\n` because 'happened' has 8 bytes
-- `happened\n`, the element itself
-
-:::note
-A typed array is currently a response specific data type (only sent by the server and never by the client). The `NULL`s correspond to the cases when the server can't find the requested item.
-:::
-
-### Any array
-
-An `AnyArray` is like a typed array &mdash; but without any explicit information about the type that is sent. Currently,
-**all the element types have to be the same**, but however, no information about the type has to be sent. It is upto
-the server to convert them to the correct types. This makes running actions extremely simple as the clients don't have
-to specify the type. The server will convert it into the appropriate type for that action. No matter how flexible this
-may sound -- `AnyArray`s are extremely performant. Also, **no element in an `AnyArray` can be null**.
-
-If you have a programming language that represents a **singly-typed** array like:
-
-```rust
-["sayan", "is", "hiking"]
-```
-
-then Skyhash will serialize it into:
-
-```
-~3\n
-5\n
-sayan\n
-2\n
-is\n
-6\n
-hiking\n
-```
-
-Line-by-line explanation:
-
-1. `~3\n` because this is an `AnyArray` with 3 elements
-2. `5\n` because 'sayan' has 5 bytes
-3. `sayan\n`, the element 'sayan' itself
-4. `2\n` because 'is' has 2 bytes
-5. `is\n` the element 'is' itself
-6. `6\n` because 'hiking' has 6 bytes
-7. `hiking\n` the element 'hiking' itself
-
-:::note
-An `AnyArray` is currently a query specific data type (only sent by the client and never by the server)
-:::
+   ```shell
+   @:5\n    # this array has 5 integer elements
+   12345\n  # the first integer is 12345
+   23456\n  # the second integer is 23456
+   34567\n  # the third integer is 34567
+   \0       # the fourth integer is NULL
+   \0       # the fifth integer is also NULL
+   ```
 
 ### Typed non-null array
 
-A typed non-null array is just like a typed array, except for one thing &mdash; its elements can never be null. Say you
-have an array of three strings like this:
-
-```js
-["super", "wind"];
-```
-
-Then it will be represented like this:
+The general structure of a typed non-null array looks like:
 
 ```shell
-^+2\n
-5\n
-super\n
-4\n
-wind
+^           # the type symbol for a typed non-null array
+<tsymbol>   # the type symbol for the elements
+<l>\n       # the length of the array
 ```
 
-Line-by-line explanation:
+The structure of this array type is exactly the same as that of a typed array with one exception: it never contains
+null elements.
 
-1. `^+2\n` because this a typed non-null array, with two string elements
-2. `5\n` because the first element is "super" and has 5 chars
-3. `super\n` the element itself
-4. `4\n` the second element is "wind" and has 4 chars
-5. `wind\n` the element itself
+**Examples**
+
+1. A non-null array with four strings:
+
+   ```js
+   ["this", "can't", "be", "null"];
+   ```
+
+   will be represented as:
+
+   ```
+   ^+4\n
+   4\n
+   this
+   5\n
+   can't
+   2\n
+   be
+   4\n
+   null
+   ```
+
+2. A typed non-null array with five integers:
+   ```js
+   [12345, 23456, 34567, 45678, 56789];
+   ```
+   would be represented as:
+   ```shell
+   @:5\n
+   12345\n
+   23456\n
+   34567\n
+   45678\n
+   56789\n
+   ```

@@ -1,277 +1,209 @@
 ---
 id: skyhash
-title: Skyhash Protocol 1.0
+title: Skyhash 2.0
 ---
 
 :::note About this document
-Copyright (c) 2021 Sayan Nandan &lt;nandansayan@outlook.com&gt;  
-**In effect since:** v0.6.0  
-**Date:** 11<sup>th</sup> May, 2021
+Copyright (c) 2022 Sayan Nandan &lt;nandansayan@outlook.com&lt;  
+**In effect since:** 0.8.0  
+**Date:** 15<sup>th</sup> April, 2022
 :::
 
-## Introduction
-
-Skyhash or the Skytable Serialization Protocol (SSP) is a serialization protocol built on top of TCP that is
-used by Skytable for client/server communication. All clients willing to communicate with Skytable need to implement this protocol.
+Skyhash 2.0 is a protocol built on top of TCP that is used by Skytable for client-server communication. All clients willing to communicate with Skytable must implement this specification. Skyhash 2.0 supersedes the
+now deprecated [Skyhash 1.0 protocol](deprecated/skyhash-1.0).
 
 ## Concepts
 
-Skyhash uses a query/response action just like HTTP's request/response action &mdash;
-clients send queries while the server sends responses. All the bytes sent by a client to a server is called a _Query Packet_ while all the bytes sent by the server in response to this is called the _Response packet_.
+Skyhash uses a query/response action just like HTTP's request/response action &mdash; clients send queries and the server returns responses. The bytes sent by a client to the server is called a _query packet_ while the bytes returned by the server to the client is called a _response packet_.
 
-There are different kinds of queries:
-- **Simple queries**: These queries just have one action in the query packet, and hence, have just one response in the response packet
-- **Pipeline queries**: These queries carry multiple actions in the query pakcet and hence their response packet also contains multiple responses. You can read more about querying [here](../actions-overview).
+As of Skyhash 2.0, there are two kinds of queries;
 
-Irrespective of the query type, all these packets are made of a metaframe and a dataframe.
+- **Simple queries:** In these kinds of queries, the client sends a single query and the server responds
+  with a single response
+- **Pipelined queries:** In these kinds of queries, the client sends multiple queries in a single query and the server returns multiple responses in the same responses, in the order the queries were sent
 
+## Simple queries
 
-### The Metaframe
+This section explains the structure of simple queries and responses
 
-The metaframe is the first part of the packet separated from the rest of the packet by a line feed (`\n`) character. It looks like
-this:
+### Queries
 
-```
-*<c>\n
-```
+A simple query is used to run a single query. A simple query is made up of two parts:
 
-where `<c>` tells us the number of actions this packet corresponds to. For simple queries which run one action, this will be one while for batch queries it can have any value in the range (1, +∞).
+1. The Metaframe
+2. The Dataframe
 
-### The Dataframe
+#### The Metaframe
 
-The dataframe is made up of elements. Each element corresponds to
-a single action and hence corresponds to a single query. Simple queries will run one action and hence will have one element while batch queries will run a number of actions and hence will have a number of elements.
-
-Every element is of a certain [data type](#common-data-types) and this type determines how the element is serialized with Skyhash. Responses receive some extra data types which are
-highlighted in [response specific data types](#response-specific-data-types).
-
-## Common Data Types
-
-Usually serialized data types look like:
+The metaframe of a simple query has the following structure:
 
 ```
-<tsymbol><len>\n
------DATA-------
-```
-
-where the `<tsymbol>` corresponds to the Type Symbol and the `<len>` corresponds to the length of
-this element. Below is a list of data types and their `<tsymbol>`s.
-
-### Strings (+/?)
-
-String elements are serialized like:
-
-```
-+<c>\n
-<mystring>\n
-```
-
-Where `<c>` is the number of bytes in the string '`<mystring>`'.
-So a string 'Sayan' will be serialized into:
-
-```
-+5\n
-Sayan\n
-```
-
-There is also a binary string (binstr) type with a tsymbol `?`. For this kind of string, no unicode validation
-is carried out.
-
-### Unsigned integers (:)
-
-64-bit usigned integers are serialized into:
-
-```
-:<c>\n
-<myint>\n
-```
-
-Where `<c>` is the number of digits in the integer and `<myint>` is the integer itself.
-
-### Arrays (&)
-
-Arrays are recursive data types, that is an array can contain another array which in turn can contain another array and so on. And array is essentially a collection of data types, including itself. Also, arrays can be multi-type.
-
-Skyhash serializes arrays into:
-
-```
-&<c>\n
-<elements>
-```
-
-Where `<c>` is the number of elements in this array and `<elements>` are the elements present in the array. Take a look at the following examples:
-
-1. An array containing two strings:
-
-```
-&2\n
-+5\n
-Hello
-+5\n
-World\n
-```
-
-This can be represented as:
-
-```js
-Array([String("Hello"), String("World")]);
-```
-
-2. An array containing a string an two integers:
-
-```
-&3\n
-+5\n
-Hello
-:1\n
-0\n
-:1\n
-1\n
-```
-
-Which can be represented as:
-
-```js
-Array([String("Hello"), UnsignedInt64(0), UnsignedInt64(1)]);
-```
-
-3. An array containing two arrays:
-   Pipe symbols (|) and underscores (\_) were added for explaining the logical parts of the array:
-
-```
-          ___________________________
-&2\n     |_____________|             |
-&2\n     |             |             |
-+5\n     |             |             |
-Hello\n  | Array 1     |             |
-+5\n     |             |             |
-World\n  |_____________|             |
-&3\n     |             | Nested      |
-+5\n     |             | Array       |
-Hello\n  |             |             |
-+5\n     | Array 2     |             |
-World\n  |             |             |
-+5\n     |             |             |
-Again\n  |_____________|_____________|
-```
-
-This can be represented as:
-
-```js
-Array([
-  Array([String("Hello"), String("World")]),
-  Array([String("Hello"), String("World"), String("Again")]),
-]);
-```
-
-This can be nested even more!
-
-### Important notes
-
-These data types and `<tsymbols>` are non-exhaustive. Whenever you are attempting to deserialize a packet, always throw some kind of `UnimplementedError` to indicate that your client cannot yet deserialize this specific type.
-
-:::info Useful read
-**We strongly recommend** you to read the full list of types and how they are serialized [in this document](data-types).
-:::
-
-## Response Specific Data Types
-
-Responses will return some additional data types. This is a _non-exhaustive_ list of such types.
-
-### Response Codes (!)
-
-Response codes are often returned by the server when no
-'producable' data can be returned, i.e something like FLUSHDB can only possibly return 'Okay' or an error. This distinction
-is made to reduce errors while matching responses. Skyhash will serialize a response code like:
-
-```
-!<c>\n
-<code>\n
-```
-
-Where `<c>` is the number of characters in the code and `<code>` is the code itself. So Code `0` that corresponds to `OKAY` will be serialized into:
-
-```
-!1\n
-0\n
-```
-
-You find a full list of response codes [in this table](response-codes).
-
-## A full example (a simple query)
-
-Let's take a look at what happens when we send `SET x ex`. First, the client needs to serialize
-it into a Skyhash compatible type. Since this is a simple query, we just have one single
-element in the query array. Most of Skytable's common actions use arrays, and SET uses an [`AnyArray`](data-types#any-array). So in `SET x ex`:
-
-- This is a simple query
-- We need to send an [`AnyArray`](data-types#any-array)
-- It has three elements: `['SET', 'x', 'ex']`
-
-```shell
-*1\n  # '*1' because this is a simple query
-~3\n  # 3 elements
-3\n   # 'SET' has 3 chars
-SET\n # 'SET' itself
-1\n   # 'x' has 1 char
-x\n   # 'x' itself
-2\n   # 'ex' has 2 chars
-ex\n  # 'ex' itself
-```
-
-Way to go! We just did it!
-
-Now the server would return a query array with one element: a response code. This is what
-it returns:
-
-```sh
-*1\n
-!1\n
-0\n
+*<count>\n
 ```
 
 Here:
 
-- `*1` because this response corresponds to a simple query
-- `!1` because the returned data type is a response code with tsymbol `!` and a length of `1`
-  char
-- `0` because this is the response code that corresponds to _Okay_
+- `*` tells the server that this is a simple query
+- `<count>` specifies the number of elements in the simple query
+- `\n` terminates the metaframe
 
-## A full example (a pipelined query)
+#### The Dataframe
 
-Let's take a look at when we send two queries `HEYA once` and `HEYA twice` to the server, as a pipelined query.
+The dataframe of a simple query has the following general structure:
 
-- This is a pipelined query
-- We need to send two [`AnyArray`](data-types#any-array)s, one for each query
-
-This is what the client has to send (`#`s are used to denote comments):
-
-```shell
-*2\n    # *2 because this a pipelined query with two queries
-# we begin our first query from here
-~2\n    # our first query has two elements: "HEYA" and "once"
-4\n     # "HEYA" has 4 characters
-HEYA\n  # the element itself
-4\n     # "once" has 4 characters
-once\n  # the element itself
-# we're done. the second query begins here
-~2\n    # our second query has two elements: "HEYA" and "twice"
-4\n     # "HEYA" has 4 characters
-HEYA\n  # the element itself
-5\n     # "twice" has 5 characters
-twice\n # the element itself
+```
+<l>\n
+<e>
+...
 ```
 
-The server then responds with (`#`s are used to denote comments):
+Here:
 
-```shell
-*2\n    # this response has two responses, for two queries
-# the first response
-+4\n    # the first element "once" has 4 chars
-once\n  # the element itself
-# the second response
-+5\n    # the second element "twice" has 5 chars
-twice\n # the element itself
+- `<l>` indicates the number of bytes in the element and is newline terminated (`\n`)
+- `<e>` is the element itself
+
+This is repeated for all the elements, something like:
+
+```
+<l1>\n
+<e1>
+<l2>\n
+<e2>
+...
 ```
 
-And there &mdash; you've learned Skyhash!
+#### Example: A complete simple query
+
+We need to send: ["SET", "x", "100"]
+
+```
+*    -> Simple query
+3\n  -> Query 1 has 3 elements
+3\n  -> E1 has 3 bytes
+SET  -> E1 itself
+1\n  -> E2 has 1 byte
+x    -> E2 itself
+3\n  -> E3 has 3 bytes
+100  -> E3 itself
+```
+
+### Responses
+
+Simple responses are returned as responses to simple queries. There is one thing about responses: unlike queries where the server doesn't bother with types, responses however **are strongly typed**. The returned data types have their structures, all of which you can see in [this document](data-types). Responses have the following general structure:
+
+```
+*
+<type><length>\n
+<data>
+```
+
+Here:
+
+- `*`: Tells the client that this is a response to a simple query. This comprises the entire response metaframe
+- `<type>` Is the type symbol (see [this document](data-types))
+- `<length>`: Number of bytes in the element. For collections, this specifies the length of the collection while lengths for individual elements follow. Some types might not have lengths but are newline terminated instead
+
+#### An example response
+
+The below response is returned when the servers responds with `Respcode 0` (Okay):
+
+```
+*   -> simple response
+!	-> the returned value is a respmessage
+0\n	-> The respmessage is 0, which is respcode 0 (Okay)
+```
+
+Here:
+
+- `*`: This is a response to a simple query
+- `!`: This is the type symbol for Response Messages. Response codes
+- `0`: This is the response code, newline terminated (`\n`)
+
+Here is another responses to something like `GET x` that returns `100` as a string:
+
+```
+*     -> simple response
++3\n  -> unicode string with 3 bytes
+100	  -> the element
+```
+
+:::tip
+Consider reading **[this document on data types](data-types)** to learn about the structure of each response data type.
+:::
+
+
+## Pipelined queries
+
+This section explains the structure of pipelined queries and responses.
+
+### Queries
+
+Pipelined queries are used to run multiple queries at once. Responses are returned in the order they are sent. A pipeline is also made up of two parts:
+
+1. Metaframe
+2. Dataframe
+
+#### The Metaframe
+
+The metaframe of a pipelined query has the following general structure:
+
+```
+$<count>\n
+```
+
+Here:
+
+- `$`: This tells the server that this is a pipelined query
+- `<count>`: The number of queries in this pipeline, newline terminated (`\n`)
+
+#### The Dataframe
+
+The dataframe of a pipelined query is simply a collection of simple query dataframes. It resembles the following structure:
+
+```
+<query 1 element count>\n
+<--- query 1 dataframe --->
+<query 2 element count>\n
+<--- query 2 dataframe --->
+...
+```
+
+### Example: A complete pipelined query
+
+Here, we are sending two queries:
+
+- **Query 1:** `SET x 100`
+- **Query 2:** `GET x`
+
+```
+$    -> Pipeline
+2\n  -> Pipeline has 2 queries
+
+3\n  -> Query 1 has 3 elements
+3\n  -> Q1E1 has 3 bytes
+SET  -> Q1E1 itself
+1\n  -> Q1E2 has 1 byte
+x    -> Q1E2 itself
+3\n  -> Q1E3 has 3 bytes
+100  -> Q1E3 itself
+
+2\n  -> Query 2 has 2 elements
+3\n  -> Q2E1 has 3 bytes
+GET  -> Q2E1 itself
+1\n  -> Q2E2 has 1 byte
+x    -> Q2E2 itself
+```
+
+### Responses
+
+Pipelined responses are responses returned in responses to a pipelined query. Just like [simple responses](#simple-responses), they are typed.
+
+Example response:
+
+```
+$	 -> Pipeline response
+2\n	 -> Two responses are returned
+!0\n -> First response is respcode 0
++3\n -> Second response is a string with 3 bytes
+100  -> The string itself ("100") here
+```
