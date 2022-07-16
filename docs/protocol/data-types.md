@@ -16,16 +16,16 @@ Simple types are like primitive types in programming languages, and hence are no
 This table presents a list of all the data types Skyhash supports (some are reserved) along with
 their corresponding type symbols and a brief description.
 
-| Type symbol    | Type             | Description                                             |
-| -------------- | ---------------- | ------------------------------------------------------- |
-| `+`            | String           | An unicode string                                       |
-| `?`            | Binary           | An arbitrary sequence of bytes                          |
-| `!`            | Status message   | A status message. Can be an 8-bit integer or a string   |
-| `.` (reserved) | Integer (32-bit) | An integer in the range [0, 4,294,967,295]              |
-| `:`            | Integer (64-bit) | An integer in the range [0, 18,446,744,073,709,551,615] |
-| `%`            | Float (32-bit)   | A 32-bit floating point number                          |
-| `/` (reserved) | Double (64-bit)  | A 64-bit floating point number                          |
-| `$` (reserved) | JSON             | A JSON document                                         |
+| Type symbol    | Type             | Description                                           |
+| -------------- | ---------------- | ----------------------------------------------------- |
+| `+`            | String           | An unicode string                                     |
+| `?`            | Binary           | An arbitrary sequence of bytes                        |
+| `!`            | Status message   | A status message. Can be an 8-bit integer or a string |
+| `.` (reserved) | Integer (32-bit) | 32-bit integer                                        |
+| `:`            | Integer (64-bit) | 64-bit integer                                        |
+| `%`            | Float (32-bit)   | 32-bit floating point number                          |
+| `/` (reserved) | Double (64-bit)  | 64-bit floating point number                          |
+| `$` (reserved) | JSON             | A JSON document                                       |
 
 We'll now take a look at how the data types currently in use (not reserved) are structured and how your clients can deserialize responses
 containing such types.

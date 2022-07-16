@@ -32,10 +32,10 @@ sayan\n # the element 'sayan' itself
 | `+`                   | String          | a string                                                 |
 | `!`                   | Response Code   | a response code                                          |
 | `$` (reserved)        | JSON            | a `JSON` value                                           |
-| `.` (reserved)        | smallint        | An integer in the range: [0, 255]                        |
-| `-` (reserved)        | smallint signed | An integer in the range: [-128, 127]                     |
-| `:`                   | int             | An integer in the range: [0, 4,294,967,295]              |
-| `;` (reserved)        | int signed      | An integer in the range: [-2,147,483,647, 2,147,483,647] |
+| `.` (reserved)        | smallint        | 8-bit unsigned integer                                   |
+| `-` (reserved)        | smallint signed | 8-bit signed integer                                     |
+| `:`                   | int             | 64-bit unsigned integer                                  |
+| `;` (reserved)        | int signed      | 64-bit signed integer                                    |
 | `%`                   | float           | A 32-bit floating point value                            |
 | `?`                   | binary string   | the next line contains binary data (often called a blob) |
 
