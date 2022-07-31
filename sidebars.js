@@ -69,6 +69,7 @@ module.exports = {
         "protocol/data-types",
         "protocol/response-codes",
         "protocol/errors",
+        "protocol/skyhash-changelog",
         {
           "type": "category",
           "label": "Deprecated",

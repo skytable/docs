@@ -9,8 +9,10 @@ Copyright (c) 2022 Sayan Nandan &lt;nandansayan@outlook.com&lt;
 **Date:** 15<sup>th</sup> April, 2022
 :::
 
-Skyhash 2.0 is a protocol built on top of TCP that is used by Skytable for client-server communication. All clients willing to communicate with Skytable must implement this specification. Skyhash 2.0 supersedes the
-now deprecated [Skyhash 1.0 protocol](deprecated/skyhash-1.0).
+Skyhash 2.0 is a protocol built on top of TCP that is used by Skytable for client-server communication.
+All clients willing to communicate with Skytable must implement this specification. Skyhash 2.0 supersedes
+the now deprecated [Skyhash 1.0 protocol](deprecated/skyhash-1.0). See [this document](skyhash-changelog) 
+for a complete list of changes.
 
 ## Concepts
 
@@ -130,7 +132,6 @@ Here is another responses to something like `GET x` that returns `100` as a stri
 :::tip
 Consider reading **[this document on data types](data-types)** to learn about the structure of each response data type.
 :::
-
 
 ## Pipelined queries
 
