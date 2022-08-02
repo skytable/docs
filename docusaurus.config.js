@@ -29,7 +29,7 @@ module.exports = {
           position: "right",
         },
         {
-          href: "https://github.com/skytable/docs",
+          href: "https://github.com/skytable/skytable",
           label: "GitHub",
           position: "right",
         },
