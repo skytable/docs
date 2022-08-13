@@ -1,35 +1,36 @@
 ---
-title: Supported Versions
-description: This page lists what versions are currently supported, provides information on security updates and lists versions that have reached EOL (End of Life)
-hide_table_of_contents: false
+id: versions
+title: All versions
 ---
 
-## Supported versions
+# All versions
 
-The following versions are currently supported and will receive security hotfixes and other updates
+A maintained version is one that actively receives security, performance and feature updates. Please see the
+[versioning policy](https://github.com/skytable/rfcs/blob/next/rfcs/rfc-1.md) to know which versions are maintained.
+As we follow a "ship early, ship often" release cycle, combined with Semver — a _specific version_ isn't
+maintained. Instead, the last major version as defined by the versioning policy is maintained.
 
-- v0.6.4: Download from [this link](https://github.com/skytable/skytable/releases/tag/v0.6.4)
+## Active versions
 
-## Unsupported versions (EOL)
+The following major versions are actively maintained:
 
-The following releases have reached end-of-life and will **not** receive any security updates or
-hotfixes:
+- Version 0.8 (currently under development)
+- Version 0.7
 
-- v0.6.3: View [docs](/0.6.3)
-- v0.6.2: View [docs](/0.6.2)
-- v0.6.1: View [docs](/0.6.2) [same docs as 0.6.0]
-- v0.6.0: View [docs](/0.6.0)
-- v0.5.2: View [docs](/0.5.2)
-- v0.5.1: View [docs](/0.5.1)
-- v0.5.0: View [docs](/0.5.0)
-- v0.4.5: View [docs](/0.4.5)
-- v0.4.4: View [docs](/0.4.4)
-- v0.4.3: View [docs](/0.4.3)
-- v0.4.2: View [docs](/0.4.2)
-- v0.4.1: View [docs](/0.4.1)
-- v0.4.0: View [docs](/0.4.0)
-- v0.3.2: View [docs](/0.3.2)
-- v0.3.1: View [docs](/0.3.1)
-- v0.3.0: View [docs](/0.3.0)
-- v0.2.0: View [docs](/0.2.0)
-- v0.1.0: View [docs](/0.1.0)
+:::tip
+Looking for information on compatibility and data migration? Please check the [deployment notes section](deployment-notes).
+:::
+
+## Unmaintained versions
+
+The following major versions have reached end-of-life (EOL) and will not receive any security, performance or feature
+updates:
+
+- Version 0.6: Including 0.6.0, 0.6.1, 0.6.2, 0.6.3 and 0.6.4
+- Version 0.5: Including 0.5.0, 0.5.1 and 0.5.2
+- Version 0.4: Including 0.4.0, 0.4.1, 0.4.2, 0.4.3 and 0.4.5
+- Version 0.3: Including 0.3.0, 0.3.1 and 0.3.2
+- Version 0.2
+- Version 0.1
+
+You can find archived docs by version that have been kept for reference [in this repository](https://github.com/skytable/docs/tree/next/versioned_docs).
