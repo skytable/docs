@@ -61,7 +61,6 @@ to the right if required
 
 - [String](../protocol/skyhash.md#strings-)
 - [Binstr](../protocol/skyhash.md#strings-)
-- [Rcode 0](../protocol/response-codes.md)
 - [Rcode 1](../protocol/response-codes.md)
 - [Rcode 5](../protocol/response-codes.md)
 - [bad-list-index](../protocol/errors.md#table-of-errors)

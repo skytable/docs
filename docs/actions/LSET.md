@@ -15,7 +15,7 @@ title: LSET
 **Return type**:
 
 - [Rcode 0](../protocol/response-codes.md)
-- [Rcode 1](../protocol/response-codes.md)
+- [Rcode 2](../protocol/response-codes.md)
 - [Rcode 5](../protocol/response-codes.md)
 
 **Syntax**:
