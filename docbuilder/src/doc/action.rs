@@ -117,7 +117,7 @@ impl Action {
         let syntax_rendered = util::render_list(syntax);
         let returns_rendered = util::render_link_list(returns);
         let accept_rendered = util::render_link_list(accept);
-        let body = format!(
+        format!(
             "\
 :::note About
 **Time complexity**: {complexity}  
@@ -140,8 +140,6 @@ impl Action {
             syntax = syntax_rendered,
             description = description
         )
-        .to_string();
-        body
     }
     fn render_top_block(&self) -> String {
         let s = format!(
