@@ -25,10 +25,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
       - name: Build docs
-        run: |
-          chmod +x doc.sh
-          ./doc.sh
-          yarn build
+        run: yarn build
       - name: Deploy docs
         env:
           BOT_USER: ${{ secrets.BOT_INIT_USER }}
