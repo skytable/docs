@@ -10,11 +10,20 @@ module.exports = {
   organizationName: "skytable",
   projectName: "docs",
   themeConfig: {
+    sidebar: {
+      hideable: true,
+    },
     tableOfContents: {
       maxHeadingLevel: 4,
     },
     prism: {
-      additionalLanguages: ["toml", "rust"],
+      additionalLanguages: [
+        'bash',
+        'json',
+        'rust',
+        'toml',
+        'sql',
+      ],
     },
     navbar: {
       title: "Skytable Documentation",
@@ -118,8 +127,5 @@ module.exports = {
         },
       },
     ],
-  ],
-  plugins: [
-    // 'docusaurus-plugin-auto-sidebars'
   ],
 };
