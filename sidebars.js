@@ -40,6 +40,8 @@ module.exports = {
         the different modes of configuration (CLI, ENV, configuration files), settings, access control, managing the root account and global management.',
       }
     },
+    "resources",
+    "libraries",
     "migration",
     "benchmarking",
     "deployment",

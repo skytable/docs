@@ -1,5 +1,5 @@
 module.exports = {
-  title: "Skytable Documentation",
+  title: "Skytable",
   tagline:
     "This is the place where you'll learn to use, install, configure and master Skytable",
   url: "https://docs.skytable.io",
@@ -26,7 +26,7 @@ module.exports = {
       ],
     },
     navbar: {
-      title: "Skytable Documentation",
+      title: "Skytable // Docs",
       logo: {
         alt: "Skytable Logo",
         src: "img/logo.png",
@@ -119,6 +119,13 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '0.8',
+              path: '/',
+            }
+          },
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
         },

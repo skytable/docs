@@ -18,7 +18,7 @@ The following major versions are actively maintained:
 - Version 0.7
 
 :::tip
-Looking for information on compatibility and data migration? Please check the [deployment notes section](deployment-notes).
+Looking for information on compatibility and data migration? Please check the [deployment notes section](deployment).
 :::
 
 ## Unmaintained versions

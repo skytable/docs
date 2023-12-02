@@ -28,5 +28,5 @@ snapshotting to be enabled on the server side**, before it can create snapshots.
 If you want to create snapshots **without** snapshots being enabled on the server-side,
 pass a second argument `<SNAPNAME>` to specify a snapshot name and a snapshot will
 be create in a folder called `rsnap` under your data directory. For more
-information on snapshots, read [this document](/snapshots)
+information on snapshots, read [this document](../snapshots)
 
