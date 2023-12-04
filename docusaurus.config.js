@@ -1,3 +1,5 @@
+import {themes as prismThemes} from 'prism-react-renderer';
+
 module.exports = {
   title: "Skytable",
   tagline:
@@ -24,6 +26,7 @@ module.exports = {
         'toml',
         'sql',
       ],
+      theme: prismThemes.palenight
     },
     navbar: {
       title: "Skytable // Docs",
@@ -127,7 +130,7 @@ module.exports = {
             }
           },
           routeBasePath: "/",
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: require.resolve("./sidebars.ts"),
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

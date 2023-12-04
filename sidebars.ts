@@ -3,15 +3,15 @@ module.exports = {
     "index",
     "installation",
     "using-the-repl",
-    "system-overview",
+    "architecture",
     {
       type: 'category',
       label: 'BlueQL',
       items: [
-        "blueql",
-        "blueql+ddl",
-        "blueql+dml",
-        "blueql+dcl",
+        "blueql/overview",
+        "blueql/ddl",
+        "blueql/dml",
+        "blueql/dcl",
       ],
       collapsible: false,
       link: {
@@ -27,10 +27,10 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Mangement',
+      label: 'System Management',
       items: [
-        "system+configuration",
-        "system+administration",
+        "system/configuration",
+        "system/administration",
       ],
       collapsible: false,
       link: {
@@ -40,9 +40,25 @@ module.exports = {
         the different modes of configuration (CLI, ENV, configuration files), settings, access control, managing the root account and global management.',
       }
     },
-    "resources",
     "libraries",
-    "migration",
+    {
+      type: 'category',
+      label: 'Resources',
+      items: [
+        "resources/overview",
+        "resources/migration",
+      ],
+      collapsed: false,
+    },
+    {
+      type: 'category',
+      label: 'Protocol',
+      items: [
+        "protocol/overview",
+        "protocol/networking",
+        "protocol/errors"
+      ],
+    },
     "benchmarking",
     "deployment",
     "limits",
