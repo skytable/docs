@@ -1,5 +1,7 @@
+import {themes as prismThemes} from 'prism-react-renderer';
+
 module.exports = {
-  title: "Skytable Documentation",
+  title: "Skytable",
   tagline:
     "This is the place where you'll learn to use, install, configure and master Skytable",
   url: "https://docs.skytable.io",
@@ -10,14 +12,24 @@ module.exports = {
   organizationName: "skytable",
   projectName: "docs",
   themeConfig: {
+    sidebar: {
+      hideable: true,
+    },
     tableOfContents: {
       maxHeadingLevel: 4,
     },
     prism: {
-      additionalLanguages: ["toml", "rust"],
+      additionalLanguages: [
+        'bash',
+        'json',
+        'rust',
+        'toml',
+        'sql',
+      ],
+      theme: prismThemes.palenight
     },
     navbar: {
-      title: "Skytable Documentation",
+      title: "Skytable // Docs",
       logo: {
         alt: "Skytable Logo",
         src: "img/logo.png",
@@ -110,16 +122,20 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '0.8',
+              path: '/',
+            }
+          },
           routeBasePath: "/",
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: require.resolve("./sidebars.ts"),
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
       },
     ],
-  ],
-  plugins: [
-    // 'docusaurus-plugin-auto-sidebars'
   ],
 };
