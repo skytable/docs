@@ -1,4 +1,4 @@
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 module.exports = {
   title: "Skytable",
@@ -138,4 +138,23 @@ module.exports = {
       },
     ],
   ],
+  plugins: [
+    ['@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/clients',
+            to: '/libraries',
+          },
+          {
+            from: '/getting-started',
+            to: '/installation',
+          },
+          {
+            from: '/protocol/skyhash',
+            to: '/protocol/overview'
+          }
+        ]
+      }]
+  ]
 };
