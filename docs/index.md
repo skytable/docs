@@ -14,8 +14,8 @@ Skytable has it's own query language, BlueQL<sup>TM</sup> which provides everyth
 We recommend you to follow the guide in this sequence (but feel free to skip any sections):
     - [**Installation**](installation) and [**using the CLI**](using-the-repl): Get everything installed on your local system
     - [**System overview**](architecture): A brief introduction to Skytable, including an overview of the data model, query systems and storage
-    - **BlueQL**:
-      - [**Introduction**](blueql/overview): Serves as a basic introduction to the query language and an (currently incomplete) informal specification with information on keywords, syntax and stuctures.
+    - [**BlueQL**](blueql):
+      - [**Overview**](blueql/overview): Serves as a basic introduction to the query language and an (currently incomplete) informal specification with information on keywords, syntax and stuctures.
       - [**DDL**](blueql/ddl): Data definition with BlueQL
       - [**DML**](blueql/dml): Data manipulation with BlueQL
       - [**DCL**](blueql/dcl): Data control with BlueQL
