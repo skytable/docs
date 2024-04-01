@@ -21,17 +21,16 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'System Management',
+      label: 'System Administration',
       items: [
         "system/configuration",
-        "system/administration",
+        "system/user-management",
+        "system/global-management",
+        "system/recovery",
       ],
-      collapsed: false,
       link: {
-        type: 'generated-index',
-        title: 'System Management',
-        description: 'Learn how to configure Skytable for your needs and perform administrative tasks. We take a look at \
-        the different modes of configuration (CLI, ENV, configuration files), settings, access control, managing the root account and global management.',
+        type: 'doc',
+        id: 'system/index'
       }
     },
     "libraries",
@@ -39,16 +38,16 @@ module.exports = {
       type: 'category',
       label: 'Resources',
       items: [
-        "resources/overview",
+        "resources/useful-links",
         "resources/migration",
       ],
-      collapsed: false,
+      collapsed: true,
     },
     {
       type: 'category',
       label: 'Protocol',
       items: [
-        "protocol/overview",
+        "protocol/index",
         "protocol/networking",
         "protocol/errors"
       ],

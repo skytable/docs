@@ -19,10 +19,14 @@ We recommend you to follow the guide in this sequence (but feel free to skip any
       - [**DDL**](blueql/ddl): Data definition with BlueQL
       - [**DML**](blueql/dml): Data manipulation with BlueQL
       - [**DCL**](blueql/dcl): Data control with BlueQL
-    - [**Configuration**](system/configuration): Information to help you configure Skytable with custom settings such as custom ports, hosts, TLS, and etc.
-    - [**Administration**](system/administration): Information on access control, user and other administration features
-    - [**Resources**](resources/overview): Helpful resources
-    - [**A guide to the new Skytable**](resources/migration): For old our returning Skytable users who are coming from older versions
+    - [**System administration**](system):
+      - [**Configuration**](system/configuration): Information to help you configure Skytable with custom settings such as custom ports, hosts, TLS, and etc.
+      - [**User management**](system/user-management): Information on access control, user and other administration features
+      - [**Global management**](system/global-management): Global settings management
+      - [**Data recovery**](system/recovery): Database recovery
+    - **Resources**:
+      - [**Useful links**](resources/useful-links): Links to helpful resources
+      - [**Migration**](resources/migration): For old our returning Skytable users who are coming from older versions
     - [**Benchmarking**](benchmarking): A guide for load testing Skytable
     - [**Deployment**](deployment): An useful guide for deploying
     - [**Limits**](limits): An useful guide on system limits
@@ -33,7 +37,7 @@ Looking to integrate Skytable in your application? Great! [Find a driver for you
 
 ## Getting help
 
-We have a collection of resources [on this page](resources/overview). If you need in help in real-time, we recommend that you join our [Discord Community](https://discord.gg/QptWFdx) where you can get help directly from the developers and our community members. 
+We have a collection of resources [on this page](resources/useful-links). If you need in help in real-time, we recommend that you join our [Discord Community](https://discord.gg/QptWFdx) where you can get help directly from the developers and our community members. 
 Most queries are usually answered there in a few hours!
 
 ## Contributing

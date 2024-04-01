@@ -152,7 +152,11 @@ module.exports = {
           },
           {
             from: '/protocol/skyhash',
-            to: '/protocol/overview'
+            to: '/protocol'
+          },
+          {
+            from: '/protocol/overview',
+            to: '/protocol'
           }
         ]
       }]

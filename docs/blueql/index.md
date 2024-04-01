@@ -1,5 +1,5 @@
 ---
-title: BlueQL Guide
+title: BlueQL
 ---
 
 import DocCardList from '@theme/DocCardList';
@@ -11,6 +11,8 @@ BlueQL<sup>TM</sup> is Skytable's own query language that is based on SQL, with 
 If you've used SQL before you should find BlueQL very easy to learn. There are some important differences to be aware of however, and you may wish to [review them here](/architecture#fundamental-differences-from-relational-systems) and some [more information here](overview#differences-from-sql).
 
 ## Guides
+
+Here's an overview of the different BlueQL guides in this section:
 
 - **[Overview](overview)**: Understand BlueQL's design and language items such as parameters, literals, expressions and so forth
 - **[DDL](ddl)**: Understand data definition with BlueQL in Skytable

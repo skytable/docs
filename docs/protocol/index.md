@@ -1,6 +1,5 @@
 ---
-id: overview
-title: Skyhash 2 — Protocol Overview
+title: 'Skyhash 2: Overview'
 ---
 
 Skyhash is the protocol used for communication between Skytable clients (client drivers or libraries) and the Skytable server, written on top of TCP. If you're building an application that needs to *talk to* Skytable, you'll usually choose a [client library](/libraries) that works with your programming language and then start building your application.
