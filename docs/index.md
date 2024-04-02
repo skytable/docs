@@ -5,13 +5,11 @@ sidebar_label: Home
 slug: /
 ---
 
-Welcome to Skytable's docs! Skytable is a free and open-source modern NoSQL database that builds on the foundations of performance, scalability, powerful querying and a robust type system. Skytable can be deployed as just a single binary file with no special system dependencies and only relies on the operating system's `libc` implementation.
+Welcome to Skytable's documentation! Skytable is a free and open-source modern NoSQL database that builds on the foundations of performance, scalability, powerful querying and a robust type system. Skytable can be deployed on multiple platforms as just a single binary file with no special system dependencies. You can either follow the guide below to learn Skytable in depth or jump to any sections that you need for reference.
 
 ## Guide
 
-Skytable has it's own query language, BlueQL<sup>TM</sup> which provides everything across DDL, DCL and DML queries and exists to be a very powerful and secure alternative to SQL. If you're coming from SQL, you should feel just at home — BlueQL has a few small but important operating differences from SQL but has very similar syntax.
-
-We recommend you to follow the guide in this sequence (but feel free to skip any sections):
+To develop using Skytable and maintain your deployment you will want to learn about Skytable's architecture, data organization (such as what `model`s and `space`s are), model definition, querying using BlueQL<sup>TM</sup> and system administration. We recommend you to follow the guides in the order given below (but feel free to skip any sections):
     - [**Installation**](installation) and [**using the CLI**](using-the-repl): Get everything installed on your local system
     - [**System overview**](architecture): A brief introduction to Skytable, including an overview of the data model, query systems and storage
     - [**BlueQL**](blueql):
