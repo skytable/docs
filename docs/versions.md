@@ -12,10 +12,7 @@ maintained. Instead, the last major version as defined by the versioning policy 
 
 ## Active versions
 
-The following major versions are actively maintained:
-
-- Version 0.8 (currently under development)
-- Version 0.7
+Major version `0.8` is being actively maintained.
 
 :::tip
 Looking for information on compatibility and data migration? Please check the [deployment notes section](deployment).
@@ -26,6 +23,7 @@ Looking for information on compatibility and data migration? Please check the [d
 The following major versions have reached end-of-life (EOL) and will not receive any security, performance or feature
 updates:
 
+- Version 0.7: Including 0.7.1, 0.7.2, 0.7.3, 0.7.4, 0.7.5, 0.7.6, 0.7.7
 - Version 0.6: Including 0.6.0, 0.6.1, 0.6.2, 0.6.3 and 0.6.4
 - Version 0.5: Including 0.5.0, 0.5.1 and 0.5.2
 - Version 0.4: Including 0.4.0, 0.4.1, 0.4.2, 0.4.3 and 0.4.5
