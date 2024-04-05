@@ -33,6 +33,10 @@ To develop using Skytable and maintain your deployment you will want to learn ab
 
 Looking to integrate Skytable in your application? Great! [Find a driver for your language/framework here](libraries).
 
+## Errors
+
+Hit an error? Check out the [error code index](protocol/errors). If you need further help please check the resources below.
+
 ## Getting help
 
 We have a collection of resources [on this page](resources/useful-links). If you need in help in real-time, we recommend that you join our [Discord Community](https://discord.gg/QptWFdx) where you can get help directly from the developers and our community members. 
