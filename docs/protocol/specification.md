@@ -101,3 +101,30 @@ When the client sends a [simple query](#simple-query), the server will respond w
 > **Note**: A `<row count>` or `<column cnt>` is the value of the length in question converted to an ASCII string. 
 
 [^1]: See the [discussion here](https://github.com/skytable/skytable/issues/332)
+
+### Pipeline
+
+A pipeline is a type of query that is used to send multiple queries to the server at once, and the server will return the responses in the same order. There is nothing special about the structure of pipelines. Consider [reviewing this section on pipelines](/querying/#pipelines).
+
+**⚠️ Illegal packet error escape**: If the client incorrectly encodes a pipeline (even though some of the first queries may be encoded correctly), the server will execute the correctly encoded queries and then instead of sending any further responses it will respond with a `0xFF` byte. This is equivalent to [*Query Error 25*](errors#query-errors).
+
+#### Pipeline query
+
+The client is expected to encode the query in the following way:
+
+```
+P<full packet size>\n
+<query size>\n<param payload size>\n<query><param>
+<query size>\n<param payload size>\n<query><param>
+...
+```
+
+#### Pipeline response
+
+The server will return multiple responses:
+
+```
+<response 1>
+<response 2>
+...
+```
