@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.2.1">
 <title data-rh="true">Configuration | Skytable</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://docs.skytable.io/system/configuration"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Configuration | Skytable"><meta data-rh="true" name="description" content="Skytable can be configured to run per your needs. You can use either of command-line arguments, environment variables or a"><meta data-rh="true" property="og:description" content="Skytable can be configured to run per your needs. You can use either of command-line arguments, environment variables or a"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://docs.skytable.io/system/configuration"><link data-rh="true" rel="alternate" href="https://docs.skytable.io/system/configuration" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.skytable.io/system/configuration" hreflang="x-default"><link rel="stylesheet" href="/assets/css/styles.0c4097a2.css">
-<script src="/assets/js/runtime~main.ed9167cb.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.c9d8a017.js" defer="defer"></script>
 <script src="/assets/js/main.a220ad50.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -21,8 +21,7 @@ to lost shell history and such).</p>
 <li><code>system</code>:<!-- -->
 <ul>
 <li><code>mode</code>: set to either <code>dev</code> / <code>prod</code> mode. <code>prod</code> mode will generally make some things stricters (such as background services)</li>
-<li><code>rs_window</code>: <strong>This is a very important setting!</strong> It is set to <code>300</code> by default and is called the &quot;reliability service window&quot; which ensures that if any changes are observed in <code>300</code> (or whatever value you set) seconds, then they reach the disk
-as soon as that time elapses. For example, in the default configuration the system checks for changes every 5 minutes and if there are any dataset changes, they are immediately synced</li>
+<li><code>rs_window</code>: <strong>This is a very important setting!</strong> It is set to <code>300</code> by default and is called the &quot;reliability service window&quot; which ensures that if any changes are observed in <code>300</code> (or whatever value you set) seconds, then they reach the disk as soon as that time elapses. For example, in the default configuration the system checks for changes every 5 minutes and if there are any dataset changes, they are immediately synced. <a href="/system/recovery#understanding-data-loss">Read more here</a></li>
 </ul>
 </li>
 <li><code>auth</code>:<!-- -->
