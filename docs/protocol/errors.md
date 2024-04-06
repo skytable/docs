@@ -1,9 +1,9 @@
 ---
 id: errors
-title: Errors
+title: Error Index
 ---
 
-If you've done something incorrectly, then the server will respond with an error code (just like HTTP status codes, but note that the server will not respond with an error code if no error occurred, unlike HTTP 200!).
+This document provides an exhaustive listing of all the error codes that can be returned by the server. Do note that the [handshake errors](#handshake-errors) are only returned in the *connection stage* and are not the same as the [query errors](#query-errors) which occcur at the *exchange* stage.
 
 ## Handshake errors
 

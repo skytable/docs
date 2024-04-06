@@ -48,7 +48,7 @@ module.exports = {
       label: 'Protocol',
       items: [
         "protocol/index",
-        "protocol/networking",
+        "protocol/specification",
         "protocol/errors"
       ],
     },

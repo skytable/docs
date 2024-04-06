@@ -28,12 +28,13 @@ Here are some good to know things, before a deep dive into the various pieces of
     - the queries sent by an older client can't be processed by the server or
     - the **same** responses sent by *the server in question* can't be decoded by the older client
 - If newer protocol versions introduce newer data types that is *not* considered an incompatible version since as long as the encoding for the types introduced in the earlier protocol(s) remains unchanged
+- Hence, the compatibility code for a protocol only changes when it is considered incompatible
 
 ### Version matrix
 
 Please note this list is only maintained post 0.8.0.
 
-| Server version (release tag) | Skyhash Version | Compatibility Code | Notes                        |
-| ---------------------------- | --------------- | ------------------ | ---------------------------- |
-| 0.8.0                        | 2.0             | `0`                | Initial release of Skyhash/2 |
-| 0.8.1                        | 2.0             | `0`                |                              |
+| Server version (release tag) | Skyhash Version | Compatibility Code | Notes                               |
+| ---------------------------- | --------------- | ------------------ | ----------------------------------- |
+| 0.8.0                        | 2.0-beta        | `0`                | Initial release of Skyhash/2 (beta) |
+| 0.8.1                        | 2.0-beta        | `0`                |                                     |

@@ -157,6 +157,10 @@ module.exports = {
           {
             from: '/protocol/overview',
             to: '/protocol'
+          },
+          {
+            from: '/protocol/networking',
+            to: '/protocol/specification'
           }
         ]
       }]
