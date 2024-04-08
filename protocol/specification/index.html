@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.2.1">
 <title data-rh="true">Specification | Skytable</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://docs.skytable.io/protocol/specification"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Specification | Skytable"><meta data-rh="true" name="description" content="Network layer"><meta data-rh="true" property="og:description" content="Network layer"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://docs.skytable.io/protocol/specification"><link data-rh="true" rel="alternate" href="https://docs.skytable.io/protocol/specification" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.skytable.io/protocol/specification" hreflang="x-default"><link rel="stylesheet" href="/assets/css/styles.0c4097a2.css">
-<script src="/assets/js/runtime~main.151e1d78.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.48503210.js" defer="defer"></script>
 <script src="/assets/js/main.a220ad50.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -18,18 +18,20 @@
 <ul>
 <li>The handshake contains all necessary information to successfully establish a connection</li>
 <li>The structure of the client handshake depends on the authentication plugin in use (since authentication data has to be exchanged before the connection can be established)</li>
-<li>For the <code>pwd</code> plugin the client handshake looks like this (split into lines for convenience):<!-- -->
-<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">H0</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">&lt;protocol compatibility code&gt;</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">000</span><br></span><span class="token-line" style="color:#bfc7d5"><span class="token plain">&lt;username length&gt;\n&lt;password length&gt;\n&lt;username&gt;&lt;password&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<blockquote>
-<p>For the protocol compatibility code, <a href="/protocol/#version-matrix">see the version matrix</a></p>
-</blockquote>
+<li>For the <code>pwd</code> plugin the client handshake looks like this:<!-- -->
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#bfc7d5"><span class="token plain">H0&lt;protocol compatibility code&gt;000&lt;username length&gt;\n&lt;password length&gt;\n&lt;username&gt;&lt;password&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ul>
+<li>For the protocol compatibility code, <a href="/protocol/#version-matrix">see the version matrix</a></li>
+<li>Please note that <code>0</code> means integer value <code>0</code> (<code>0x00</code>) and NOT the ASCII digit 0</li>
+<li>Both the <code>&lt;username length&gt;</code> and <code>&lt;password length&gt;</code> are the respective lengths encoded as ASCII strings</li>
+</ul>
 </li>
 </ul>
 </li>
 <li><strong>Server handshake</strong>:<!-- -->
 <ul>
-<li><strong>Accepted:</strong> If the server accepts the handshake information then it will respond with: <code>H000</code></li>
-<li><strong>Rejected</strong>: If the server rejects the handshake information then it will respond with <code>H01&lt;8-bit error code&gt;</code>. You can find out what happened using <a href="/protocol/errors">the error code index</a></li>
+<li><strong>Accepted:</strong> If the server accepts the handshake information then it will respond with: <code>H000</code> (all the numeric values are integers and NOT ASCII digits)</li>
+<li><strong>Rejected</strong>: If the server rejects the handshake information then it will respond with <code>H01&lt;8-bit error code&gt;</code> (all the numeric values are integers and NOT ASCII digits). You can find out what happened using <a href="/protocol/errors">the error code index</a></li>
 </ul>
 </li>
 </ul>
