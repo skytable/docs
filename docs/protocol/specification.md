@@ -13,17 +13,16 @@ As noted earlier, Skyhash is a client/server protocol built on top of TCP, that 
   - **Client handshake**: The client sends a handshake packet
     - The handshake contains all necessary information to successfully establish a connection
     - The structure of the client handshake depends on the authentication plugin in use (since authentication data has to be exchanged before the connection can be established)
-    - For the `pwd` plugin the client handshake looks like this (split into lines for convenience):
+    - For the `pwd` plugin the client handshake looks like this:
       ```
-      H0
-      <protocol compatibility code>
-      000
-      <username length>\n<password length>\n<username><password>
+      H0<protocol compatibility code>000<username length>\n<password length>\n<username><password>
       ```
-      > For the protocol compatibility code, [see the version matrix](/protocol/#version-matrix)
+      - For the protocol compatibility code, [see the version matrix](/protocol/#version-matrix)
+      - Please note that `0` means integer value `0` (`0x00`) and NOT the ASCII digit 0
+      - Both the `<username length>` and `<password length>` are the respective lengths encoded as ASCII strings
   - **Server handshake**:
-    - **Accepted:** If the server accepts the handshake information then it will respond with: `H000`
-    - **Rejected**: If the server rejects the handshake information then it will respond with `H01<8-bit error code>`. You can find out what happened using [the error code index](errors)
+    - **Accepted:** If the server accepts the handshake information then it will respond with: `H000` (all the numeric values are integers and NOT ASCII digits)
+    - **Rejected**: If the server rejects the handshake information then it will respond with `H01<8-bit error code>` (all the numeric values are integers and NOT ASCII digits). You can find out what happened using [the error code index](errors)
 - Data exchange stage: This is where the client and server send and receive data. A client and server will spend the majority of their time in this stage.
 - Termination stage: Once the connection is no longer needed, the client (or in exceptional cases, the server) will close the connection using a simple TCP FIN.
 
