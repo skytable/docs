@@ -16,8 +16,17 @@ Tier 1 platforms can be thought of as "guaranteed to work." On such platforms, w
 | Platform           | Architecture | Toolchain      |
 | ------------------ | ------------ | -------------- |
 | Linux 64-bit (GNU) | x86_64       | GNU            |
+| Linux 64-bit (GNU) | arm 64       | GNU            |
 | macOS 64-bit       | x86_64       | Apple (Darwin) |
 | Windows 64-bit     | x86_64       | MSVC           |
+
+### Tier 1X
+
+These are just like Tier-1 platforms but due to toolchain limitations we can't yet provide Tier 1 support. We intend to fully upgrade these targets to Tier 1.
+
+| Platform     | Architecture | Toolchain      |
+| ------------ | ------------ | -------------- |
+| macOS 64-bit | arm64        | Apple (Darwin) |
 
 ## Tier 2
 
