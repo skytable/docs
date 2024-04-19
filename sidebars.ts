@@ -40,6 +40,7 @@ module.exports = {
       items: [
         "resources/useful-links",
         "resources/migration",
+        "resources/platform-support"
       ],
       collapsed: true,
     },
