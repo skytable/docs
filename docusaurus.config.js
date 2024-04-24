@@ -161,6 +161,10 @@ module.exports = {
           {
             from: '/protocol/networking',
             to: '/protocol/specification'
+          },
+          {
+            from: '/system/recovery',
+            to: '/system/operations#data-recovery'
           }
         ]
       }]

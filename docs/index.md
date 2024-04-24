@@ -22,7 +22,7 @@ To develop using Skytable and maintain your deployment you will want to learn ab
       - [**Configuration**](system/configuration): Information to help you configure Skytable with custom settings such as custom ports, hosts, TLS, and etc.
       - [**User management**](system/user-management): Information on access control, user and other administration features
       - [**Global management**](system/global-management): Global settings management
-      - [**Data recovery**](system/recovery): Database recovery
+      - [**Operations**](system/operations): Learn about administration operations
     - **Resources**:
       - [**Useful links**](resources/useful-links): Links to helpful resources
       - [**Migration**](resources/migration): For old our returning Skytable users who are coming from older versions
