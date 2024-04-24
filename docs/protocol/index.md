@@ -38,3 +38,4 @@ Please note this list is only maintained post 0.8.0.
 | ---------------------------- | --------------- | ------------------ | ----------------------------------- |
 | 0.8.0                        | 2.0-beta        | `0`                | Initial release of Skyhash/2 (beta) |
 | 0.8.1                        | 2.0-beta        | `0`                |                                     |
+| 0.8.2                        | 2.0-beta        | `0`                |                                     |
