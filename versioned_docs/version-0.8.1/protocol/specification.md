@@ -103,7 +103,7 @@ When the client sends a [simple query](#simple-query), the server will respond w
 
 ### Pipeline
 
-A pipeline is a type of query that is used to send multiple queries to the server at once, and the server will return the responses in the same order. There is nothing special about the structure of pipelines. Consider [reviewing this section on pipelines](/querying#pipelines).
+A pipeline is a type of query that is used to send multiple queries to the server at once, and the server will return the responses in the same order. There is nothing special about the structure of pipelines.
 
 **⚠️ Illegal packet error escape**: If the client incorrectly encodes a pipeline (even though some of the first queries may be encoded correctly), the server will execute the correctly encoded queries and then instead of sending any further responses it will respond with a `0xFF` byte. This is equivalent to [*Query Error 25*](errors#query-errors).
 
