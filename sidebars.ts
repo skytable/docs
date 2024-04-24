@@ -19,6 +19,7 @@ module.exports = {
         id: 'blueql/index'
       }
     },
+    "querying",
     {
       type: 'category',
       label: 'System Administration',

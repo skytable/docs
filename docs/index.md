@@ -17,6 +17,7 @@ To develop using Skytable and maintain your deployment you will want to learn ab
       - [**DDL**](blueql/ddl): Data definition with BlueQL
       - [**DML**](blueql/dml): Data manipulation with BlueQL
       - [**DCL**](blueql/dcl): Data control with BlueQL
+    - [**Querying**](querying): Introduces different query modes and when to choose a specific query mode
     - [**System administration**](system):
       - [**Configuration**](system/configuration): Information to help you configure Skytable with custom settings such as custom ports, hosts, TLS, and etc.
       - [**User management**](system/user-management): Information on access control, user and other administration features
