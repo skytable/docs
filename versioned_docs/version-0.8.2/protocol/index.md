@@ -1,0 +1,41 @@
+---
+title: 'Skyhash 2: Overview'
+---
+
+## Introduction
+
+Skyhash is the protocol used for communication between Skytable clients (client drivers or libraries) and the Skytable server, written on top of TCP. If you're building an application that needs to *talk to* Skytable, you'll usually choose a [client library](/libraries) that works with your programming language and then start building your application.
+
+However, if a client driver is not available for your language then you might choose to implement a client driver yourself and while it might sound like a complicated task, we've worked hard to make it as easy for for you to do so. If you've worked with string processing, what you're going to encounter is very similar.
+
+:::tip Looking for error codes?
+Did the server return an error code and you're trying to figure out what happened? [**Jump to this page on error codes**](errors).
+:::
+
+:::info New data types are constantly added!
+We keep adding more and more data types with every release. So, if you're working to build a client, then consider keeping the type matching non-exhaustive, and if you encounter an unknown signature (that identifies the data type) then throw some sort of an exception indicating that your client does not support this data type yet.
+:::
+
+Here are some good to know things, before a deep dive into the various pieces of the protocol:
+- The protocol is based on top of TCP, so if your programming language standard library has a TCP client (as most of them do) you can build a client
+- You might find the [official implementation of the Rust client](https://github.com/skytable/client-rust) to be a good reference
+- If you need help, ask! (on Discord, ping us on Twitter, just reach out!)
+- If the documentation doesn't seem helpful or you find it confusing, open an issue on the docs repository. We'll fix it.
+
+## Protocol revisions and compatibility
+
+- **What constitutes an incompatible protocol version?** A protocol version is considered incompatible if and only if:
+    - the queries sent by an older client can't be processed by the server or
+    - the **same** responses sent by *the server in question* can't be decoded by the older client
+- If newer protocol versions introduce newer data types that is *not* considered an incompatible version since as long as the encoding for the types introduced in the earlier protocol(s) remains unchanged
+- Hence, the compatibility code for a protocol only changes when it is considered incompatible
+
+### Version matrix
+
+Please note this list is only maintained post 0.8.0.
+
+| Server version (release tag) | Skyhash Version | Compatibility Code | Notes                               |
+| ---------------------------- | --------------- | ------------------ | ----------------------------------- |
+| 0.8.0                        | 2.0-beta        | `0`                | Initial release of Skyhash/2 (beta) |
+| 0.8.1                        | 2.0-beta        | `0`                |                                     |
+| 0.8.2                        | 2.0-beta        | `0`                |                                     |
