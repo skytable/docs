@@ -17,6 +17,7 @@ We keep adding more and more data types with every release. So, if you're workin
 :::
 
 Here are some good to know things, before a deep dive into the various pieces of the protocol:
+
 - The protocol is based on top of TCP, so if your programming language standard library has a TCP client (as most of them do) you can build a client
 - You might find the [official implementation of the Rust client](https://github.com/skytable/client-rust) to be a good reference
 - If you need help, ask! (on Discord, ping us on Twitter, just reach out!)
@@ -25,8 +26,8 @@ Here are some good to know things, before a deep dive into the various pieces of
 ## Protocol revisions and compatibility
 
 - **What constitutes an incompatible protocol version?** A protocol version is considered incompatible if and only if:
-    - the queries sent by an older client can't be processed by the server or
-    - the **same** responses sent by *the server in question* can't be decoded by the older client
+  - the queries sent by an older client can't be processed by the server or
+  - the **same** responses sent by *the server in question* can't be decoded by the older client
 - If newer protocol versions introduce newer data types that is *not* considered an incompatible version since as long as the encoding for the types introduced in the earlier protocol(s) remains unchanged
 - Hence, the compatibility code for a protocol only changes when it is considered incompatible
 
@@ -39,3 +40,4 @@ Please note this list is only maintained post 0.8.0.
 | 0.8.0                        | 2.0-beta        | `0`                | Initial release of Skyhash/2 (beta) |
 | 0.8.1                        | 2.0-beta        | `0`                |                                     |
 | 0.8.2                        | 2.0-beta        | `0`                |                                     |
+| 0.8.3                        | 2.0-beta        | `0`                |                                     |
