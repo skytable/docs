@@ -12,13 +12,13 @@ module.exports = {
   organizationName: "skytable",
   projectName: "docs",
   themeConfig: {
-    // TODO(@ohsayan): see what's wrong with the search bar. indices are completely fine, must be something else in this config
-    // algolia: {
-    //   appId: "BH4D9OD16A",
-    //   apiKey: "07040e0073a0b6b216f6619396984190",
-    //   indexName: "skytable",
-    //   searchParameters: {},
-    // },
+    algolia: {
+      appId: "BH4D9OD16A",
+      apiKey: "07040e0073a0b6b216f6619396984190",
+      indexName: "skytable",
+      searchParameters: {},
+      contextualSearch: true,
+    },
     sidebar: {
       hideable: true,
     },
