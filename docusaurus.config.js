@@ -13,8 +13,8 @@ module.exports = {
   projectName: "docs",
   themeConfig: {
     algolia: {
-      appId: "BH4D9OD16A",
-      apiKey: "07040e0073a0b6b216f6619396984190",
+      appId: "VM00HBP164",
+      apiKey: "ac9d67ff8bdfd1e232e1628feb846a74",
       indexName: "skytable",
       searchParameters: {},
       contextualSearch: true,
