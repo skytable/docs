@@ -8,7 +8,9 @@ In the following sections, we explore general system administration options with
 
 Here's an overview of the different administration guides:
 
-- [**Configuration**](configuration): Understand how Skytable can be configured using command-line arguments, environment variables or a configuration file and what all configuration options are available
-- [**User management**](user-management): Learn about account types, permissions and how you can manage multiple users
+- [**Configuration**](configuration): Configuration modes (CLI, environment variables, configuration files) and options
+- [**User management**](user-management): Account types, permissions, creating and managing multiple users
 - [**Global management**](global-management): Learn how to check system health and manage the global state of your database instances
-- [**Operations**](operations): Understand administrator operations tasks such as backups, recovery and more
+- [**Disk usage**](disk-usage): Understand disk usage and compaction
+- [**Backup and restore**](backup-and-restore): Backing up data and restoring data from backups
+- [**Data recovery**](recovery): Understanding data loss, mitigation and recovery options

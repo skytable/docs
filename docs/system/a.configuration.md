@@ -44,7 +44,7 @@ To start the server with a configuration file, simply run `skyd --config <path t
 Here's an explanation of all the keys:
 - `system`:
   - `mode`: set to either `dev` / `prod` mode. `prod` mode will generally make some things stricters (such as background services)
-  - `rs_window`: **This is a very important setting!** It is set to `300` by default and is called the "reliability service window" which ensures that if any changes are observed in `300` (or whatever value you set) seconds, then they reach the disk as soon as that time elapses. For example, in the default configuration the system checks for changes every 5 minutes and if there are any dataset changes, they are immediately synced. [Read more here](operations#understanding-data-loss)
+  - `rs_window`: **This is a very important setting!** It is set to `300` by default and is called the "reliability service window" which ensures that if any changes are observed in `300` (or whatever value you set) seconds, then they reach the disk as soon as that time elapses. For example, in the default configuration the system checks for changes every 5 minutes and if there are any dataset changes, they are immediately synced. [Read more here](recovery#understanding-data-loss)
 - `auth`:
   - `plugin`: this is the authentication plugin. we currently only have `pwd` that is a simple password based authentication system where the password is stored as an [`rcrypt` hash](https://github.com/ohsayan/rcrypt) on disk. More `plugin` options are set to be implemented for more advanced authentication, especially in enterprise settings
   - `root_pass`: this is the root account password. **It must have atleast 16 characters**

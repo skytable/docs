@@ -27,7 +27,9 @@ module.exports = {
         "system/configuration",
         "system/user-management",
         "system/global-management",
-        "system/operations",
+        "system/disk-usage",
+        "system/backup-and-restore",
+        "system/recovery",
       ],
       link: {
         type: 'doc',

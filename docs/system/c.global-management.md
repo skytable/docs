@@ -11,7 +11,7 @@ The following query returns an `Empty` response or an error code depending on th
 SYSCTL REPORT STATUS
 ```
 
-If you receive an error code, we recommend you to connect to the host and check logs. If the server has crashed, you may need to [recover the database](operations#data-recovery).
+If you receive an error code, we recommend you to connect to the host and check logs. If the server has crashed, you may need to [recover the database](recovery).
 
 ## Inspecting all spaces
 

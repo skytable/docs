@@ -1,20 +1,8 @@
 ---
-title: Operations
+id: recovery
+title: Data recovery
 ---
 
-## Managing disk usage
-
-Over time, as you continue to use your database your database files will grow in size, as you would expect. However, sometimes database files may grow beyond an efficient size resulting in high memory usage or slowdowns. To counter this, Skytable uses internal heuristics to determine when a database file is "larger than needed" and automatically compacts them at startup.
-
-However, in some cases you may wish to perform a compaction regardless in order to reduce the file size. In order to do this you will have to run:
-
-```sh
-skyd compact
-```
-
-The server will then compact all files (even if a compaction wasn't triggered by internal heuristics) to their optimum size.
-
-## Data recovery
 
 In the unforeseen event that a power failure or other catastrophic system failure causes the database to crash, the Skytable server will fail to start normally. Usually it will exit with a nonzero code and an error message such as "journal-corrupted." In such cases, you will need to recover the journal(s) and/or any other corrupted file(s).
 

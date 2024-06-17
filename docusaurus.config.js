@@ -163,8 +163,8 @@ module.exports = {
             to: '/protocol/specification'
           },
           {
-            from: '/system/recovery',
-            to: '/system/operations#data-recovery'
+            from: '/system/operations',
+            to: '/system',
           }
         ]
       }]

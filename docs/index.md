@@ -19,10 +19,12 @@ To develop using Skytable and maintain your deployment you will want to learn ab
       - [**DCL**](blueql/dcl): Data control with BlueQL
     - [**Querying**](querying): Introduces different query modes and when to choose a specific query mode
     - [**System administration**](system):
-      - [**Configuration**](system/configuration): Information to help you configure Skytable with custom settings such as custom ports, hosts, TLS, and etc.
-      - [**User management**](system/user-management): Information on access control, user and other administration features
-      - [**Global management**](system/global-management): Global settings management
-      - [**Operations**](system/operations): Learn about administration operations
+      - [**Configuration**](system/configuration): Configuration modes (CLI, environment variables, configuration files) and options
+      - [**User management**](system/user-management): Account types, permissions, creating and managing multiple users
+      - [**Global management**](system/global-management): Learn how to check system health and manage the global state of your database instances
+      - [**Disk usage**](system/disk-usage): Understand disk usage and compaction
+      - [**Backup and restore**](system/backup-and-restore): Backing up data and restoring data from backups
+      - [**Data recovery**](system/recovery): Understanding data loss, mitigation and recovery options
     - **Resources**:
       - [**Useful links**](resources/useful-links): Links to helpful resources
       - [**Migration**](resources/migration): For old our returning Skytable users who are coming from older versions
