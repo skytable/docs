@@ -3,16 +3,20 @@ id: architecture
 title: Architecture
 ---
 
-Skytable is a modern NoSQL database that prioritises performance, scalability and reliability while providing a rich and powerful querying interface. We are generally targetting an audience that wants to build high performance, large-scale, low latency applications, such as social networking services, auth services, adtech and such. Skytable is designed to work with
-both **structured and semi-structured data**.
+Skytable is a modern NoSQL database that prioritises performance, scalability and reliability while providing a rich and powerful querying interface.
+We are generally targetting an audience that wants to build high performance, large-scale, low latency applications, such as social networking services, 
+auth services, adtech and such. Skytable is designed to work with both **structured and semi-structured data**.
 
-Our goal is to provide you with a powerful and solid foundation for your application with no gimmicks — just a solid core. That's why, every component in Skytable has been engineered from the ground up, from scratch.
+Our goal is to provide you with a powerful and solid foundation for your application with no gimmicks — just a solid core. That's why, every component in 
+Skytable has been engineered from the ground up, from scratch.
 
 And all of that, without you having to be an expert, and with the least maintenance that you can expect.
 
 ## Fundamental differences from relational systems
 
-BlueQL kind of looks and feels like using SQL with a relational database but that doesn't make Skytable's internals the same, with the most important distinction being the fact that Skytable has a NoSQL engine! But Skytable's evaluation and execution of queries is fundamentally different from SQL counterparts and even NoSQL engines. Here are some key differences:
+BlueQL kind of looks and feels like using SQL with a relational database but that doesn't make Skytable's internals the same, with the most important 
+distinction being the fact that Skytable has a NoSQL engine! But Skytable's evaluation and execution of queries is fundamentally different from SQL 
+counterparts and even NoSQL engines. Here are some key differences:
 
 - All DML queries are point queries and **not** range queries:
   - This means that they will either return atleast one row or error
@@ -64,7 +68,7 @@ A `model` in Skytable is like a `table` in SQL but is vastly different because o
 
 ## Query language
 
-Skytable has it's own query language BlueQL<sup>TM</sup> which takes a lot of inspiration from SQL but makes several different (and sometimes vastly different) design choices, focused on clarity, speed, simplicity and most importantly, security.
+Skytable has its own query language BlueQL<sup>TM</sup> which takes a lot of inspiration from SQL but makes several different (and sometimes vastly different) design choices, focused on clarity, speed, simplicity and most importantly, security.
 
 For example, Skytable's BlueQL<sup>TM</sup> *only* allows the parameterization of queries. All the queries you ran previously with strings and numbers directly were only possible because the REPL client smartly does the paramterization behind the scenes. This is done for security. You'll learn more about BlueQL next.
 
@@ -99,11 +103,14 @@ Skytable will use atleast as many threads as the number of logical CPUs present 
 
 ## Networking
 
-Skytable its own in-house Skyhash protocol that is built on top of TCP enabling any programming language that has a TCP client to use it without issues. There are three phases in the connection:
+Skytable uses its own in-house Skyhash protocol for client-server communication. It is built on top of TCP, enabling any programming language that has a 
+TCP client to use it without issues. There are three phases in the connection:
 - Handshake: All auth data, compatibility information and other data is exchanged at this step
 - Connection mode selection: based on the handshake parameters a connection mode is chosen and the server responds with the chosen exchange mode
 - Data exchange: This is where the real querying happens
 - Termination: there is no special step; just a `TCP FIN`
+
+You can [read more about the protocol here](protocol).
 
 ## Backwards compatibility
 
@@ -115,6 +122,7 @@ More technically:
 - **For minor/patch releases**: The minor/patch is just in the name but it indicates that no data migration effort is needed. **No minor releases ever need data migration, and any migration is done automatically**
 - **For major releases**: Major releases generally introduce breaking changes (just like the upgrade from `0.7.x` to `0.8.0` is a largely breaking change). **Major releases will either automatically upgrade the data files or require you to use a migration tool that is shipped with the bundle**.
 - Definitions (closely following semantic versioning):
-  - **A major release** is something like `1.0.0` to `2.0.0` or `0.8.0` to `0.9.0` (in development versions, 0.8.0 to 0.9.0 is a major version bump)
+  - **A major release** is something like `1.0.0` to `2.0.0` or `0.8.0` to `0.9.0` (in development versions, 0.8.0 to 0.9.0 is considered a major version 
+  bump)
   - **A minor release** is something like `1.0.0` to `1.1.0` or `0.8.0` to `0.8.1`
   - **A patch release** is something like `1.0.0` to `1.0.1` or `0.8.0` to `0.8.1` (note that in development versions there is no distinction between a minor and patch release)
