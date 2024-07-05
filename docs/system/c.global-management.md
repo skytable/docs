@@ -11,17 +11,23 @@ The following query returns an `Empty` response or an error code depending on th
 SYSCTL REPORT STATUS
 ```
 
-If you receive an error code, we recommend you to connect to the host and check logs. If the server has crashed, you may need to [recover the database](operations#data-recovery).
+If you receive an error code, we recommend you to connect to the host and check logs. If the server has crashed, you may need to [recover the database](recovery).
 
-## Inspecting all spaces
+## Inspecting global state
 
-The single DDL query that lets you do a "sneak peek" into the status of the entire system is the `INSPECT GLOBAL` query. It 
-returns a JSON string like this:
+The following query provides a quick overview of the global system state, including users, spaces and settings:
+
+```sql
+INSPECT GLOBAL
+```
+
+This will return a JSON like this:
+
 ```json
 {
-    "spaces:"["space1", "space2"],
-    "users":["root", "staging_server"],
-    "settings:{},
+    "spaces": ["prodApp1", "prodApp2"],
+    "users": ["root", "staging_app_server", "prod_app_server"],
+    "settings": {}
 }
 ```
 
