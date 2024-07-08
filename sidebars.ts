@@ -3,6 +3,7 @@ module.exports = {
     "index",
     "installation",
     "using-the-repl",
+    "libraries",
     "architecture",
     {
       type: 'category',
@@ -36,7 +37,6 @@ module.exports = {
         id: 'system/index'
       }
     },
-    "libraries",
     {
       type: 'category',
       label: 'Resources',
