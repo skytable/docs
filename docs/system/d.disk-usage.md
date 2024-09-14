@@ -6,6 +6,7 @@ title: Disk usage
 ## Directory structure
 
 This is the general directory structure (subdirectories omitted):
+
 ```
 ├── data
 ├── gns.db-tlog
@@ -16,7 +17,6 @@ This is the general directory structure (subdirectories omitted):
 - `data` (directory): This directory contains subdirectories with all the spaces (which in turn contain all the data for each space)
 - `.sky_pid` (file): This is a temporary PID file that is created whenever the database is started. If the database crashes, then you may have to remove
   it manually
-
 
 ## Managing disk usage
 

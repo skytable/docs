@@ -14,9 +14,11 @@ As noted earlier, Skyhash is a client/server protocol built on top of TCP, that 
     - The handshake contains all necessary information to successfully establish a connection
     - The structure of the client handshake depends on the authentication plugin in use (since authentication data has to be exchanged before the connection can be established)
     - For the `pwd` plugin the client handshake looks like this:
+
       ```
       H0<protocol compatibility code>000<username length>\n<password length>\n<username><password>
       ```
+
       - For the protocol compatibility code, [see the version matrix](/protocol/#version-matrix)
       - Please note that `0` means integer value `0` (`0x00`) and NOT the ASCII digit 0
       - Both the `<username length>` and `<password length>` are the respective lengths encoded as ASCII strings
@@ -33,6 +35,7 @@ If the server has accepted your connection then you can be sure that the protoco
 ### Exchange modes
 
 The Skyhash/2.0 specification defines the following exchange mode:
+
 - **Query-time**: This works like a request/response action where the client sends a request and the server responds with a response to the query (or an error)
 
 Expect other exchange modes (bi-directional) to be added in future protocol revisions.
@@ -44,6 +47,7 @@ In query-time exchange, the protocol works like a "request-response" action wher
 ### Client data types
 
 The client side needs to send encoded data types to the server (in the form of parameters) so that the server can process them. The following types are defined:
+
 - Null: Encoded as `0`
 - Bool: Encoded as `1<0 or 1>\n`
 - Unsigned integer: A 64-bit unsigned integer. Encoded as `2<integer>\n`
@@ -52,11 +56,12 @@ The client side needs to send encoded data types to the server (in the form of p
 - Binary: A binary blob. Encoded as `5<length>\n<payload>`
 - String: An UTF-8 string. Encoded as `6<length>\n<payload>`
 
-> **Note**: A `<length>` is the value of the length in question converted to an ASCII string. 
+> **Note**: A `<length>` is the value of the length in question converted to an ASCII string.
 
 ### Server data types
 
 The server will respond with different data types, depending on the context. The following types are defined:
+
 - Null: Encoded as `0`
 - Bool: encoded as `1<0 or 1>\n`
 - Unsigned integers:
@@ -72,13 +77,14 @@ The server will respond with different data types, depending on the context. The
   - First byte: 11 -> list
   - Payload: `<length>\n<other server data types>`
 
-> **Note**: A `<length>` is the value of the length in question converted to an ASCII string. 
+> **Note**: A `<length>` is the value of the length in question converted to an ASCII string.
 
 ### Simple query/response
 
 #### Simple query
 
 A simple query sends a single BlueQL query to the server to which the server responds with a [simple response](#simple-response). It has three sections:
+
 - The metaframe:
   - Contains metadata about the query
   - Encoded as: `S<total packet size>\n` (total size of the other two sections)
@@ -89,7 +95,6 @@ A simple query sends a single BlueQL query to the server to which the server res
 
 #### Simple response
 
-
 When the client sends a [simple query](#simple-query), the server will respond with a simple response using any of the [response data types](#server-data-types), or it can respond with any of the following response structures:
 
 - **Error**: Encoded as `0x10<16-bit error code>`
@@ -97,7 +102,7 @@ When the client sends a [simple query](#simple-query), the server will respond w
 - **Empty**: This indicates that the query ran successfully but nothing appropriate can be returned (like HTTP's 200 status). Encoded as `0x12`
 - **Multirow**: The server has returned multiple rows. Encoded as `0x13<row count>\n<rows ...>`
 
-> **Note**: A `<row count>` or `<column cnt>` is the value of the length in question converted to an ASCII string. 
+> **Note**: A `<row count>` or `<column cnt>` is the value of the length in question converted to an ASCII string.
 
 [^1]: See the [discussion here](https://github.com/skytable/skytable/issues/332)
 

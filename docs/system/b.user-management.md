@@ -4,6 +4,7 @@ title: User management
 ---
 
 Skytable's access control is very simple:
+
 - there is only one `root` account
 - there are zero or more standard users
 
@@ -11,12 +12,13 @@ Skytable's access control is very simple:
 
 ### Root users
 
-As noted earlier there can be only one `root` account and this is primarily for security concerns. We however do plan to support 
+As noted earlier there can be only one `root` account and this is primarily for security concerns. We however do plan to support
 creating multiple users (the implementation isn't hard but security is key).
 
 #### Exclusive rights
 
 Root users have exclusive rights to use plus everything that standard users have access to:
+
 - `CREATE`
 - `ALTER`
 - `DROP`
@@ -25,10 +27,10 @@ Root users have exclusive rights to use plus everything that standard users have
 
 #### Resetting the root password
 
-We strongly recommend that you keep the root password in someplace safe, but if you happen to lose it — just like many other 
+We strongly recommend that you keep the root password in someplace safe, but if you happen to lose it — just like many other
 databases, you will first need to stop the server to reset it. Once you have stopped the server, you will need to modify the root
 password that you set in your [configuration source](configuration) (such as CLI/ENV/configuration file). You will then
-need to restart the server. The server will issue a warning in the logs that the root password has changed but since that is 
+need to restart the server. The server will issue a warning in the logs that the root password has changed but since that is
 what you intended, you can safely ignore it.
 
 ### Standard users
@@ -52,6 +54,7 @@ To remove or update an account, you can follow the [instructions on BlueQL's DCL
 #### Rights
 
 Standard users can access the following query types:
+
 - `SYSCTL REPORT STATUS`
 - `INSERT`
 - `SELECT`

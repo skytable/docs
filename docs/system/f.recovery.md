@@ -19,6 +19,7 @@ To repair the database, simply run this on the command line **in the working dir
 ```sh
 skyd repair
 ```
+
 The recovery system will first create a full backup of the current data files in a subdirectory in the `backups/` directory. It will then go over each database file, try to detect any errors and make any approriate repairs.
 
 ### Important notes
@@ -30,4 +31,3 @@ The recovery system will first create a full backup of the current data files in
 ### Post recovery
 
 After running a repair operation, if a signficant amount of data loss has occurred (as reported by `skyd`) then we strongly recommend you to manually look through your datasets. The recovery process guarantees that the *restored data* is intact. If this failure resulted from power loss, in the future you may consider installing power backup systems if self-hosting or choosing a reliable cloud provider.
-

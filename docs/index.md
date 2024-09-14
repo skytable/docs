@@ -42,7 +42,7 @@ Hit an error? Check out the [error code index](protocol/errors). If you need fur
 
 ## Getting help
 
-We have a collection of resources [on this page](resources/useful-links). If you need in help in real-time, we recommend that you join our [Discord Community](https://discord.gg/QptWFdx) where you can get help directly from the developers and our community members. 
+We have a collection of resources [on this page](resources/useful-links). If you need in help in real-time, we recommend that you join our [Discord Community](https://discord.gg/QptWFdx) where you can get help directly from the developers and our community members.
 Most queries are usually answered there in a few hours!
 
 ## Contributing

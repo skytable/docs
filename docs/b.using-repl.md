@@ -73,15 +73,20 @@ CREATE MODEL myspace.mymodel(username: string, password: string, notes: list { t
 
 ### Add, update and remove some data
 
-- **Insert some data**: 
+- **Insert some data**:
+
   ```sql
     INSERT INTO myspace.mymodel('sayan', 'password123', [])
   ```
+
 - **Update some data**:
+
     ```sql
     UPDATE myspace.mymodel SET notes += "mynewnote" WHERE username = 'sayan'
     ```
+
 - **Select some data**:
+
     ```sql
     SELECT notes, password FROM myspace.mymodel WHERE username = 'sayan'
     ```
