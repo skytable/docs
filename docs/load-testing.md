@@ -13,7 +13,7 @@ The ability to simulate different workloads is currently being worked on. This m
 
 ## Using the benchmark tool
 
-You will need to select a workload from the [below section on workloads](#benchmark-workload). As workloads need `root` access to the database for creating and removing spaces and tables, you will need to also provide the `root` account password.
+You will need to select a workload from the [below section on workloads](#benchmark-workloads). As workloads need `root` access to the database for creating and removing spaces and tables, you will need to also provide the `root` account password.
 
 You may run workloads like this using an argument for the password:
 
@@ -32,16 +32,16 @@ See the help menu using `sky-bench --help` to use additional configuration optio
 
 ## Benchmark workloads
 
-Workloads are used to emulate various usage scenarios, for example by varying the read/write proportions, changing the distributions of keys and such. While we intend to add more workloads down the line, the one that is used by default is described below.
+Workloads are used to emulate various usage scenarios, for example by varying the read/write proportions, changing the distributions of keys and such. While we intend to add more workloads down the line, the default workload is currently `uniform_std_v1`.
 
 ### `uniform_std_v1`
 
-This workload executes an uniform sequence of operations (hence called "uniform"). It does the following:
+This workload executes an uniform proportion of operations (hence called "uniform") for unique rows. It does the following:
 
 - Creates a space `db`
 - Creates a model `db.db` with the following definition: `create model db.db(k: binary, v: uint64)`
 - Now:
-  - 1,000,000 unique rows are inserted using `INSERT`
+  - 1,000,000 unique rows are inserted using `INSERT` (in parallel)
   - 1,000,000 of the unique rows that were created in the previous step are modified using `UPDATE`
   - 1,000,000 of the unique rows that were created and modified earlier are fetched using a `SELECT`
   - 1,000,000 of the unique rows that were created are individually removed using `DELETE`
@@ -52,7 +52,6 @@ How to run:
 ```sh
 sky-bench --workload 'uniform_std_v1'
 ```
-
 
 :::tip
 Now go ahead and run your own benchmarks to see the performance of Skytable for yourself. We know you'll love it 🚀
