@@ -20,7 +20,7 @@ However, we strongly recommend **not** using it outside testing environments.
 
 To use native binaries you need to download a bundle which is simply a ZIP file with all the necessary binaries that you'll ever need to develop on and deploy Skytable.
 
-1. **First download the latest bundle** for your platform. You can find [download links on the releases page](https://github.com/skytable/skytable/releases/v0.8.3).
+1. **First download the latest bundle** for your platform. You can find [download links on the releases page](https://github.com/skytable/skytable/releases/v0.8.4).
 2. **Unzip the ZIP file**. You'll find the following binaries in the extracted archive:
    - `skyd`: This is the database server binary which when started runs as a daemon, serving requests
    - `skysh`: This is the Skytable shell and it provides a very helpful interactive REPL database client
@@ -72,7 +72,7 @@ The package will:
 2. **Start the container**:
 
     ```shell
-    docker run -d --name skydb -p 2003:2003 skytable/skytable:v0.8.3
+    docker run -d --name skydb -p 2003:2003 skytable/skytable:v0.8.4
     ```
 
 :::tip
@@ -85,14 +85,14 @@ message with the generated password.
 1. **Download the bundle**: To be able to run queries you need to download the bundle as described above
 2. **Create the data directory**: To ensure that our database is persistent and all our data doesn't vanish as soon as the container is terminated, we'll map the data directory to an actual directory on our local system.
     > **Note:** Create a folder called `skytable` in a convenient location. We recommend having a directory in `$HOME/docker-containers` where you can store the Skytable container's data and any other containers that you might use. It's a great way to keep things organized.
-3. **Create your configuration**: [Download this template file](https://raw.githubusercontent.com/skytable/skytable/v0.8.3/examples/config-files/template.yaml) and place it into the directory you created. Update the password with your `root` password of choice.
+3. **Create your configuration**: [Download this template file](https://raw.githubusercontent.com/skytable/skytable/v0.8.4/examples/config-files/template.yaml) and place it into the directory you created. Update the password with your `root` password of choice.
 4. **Start the container**:
 
      ```shell
      docker run -d --name skydb \
         -v $HOME/docker-containers/skytable:/var/lib/skytable \
         -p 2003:2003 \
-        skytable/skytable:v0.8.3
+        skytable/skytable:v0.8.4
      ```
 
      Explanation:
