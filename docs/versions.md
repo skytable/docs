@@ -3,7 +3,7 @@ id: versions
 title: All versions
 ---
 
-# All versions
+## All versions
 
 A maintained version is one that actively receives security, performance and feature updates. Please see the
 [versioning policy](https://github.com/skytable/rfcs/blob/next/rfcs/rfc-1.md) to know which versions are maintained.

@@ -4,6 +4,7 @@ title: Deployment
 ---
 
 Here are some recommendations for deployment:
+
 1. **Make sure you have enough memory and storage!** The server will start returning errors when your server runs out of resources, as you'd expect.
 2. **When deploying on docker**:
    - Try to map the volume to a local path. We've had unwarranted data losses when we accidentally ended up running a `docker system prune`

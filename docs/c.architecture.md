@@ -4,18 +4,18 @@ title: Architecture
 ---
 
 Skytable is a modern NoSQL database that prioritises performance, scalability and reliability while providing a rich and powerful querying interface.
-We are generally targetting an audience that wants to build high performance, large-scale, low latency applications, such as social networking services, 
+We are generally targetting an audience that wants to build high performance, large-scale, low latency applications, such as social networking services,
 auth services, adtech and such. Skytable is designed to work with both **structured and semi-structured data**.
 
-Our goal is to provide you with a powerful and solid foundation for your application with no gimmicks — just a solid core. That's why, every component in 
+Our goal is to provide you with a powerful and solid foundation for your application with no gimmicks — just a solid core. That's why, every component in
 Skytable has been engineered from the ground up, from scratch.
 
 And all of that, without you having to be an expert, and with the least maintenance that you can expect.
 
 ## Fundamental differences from relational systems
 
-BlueQL kind of looks and feels like using SQL with a relational database but that doesn't make Skytable's internals the same, with the most important 
-distinction being the fact that Skytable has a NoSQL engine! But Skytable's evaluation and execution of queries is fundamentally different from SQL 
+BlueQL kind of looks and feels like using SQL with a relational database but that doesn't make Skytable's internals the same, with the most important
+distinction being the fact that Skytable has a NoSQL engine! But Skytable's evaluation and execution of queries is fundamentally different from SQL
 counterparts and even NoSQL engines. Here are some key differences:
 
 - All DML queries are point queries and **not** range queries:
@@ -26,18 +26,18 @@ counterparts and even NoSQL engines. Here are some key differences:
 - **Remember, in NoSQL systems we denormalize.** Hence, no `JOIN`s or foreign keys as with many other NoSQL systems
 - A different transactional model:
   - All DDL and DCL queries are ACID transactions
-  - However, DML transactions are not ACID and instead are efficiently batched and are automatically made part of a batch     
-    transaction. The engine decides *when* it will execute them, for example based on the pressure on cache. That's because our 
+  - However, DML transactions are not ACID and instead are efficiently batched and are automatically made part of a batch
+    transaction. The engine decides *when* it will execute them, for example based on the pressure on cache. That's because our
     focus is to maximize throughput
   - All these differences mean that **DDL and DCL transactions are ACID transactions** while **DML queries are ACI and *eventually* D** (we call it a *delayed durability transaction*). This delay however can be adjusted to make sure that the DML
     queries *emulate* ACID transactions but that defeats the point of the eventually durable system which aims to heavily increase throughput.
-  - The idea of eventually durable transactions relies on the idea that hardware failure even though prominent is still rare, 
+  - The idea of eventually durable transactions relies on the idea that hardware failure even though prominent is still rare,
     thanks to the extreme hard work that cloud vendors put into reliability engineering. If you plan to run on unreliable hardware, then the delay setting (reliability service) is what you need to change.
   - For extremely unreliable hardware on the other hand, we're working on a new storage driver `rtsyncblock` that is expected to be released in Q1'24
 - The transactional engine powering DDL and DCL queries might often choose to demote a transaction to a virtual transaction which makes sure that the transaction is obviously durable but not necessarily actually executed but is eventually executed. If the system crashes, the engine will still be able to actually execute the transaction (even if it crashed halfway)
 
 :::tip
-We believe you can now hopefully see how Skytable's workings are fundamentally different from traditional engines. And, we know 
+We believe you can now hopefully see how Skytable's workings are fundamentally different from traditional engines. And, we know
 that you might have a lot of questions! If you do, please reach out. We're here to help.
 :::
 
@@ -52,7 +52,7 @@ While a `MODEL` is the only data container for now, many more are set to come. N
 
 ### A `space` is like a `database`
 
-A `space` in Skytable is a collection of `model`s and other objects, and settings. It is different from a traditional SQL 
+A `space` in Skytable is a collection of `model`s and other objects, and settings. It is different from a traditional SQL
 Database (that is created with SQL's `CREATE DATABASE`) because it is not meant for tables only, but many other things.
 
 Spaces have "space local" settings that can be set for the space (and will be respected by all its `models` and other items). You'll learn more about this in the section on DDL.
@@ -60,10 +60,11 @@ Spaces have "space local" settings that can be set for the space (and will be re
 ### A `model` is like a `table`
 
 A `model` in Skytable is like a `table` in SQL but is vastly different because of certain concepts such as:
+
 - DML queries are point and not range queries by default
 - Restrictions on indexes
 - Settings (which can't be created in traditional `table`s)
-- Semi-structured data: with collection types in columns such as lists and dictionaries that violates some of the ideas of 
+- Semi-structured data: with collection types in columns such as lists and dictionaries that violates some of the ideas of
   traditional schema enforcement
 
 ## Query language
@@ -75,13 +76,13 @@ For example, Skytable's BlueQL<sup>TM</sup> *only* allows the parameterization o
 ## Transactions
 
 Skytable's DDL and DCL queries are all ACID transactions. However, DML queries use an AOF-style storage driver that periodically
-records, analyses and then intelligently syncs the changes to disk. We're working on making ACID transactions widely available 
+records, analyses and then intelligently syncs the changes to disk. We're working on making ACID transactions widely available
 across DML queries as well.
 
 ## Storage
 
-Skytable's storage engine is collectively called the Skytable Disk Storage Subsystem or SDSS for short. The storage engine uses 
-several different storage drivers, using ones appropriate for the task. We do not use RocksDB or any other engine but we 
+Skytable's storage engine is collectively called the Skytable Disk Storage Subsystem or SDSS for short. The storage engine uses
+several different storage drivers, using ones appropriate for the task. We do not use RocksDB or any other engine but we
 implement everything in house, engineering them piece by piece.
 
 :::info Features on track
@@ -103,8 +104,9 @@ Skytable will use atleast as many threads as the number of logical CPUs present 
 
 ## Networking
 
-Skytable uses its own in-house Skyhash protocol for client-server communication. It is built on top of TCP, enabling any programming language that has a 
+Skytable uses its own in-house Skyhash protocol for client-server communication. It is built on top of TCP, enabling any programming language that has a
 TCP client to use it without issues. There are three phases in the connection:
+
 - Handshake: All auth data, compatibility information and other data is exchanged at this step
 - Connection mode selection: based on the handshake parameters a connection mode is chosen and the server responds with the chosen exchange mode
 - Data exchange: This is where the real querying happens
@@ -115,14 +117,16 @@ You can [read more about the protocol here](protocol).
 ## Backwards compatibility
 
 We make the promise to you that no matter what changes in Skytable, you will always be able to:
+
 - Upgrade from one version to another without data loss or too many hoops
 - Export data from Skytable at any time
 
 More technically:
+
 - **For minor/patch releases**: The minor/patch is just in the name but it indicates that no data migration effort is needed. **No minor releases ever need data migration, and any migration is done automatically**
 - **For major releases**: Major releases generally introduce breaking changes (just like the upgrade from `0.7.x` to `0.8.0` is a largely breaking change). **Major releases will either automatically upgrade the data files or require you to use a migration tool that is shipped with the bundle**.
 - Definitions (closely following semantic versioning):
-  - **A major release** is something like `1.0.0` to `2.0.0` or `0.8.0` to `0.9.0` (in development versions, 0.8.0 to 0.9.0 is considered a major version 
+  - **A major release** is something like `1.0.0` to `2.0.0` or `0.8.0` to `0.9.0` (in development versions, 0.8.0 to 0.9.0 is considered a major version
   bump)
   - **A minor release** is something like `1.0.0` to `1.1.0` or `0.8.0` to `0.8.1`
   - **A patch release** is something like `1.0.0` to `1.0.1` or `0.8.0` to `0.8.1` (note that in development versions there is no distinction between a minor and patch release)

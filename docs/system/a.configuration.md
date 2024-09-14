@@ -3,7 +3,7 @@ id: configuration
 title: Configuration
 ---
 
-Skytable can be configured to run per your needs. You can use either of command-line arguments, environment variables or a 
+Skytable can be configured to run per your needs. You can use either of command-line arguments, environment variables or a
 configuration file. We don't have any specific recommendation for a mode of configuration but we generally consider using a
 configuration file to be the best practice since it is something that won't get lost (which in other cases can get lost due
 to lost shell history and such).
@@ -42,6 +42,7 @@ To start the server with a configuration file, simply run `skyd --config <path t
 :::
 
 Here's an explanation of all the keys:
+
 - `system`:
   - `mode`: set to either `dev` / `prod` mode. `prod` mode will generally make some things stricters (such as background services)
   - `rs_window`: **This is a very important setting!** It is set to `300` by default and is called the "reliability service window" which ensures that if any changes are observed in `300` (or whatever value you set) seconds, then they reach the disk as soon as that time elapses. For example, in the default configuration the system checks for changes every 5 minutes and if there are any dataset changes, they are immediately synced. [Read more here](recovery#understanding-data-loss)
