@@ -86,7 +86,7 @@ several different storage drivers, using ones appropriate for the task. We do no
 implement everything in house, engineering them piece by piece.
 
 :::info Features on track
-At this point, Skytable is primarily in-memory which means that while it uses disk storage for durability, most data is stored in-memory. **This is going to change in the near future as the team is working on building a custom log-based engine.** As you might understand, this is not an everyday task and as we incorporate new ideas it will take some time. But if you're seeing this in 2023, you can expect us to ship something by Q2 2024.
+At this point, Skytable is primarily in-memory which means that while it uses disk storage for durability, most data is stored in-memory. **This is going to change in the near future as the team is working on building a custom log-based engine.** As you might understand, this is not an everyday task and as we incorporate new ideas it will take some time. But if you're seeing this in 2024, you can expect us to ship something by early 2025.
 :::
 
 DDL and DCL transactions use a log-based append-only driver while DML queries use a custom log-based append-only driver that is able to intelligently handle concurrent changes. The team will implement new and updated storage drivers from time to time but you do not have to worry about anything, due to our promise for backwards compatibility (see below).
