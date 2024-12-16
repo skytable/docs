@@ -96,7 +96,7 @@ DDL and DCL transactions use a log-based append-only driver while DML queries us
 Skytable is heavily multithreaded enabling incredible vertical scalability and you can witness it for yourself by running benchmarks (or looking at ones that we publish). Clustering and replication are on track to be released soon.
 
 :::info Implementations on track
-Clustering and replication are right on track and we're expecting to deliver them by May, 2024. We'd also like to note that
+Clustering and replication are right on track and we're expecting to deliver them by early Q1'25. We'd also like to note that
 clustering is too important to ignore so you can be assured that we're hard at work on it.
 :::
 
