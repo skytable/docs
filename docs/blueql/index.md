@@ -2,7 +2,9 @@
 title: BlueQL
 ---
 
-import DocCardList from '@theme/DocCardList';
+:::info Version information
+This documentation corresponds to BlueQL 0.9 that was released with Skytable 0.9.
+:::
 
 ## Introduction
 
