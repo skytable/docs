@@ -1,63 +1,63 @@
 module.exports = {
   docs: [
     "index",
-    "installation",
-    "using-the-repl",
-    "libraries",
-    "architecture",
-    {
-      type: 'category',
-      label: 'BlueQL',
-      items: [
-        "blueql/overview",
-        "blueql/ddl",
-        "blueql/dml",
-        "blueql/dcl",
-      ],
-      collapsed: false,
-      link: {
-        type: 'doc',
-        id: 'blueql/index'
-      }
-    },
-    "querying",
-    {
-      type: 'category',
-      label: 'System Administration',
-      items: [
-        "system/configuration",
-        "system/user-management",
-        "system/global-management",
-        "system/disk-usage",
-        "system/backup-and-restore",
-        "system/recovery",
-      ],
-      link: {
-        type: 'doc',
-        id: 'system/index'
-      }
-    },
-    {
-      type: 'category',
-      label: 'Resources',
-      items: [
-        "resources/useful-links",
-        "resources/migration",
-        "resources/platform-support"
-      ],
-      collapsed: true,
-    },
-    {
-      type: 'category',
-      label: 'Protocol',
-      items: [
-        "protocol/index",
-        "protocol/specification",
-        "protocol/errors"
-      ],
-    },
-    "benchmarking",
-    "deployment",
-    "limits",
+    // "installation",
+    // "using-the-repl",
+    // "libraries",
+    // "architecture",
+    // {
+    //   type: 'category',
+    //   label: 'BlueQL',
+    //   items: [
+    //     "blueql/overview",
+    //     "blueql/ddl",
+    //     "blueql/dml",
+    //     "blueql/dcl",
+    //   ],
+    //   collapsed: false,
+    //   link: {
+    //     type: 'doc',
+    //     id: 'blueql/index'
+    //   }
+    // },
+    // "querying",
+    // {
+    //   type: 'category',
+    //   label: 'System Administration',
+    //   items: [
+    //     "system/configuration",
+    //     "system/user-management",
+    //     "system/global-management",
+    //     "system/disk-usage",
+    //     "system/backup-and-restore",
+    //     "system/recovery",
+    //   ],
+    //   link: {
+    //     type: 'doc',
+    //     id: 'system/index'
+    //   }
+    // },
+    // {
+    //   type: 'category',
+    //   label: 'Resources',
+    //   items: [
+    //     "resources/useful-links",
+    //     "resources/migration",
+    //     "resources/platform-support"
+    //   ],
+    //   collapsed: true,
+    // },
+    // {
+    //   type: 'category',
+    //   label: 'Protocol',
+    //   items: [
+    //     "protocol/index",
+    //     "protocol/specification",
+    //     "protocol/errors"
+    //   ],
+    // },
+    // "benchmarking",
+    // "deployment",
+    // "limits",
   ]
 };
