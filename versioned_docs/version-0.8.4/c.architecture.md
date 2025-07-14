@@ -33,7 +33,7 @@ counterparts and even NoSQL engines. Here are some key differences:
     queries *emulate* ACID transactions but that defeats the point of the eventually durable system which aims to heavily increase throughput.
   - The idea of eventually durable transactions relies on the idea that hardware failure even though prominent is still rare,
     thanks to the extreme hard work that cloud vendors put into reliability engineering. If you plan to run on unreliable hardware, then the delay setting (reliability service) is what you need to change.
-  - For extremely unreliable hardware on the other hand, we're working on a new storage driver `rtsyncblock` that is expected to be released in Q1'24
+  - For extremely unreliable hardware on the other hand, we're working on a new storage driver `rtsyncblock` that is expected to be released in Q3'25
 - The transactional engine powering DDL and DCL queries might often choose to demote a transaction to a virtual transaction which makes sure that the transaction is obviously durable but not necessarily actually executed but is eventually executed. If the system crashes, the engine will still be able to actually execute the transaction (even if it crashed halfway)
 
 :::tip
@@ -96,7 +96,7 @@ DDL and DCL transactions use a log-based append-only driver while DML queries us
 Skytable is heavily multithreaded enabling incredible vertical scalability and you can witness it for yourself by running benchmarks (or looking at ones that we publish). Clustering and replication are on track to be released soon.
 
 :::info Implementations on track
-Clustering and replication are right on track and we're expecting to deliver them by early Q1'25. We'd also like to note that
+Clustering and replication are right on track and we're expecting to deliver them by the end of 2025 (with releases across Q3'2025 and Q4'2025). We'd also like to note that
 clustering is too important to ignore so you can be assured that we're hard at work on it.
 :::
 
