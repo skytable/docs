@@ -86,7 +86,7 @@ several different storage drivers, using ones appropriate for the task. We do no
 implement everything in house, engineering them piece by piece.
 
 :::info Features on track
-At this point, Skytable is primarily in-memory which means that while it uses disk storage for durability, most data is stored in-memory. **This is going to change in the near future as the team is working on building a custom log-based engine.** As you might understand, this is not an everyday task and as we incorporate new ideas it will take some time. But if you're seeing this in 2024, you can expect us to ship something by early 2025.
+At this point, Skytable is primarily in-memory which means that while it uses disk storage for durability, most data is stored in-memory. **This is going to change in the near future as the team is working on building a custom log-based engine.**
 :::
 
 DDL and DCL transactions use a log-based append-only driver while DML queries use a custom log-based append-only driver that is able to intelligently handle concurrent changes. The team will implement new and updated storage drivers from time to time but you do not have to worry about anything, due to our promise for backwards compatibility (see below).
@@ -96,8 +96,7 @@ DDL and DCL transactions use a log-based append-only driver while DML queries us
 Skytable is heavily multithreaded enabling incredible vertical scalability and you can witness it for yourself by running benchmarks (or looking at ones that we publish). Clustering and replication are on track to be released soon.
 
 :::info Implementations on track
-Clustering and replication are right on track and we're expecting to deliver them by the end of 2025 (with releases across Q3'2025 and Q4'2025). We'd also like to note that
-clustering is too important to ignore so you can be assured that we're hard at work on it.
+Clustering (sharding) is set to be released into Skytable 0.9 ([track the 0.9 release here](https://radar.skytable.io/0.9)) and the complete sharding and replication functionality is set to be released into Skytable 1.0. If you have questions, please use [the GitHub issue tracker](https://github.com/skytable/skytable/issues).
 :::
 
 Skytable will use atleast as many threads as the number of logical CPUs present on the host. At this moment it is not possible to limit multithreading because multithreading is a part of Skytable's design principles and every attempt is made to exploit available CPU cores to the fullest.
